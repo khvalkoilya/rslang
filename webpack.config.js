@@ -5,8 +5,6 @@ const Copy = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCss = require('mini-css-extract-plugin');
-// const precss = require('precss');
-// const autoprefixer = require('autoprefixer');
 
 const isDevelop = process.env.NODE_ENV === 'development';
 const isProduct = !isDevelop;
@@ -33,6 +31,9 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new Html({
