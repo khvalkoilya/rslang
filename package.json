@@ -2,9 +2,11 @@
   "name": "rslang",
   "version": "1.0.0",
   "description": "Team project",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "cross-env NODE_ENV=development webpack --mode development",
+    "product": "cross-env NODE_ENV=production webpack --mode production",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^2.0.5",
     "prettier-webpack-plugin": "^1.2.0",
+    "prop-types": "^15.7.2",
     "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
@@ -49,6 +52,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
