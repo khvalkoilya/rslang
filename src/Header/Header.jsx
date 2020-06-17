@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Header.scss';
 
-const Header() {
+function Header() {
     return(
         <div className="header">
             header
