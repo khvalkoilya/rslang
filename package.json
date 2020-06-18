@@ -4,8 +4,8 @@
   "description": "Team project",
   "private": true,
   "scripts": {
-    "develop": "cross-env NODE_ENV=development webpack --mode development",
-    "product": "cross-env NODE_ENV=production webpack --mode production",
+    "develop": "cross-env NODE_ENV=development webpack-cli --mode development",
+    "product": "cross-env NODE_ENV=production webpack-cli --mode production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development"
   },
   "repository": {
@@ -55,5 +55,6 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "main": ".eslintrc.js"
 }

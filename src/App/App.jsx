@@ -1,5 +1,10 @@
 import React from 'react';
+import Footer from '../footer/Footer';
 
-const App = () => <h1>My React App!</h1>;
+const App = () => (
+  <>
+    <Footer />
+  </>
+);
 
 export default App;
