@@ -4,19 +4,6 @@ import MainMenuItemsName from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
 const MainMenu = () => {
-  // const words = [
-  //   {
-  //     id: 1,
-  //     name: 'Тренировка',
-  //     isUnderlined: false,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Мини-Игры',
-  //     isUnderlined: true,
-  //   },
-  // ];
-
   const m = MainMenuItemsName.map((word) => (
     <MainMenuItem
       name={word.name}
