@@ -1,23 +1,23 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import MainMenuItemsName from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
 const MainMenu = () => {
-  const words = [
-    {
-      id: 1,
-      name: 'Тренировка',
-      isUnderlined: false,
-    },
-    {
-      id: 2,
-      name: 'Мини-Игры',
-      isUnderlined: true,
-    },
-  ];
+  // const words = [
+  //   {
+  //     id: 1,
+  //     name: 'Тренировка',
+  //     isUnderlined: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Мини-Игры',
+  //     isUnderlined: true,
+  //   },
+  // ];
 
-  const m = words.map((word) => (
+  const m = MainMenuItemsName.map((word) => (
     <MainMenuItem
       name={word.name}
       isUnderlined={word.isUnderlined}
