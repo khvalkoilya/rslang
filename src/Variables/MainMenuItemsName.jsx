@@ -16,4 +16,4 @@ const MainMenuItemsValues = [
   },
 ];
 
-export default MainMenuItemsName;
+export default MainMenuItemsValues;
