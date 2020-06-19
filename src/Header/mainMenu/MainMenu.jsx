@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import MainMenuItemsValues from '../../variables/MainMenuItemsName';
+import MAIN_MENU_ITEMS_VALUES from '../../variables/MainMenuItemsName';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
-const isAuth = false;
+const isAuth = true;
 
 const MainMenu = () => {
   const startPage = isAuth ? 0 : 2;
@@ -12,7 +12,7 @@ const MainMenu = () => {
 
   const setPage = (id) => setActualPage(id);
 
-  const menuList = MainMenuItemsValues.map((word) => (
+  const menuList = MAIN_MENU_ITEMS_VALUES.map((word) => (
     <MainMenuItem
       name={word.name}
       isUnderlined={setUnderlined(word.id)}
