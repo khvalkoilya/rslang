@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MainMenuItemsValues from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
-const isAuth = true;
+const isAuth = false;
 
 const MainMenu = () => {
   const [actualPage, setActualPage] = useState(0);

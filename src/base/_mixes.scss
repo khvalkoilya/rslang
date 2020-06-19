@@ -1,0 +1,33 @@
+@mixin media-extra-small {
+  @media (max-width: $xs-screen) { @content; }
+}
+
+@mixin media-small {
+  @media (max-width: $sm-screen) { @content; }
+}
+
+@mixin media-medium {
+  @media (max-width: $m-screen) { @content; }
+}
+
+@mixin media-large {
+  @media (max-width: $l-screen) { @content; }
+}
+
+/*
+*  h1 {
+*   font-size: 24px;
+*    @include media-large{
+*      font-size: 22px;
+*    }
+*    @include media-medium{
+*      font-size: 20px;
+*    }
+*    @include media-small{
+*      font-size: 18px;
+*    }
+*    @include media-extra-small{
+*      font-size: 16px;
+*    }
+*  }
+*/
