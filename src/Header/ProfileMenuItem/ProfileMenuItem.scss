@@ -1,0 +1,11 @@
+.profile-menu__list {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
+
+.profile-menu__button {
+  display: inline-block;
+  margin: 0.5rem;
+  cursor: pointer;
+}

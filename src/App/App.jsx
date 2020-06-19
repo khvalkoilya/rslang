@@ -1,6 +1,6 @@
 import React from 'react';
-import MainMenuItem from '../MainMenuItem/MainMenuItem';
+import ProfileMenuItem from '../Header/ProfileMenuItem/ProfileMenuItem';
 
-const App = () => <MainMenuItem name="test" isUnderlined />;
+const App = () => <ProfileMenuItem />;
 
 export default App;
