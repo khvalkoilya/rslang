@@ -1,10 +1,4 @@
 .menu-item-active {
-    color: black;
-    border: none;
-    outline: none;
-    font-size: 33px;
-    background: transparent;
-    cursor: pointer;
     text-decoration: underline;
 }
 
@@ -18,11 +12,6 @@
 }
 
 .menu-item-lock {
-    color: black;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    background: transparent;
     cursor: auto;
     opacity: 0.5;
 }
