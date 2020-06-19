@@ -1,4 +1,4 @@
-export const MAIN_MENU_ITEMS_VALUES = [
+const MAIN_MENU_ITEMS_VALUES = [
   {
     id: 0,
     name: 'Тренировка',
@@ -15,3 +15,5 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
   },
 ];
+
+export default MAIN_MENU_ITEMS_VALUES;
