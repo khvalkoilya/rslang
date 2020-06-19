@@ -4,27 +4,14 @@ import MainMenuItemsName from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
 const MainMenu = () => {
-  // const words = [
-  //   {
-  //     id: 1,
-  //     name: 'Тренировка',
-  //     isUnderlined: false,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Мини-Игры',
-  //     isUnderlined: true,
-  //   },
-  // ];
 
-  const m = MainMenuItemsName.map((word) => (
+  const menuList = MainMenuItemsName.map((word) => (
     <MainMenuItem
       name={word.name}
       isUnderlined={word.isUnderlined}
       key={word.id}
     />
   ));
-  // const m = words.map((word) => <MainMenuItem item={word, isUnderlined} key={word.id} />);
   return (
     <div>
       {m}
