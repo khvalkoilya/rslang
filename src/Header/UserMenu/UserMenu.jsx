@@ -4,7 +4,7 @@ import './_userMenu.scss';
 
 const UserMenu = ({ isVisible }) => {
   const [visible, setVisible] = useState(false);
-  const title = isVisible ? 'Меню пользователя' : 'Гость';
+  const title = isVisible ? 'Меню' : 'Гость';
   return (
     <>
       <button type="button" onClick={() => setVisible(!visible)}>{title}</button>
