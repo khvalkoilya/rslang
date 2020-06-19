@@ -1,17 +1,32 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import MainMenuItemsName from '../../Variables/MainMenuItemsName';
+import MainMenuItemsValues from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
+// function setPage()
+
 const MainMenu = () => {
-  const m = MainMenuItemsName.map((word) => (
+  const [actualPage, setActualPage] = useState(0);
+
+  const setUnderlined = (e) => e.id === actualPage;
+
+  const m = MainMenuItemsValues.map((word) => (
     <MainMenuItem
       name={word.name}
-      isUnderlined={word.isUnderlined}
-      key={word.id}
+      isUnderlined={setUnderlined(word.id)}
+      // isUnderlined={setUnderlined}
+      id={word.id}
     />
   ));
-  // const m = words.map((word) => <MainMenuItem item={word, isUnderlined} key={word.id} />);
+
+  function setPage(id) {
+    setActualPage(id);
+  }
+
+  // function setActualPage() {
+  //   console.log('change')
+  // }
+
   return (
     <div>
       {m}
@@ -19,10 +34,12 @@ const MainMenu = () => {
   );
 };
 
-const MainMenuItem = ({ name, isUnderlined }) => (
+const MainMenuItem = ({ name, isUnderlined, id }) => (
   <button
     type="button"
-    onClick={useCallback(() => {}, [])}
+    onClick={useCallback(() => {
+      console.log(id);
+    }, [])}
     className={`menu-item ${isUnderlined ? 'menu-item-active' : null}`}
   >
     { name }
@@ -31,10 +48,12 @@ const MainMenuItem = ({ name, isUnderlined }) => (
 MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   isUnderlined: PropTypes.bool,
+  id: PropTypes.number,
 };
 
 MainMenuItem.defaultProps = {
   isUnderlined: false,
+  id: 0,
 };
 
 export default MainMenu;

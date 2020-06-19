@@ -1,4 +1,4 @@
-const MainMenuItemsName = [
+const MainMenuItemsValues = [
   {
     id: 0,
     name: 'Тренировка',
