@@ -8,7 +8,7 @@ const UserMenu = ({ isVisible }) => {
   return (
     <>
       <button type="button" onClick={() => setVisible(!visible)}>{title}</button>
-      <div className={visible ? 'block' : 'none'}>привет</div>
+      <div className={`user__menu ${visible ? 'block' : 'none'}`}>привет</div>
     </>
   );
 };
