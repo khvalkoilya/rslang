@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header__logo" />
-      <MainMenu />
+      <div className="header__main-menu"><MainMenu /></div>
       <div className="header__profile-menu" />
     </div>
   );
