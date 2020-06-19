@@ -2,8 +2,8 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import MainMenuItemsValues from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
-
-// function setPage()
+//import isAuth from ...
+const isAuth = true;
 
 const MainMenu = () => {
   const [actualPage, setActualPage] = useState(0);
@@ -14,17 +14,14 @@ const MainMenu = () => {
     <MainMenuItem
       name={word.name}
       isUnderlined={setUnderlined(word.id)}
-      // isUnderlined={setUnderlined}
       id={word.id}
+      key={word.id}
+      isAuthorized={word.isAuthorized}
     />
   ));
 
-  function setPage(id) {
-    setActualPage(id);
-  }
-
-  // function setActualPage() {
-  //   console.log('change')
+  // function setPage(id) {
+  //   setActualPage(id);
   // }
 
   return (
@@ -34,26 +31,31 @@ const MainMenu = () => {
   );
 };
 
-const MainMenuItem = ({ name, isUnderlined, id }) => (
+const MainMenuItem = ({
+  name, isUnderlined, id, isAuthorized,
+}) => (
   <button
     type="button"
     onClick={useCallback(() => {
       console.log(id);
     }, [])}
-    className={`menu-item ${isUnderlined ? 'menu-item-active' : null}`}
+    className={isAuth ? (`menu-item ${isUnderlined ? 'menu-item-active' : ''}`) : (`${isAuthorized ? 'menu-item' : 'menu-item-lock'}`)}
   >
     { name }
   </button>
 );
+
 MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   isUnderlined: PropTypes.bool,
   id: PropTypes.number,
+  isAuthorized: PropTypes.bool,
 };
 
 MainMenuItem.defaultProps = {
   isUnderlined: false,
   id: 0,
+  isAuthorized: false,
 };
 
 export default MainMenu;
