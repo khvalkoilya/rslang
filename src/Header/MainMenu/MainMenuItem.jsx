@@ -14,7 +14,7 @@ const MainMenu = () => {
   ));
   return (
     <div>
-      {m}
+      {menuList}
     </div>
   );
 };
