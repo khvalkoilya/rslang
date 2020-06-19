@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import MainMenuItemsValues from '../../Variables/MainMenuItemsName';
+import MainMenuItemsValues from '../../variables/MainMenuItemsName';
 import './MainMenuItem.scss';
 
 const isAuth = false;
