@@ -6,7 +6,8 @@ import './MainMenuItem.scss';
 const isAuth = false;
 
 const MainMenu = () => {
-  const [actualPage, setActualPage] = useState(0);
+  const startPage = isAuth ? 0 : 2;
+  const [actualPage, setActualPage] = useState(startPage);
 
   const setUnderlined = (e) => e === actualPage;
 
@@ -35,10 +36,10 @@ const MainMenuItem = ({
 }) => (
   <button
     type="button"
-    onClick={useCallback(() => {
+    onClick={isAuth ? useCallback(() => {
       setPage(id);
-    }, [])}
-    className={isAuth ? (`menu-item ${isUnderlined ? 'menu-item-active' : ''}`) : (`${isAuthorized ? 'menu-item' : 'menu-item-lock'}`)}
+    }, []) : null}
+    className={`menu-item ${isUnderlined ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
   >
     { name }
   </button>
