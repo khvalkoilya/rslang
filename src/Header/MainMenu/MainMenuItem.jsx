@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import MainMenuItemsValues from '../../Variables/MainMenuItemsName';
 import './MainMenuItem.scss';
-// import isAuth from ...
+
 const isAuth = true;
 
 const MainMenu = () => {

@@ -7,7 +7,6 @@ function Header() {
   return (
     <div className="header">
       <div className="header__logo" />
-      {/* <div className="header__main-menu" /> */}
       <MainMenu />
       <div className="header__profile-menu" />
     </div>
