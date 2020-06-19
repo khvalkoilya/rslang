@@ -1,5 +1,6 @@
 import React from 'react';
+import MainMenuItem from '../MainMenuItem/MainMenuItem';
 
-const App = () => <h1>My React App!</h1>;
+const App = () => <MainMenuItem name="test" isUnderlined />;
 
 export default App;

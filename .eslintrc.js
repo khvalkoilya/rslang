@@ -19,5 +19,6 @@ module.exports = {
         "react-hooks",
     ],
     "rules": {
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     }
 };
