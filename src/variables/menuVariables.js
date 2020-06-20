@@ -1,4 +1,4 @@
-const MAIN_MENU_ITEMS_VALUES = [
+export const MAIN_MENU_ITEMS_VALUES = [
   {
     id: 0,
     name: 'Тренировка',
@@ -16,4 +16,4 @@ const MAIN_MENU_ITEMS_VALUES = [
   },
 ];
 
-export default MAIN_MENU_ITEMS_VALUES;
+export const MENU = [];
