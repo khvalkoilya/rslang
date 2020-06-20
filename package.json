@@ -55,5 +55,6 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "main": ".eslintrc.js"
 }
