@@ -23,3 +23,5 @@ export const getId = async (fn, group = 0, quantity = 20) => {
     .map((a) => a.value);
   return fn(randomId.slice(0, quantity));
 };
+
+export const getUrlData = (name) => `https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${name}`;
