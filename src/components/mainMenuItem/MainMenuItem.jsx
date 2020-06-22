@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import './MainMenuItem.scss';
 
 const MainMenuItem = ({
   name, isUnderlined, id, isAuthorized, setPage, isAuth,
