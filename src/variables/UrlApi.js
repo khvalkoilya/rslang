@@ -9,7 +9,7 @@ const SEARCH_PARAM_GROUP = 'group=';
 
 const URL = {
   words: {
-    fn: (page, group) => fetch(`${BASE_PATH}${WORDS}?${SEARCH_PARAM_PAGE}${page}&${SEARCH_PARAM_GROUP}${group}`),
+    getWords: (page, group) => `${BASE_PATH}${WORDS}?${SEARCH_PARAM_PAGE}${page}&${SEARCH_PARAM_GROUP}${group}`,
   },
 };
 

@@ -1,6 +1,6 @@
-import URL from '../variables/UrlApi';
+import URL from '../variables/urlApi';
 
-export const api = (page, group) => URL.words.fn(page, group)
+export const api = (page, group) => fetch(URL.words.getWords(page, group))
   .then((res) => res.json())
   .then((result) => result)
   .catch((error) => error);
