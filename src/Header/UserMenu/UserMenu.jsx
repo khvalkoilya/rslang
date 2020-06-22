@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './_userMenu.scss';
+import './UserMenu.scss';
 
 const UserMenu = ({ isVisible }) => {
   const [visible, setVisible] = useState(false);
