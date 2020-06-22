@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../input/Input';
+import { getLetterArr } from './utils';
 
 import './_card.scss';
 
@@ -16,14 +17,18 @@ const Card = ({
   wordTranslate,
 }) => {
   const [innerWord, setInnerWord] = useState('');
+  const [defaultVal, setDefaultVal] = useState([]);
 
-  const compareWords = () => {
-    console.log(word, innerWord);
-  };
+  const compareWords = () => setDefaultVal(getLetterArr(word, innerWord));
 
   return (
     <div className="wrapper">
-      <Input wordLen={word.length} setWord={setInnerWord} />
+      <Input
+        word={word}
+        wordLen={word.length}
+        setWord={setInnerWord}
+        defaultVal={defaultVal}
+      />
       <div>{textMeaning}</div>
       <div>{textExample}</div>
       <div>{transcription}</div>
