@@ -54,7 +54,9 @@
     "@babel/polyfill": "^7.10.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-id-swiper": "^3.0.0",
+    "swiper": "^5.4.5"
   },
   "main": ".eslintrc.js"
 }

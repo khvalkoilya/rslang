@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MAIN_MENU_ITEMS_VALUES from '../../Variables/MainMenuItemsName';
+import MAIN_MENU_ITEMS_VALUES from '../../variables/MainMenuItemsName';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
 const isAuth = true;
