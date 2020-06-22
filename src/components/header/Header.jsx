@@ -2,8 +2,6 @@ import React from 'react';
 import MainMenu from '../mainMenu/MainMenu';
 import UserMenu from '../userMenu/UserMenu';
 
-import './Header.scss';
-
 const isAuth = true;
 
 function Header() {
