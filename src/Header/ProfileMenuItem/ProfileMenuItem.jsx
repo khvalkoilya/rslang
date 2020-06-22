@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './ProfileMenuItem.scss';
-import profileMenuItems from '../../Variables/ProfileMenuItems';
+import profileMenuItems from '../../variables/ProfileMenuItems';
 
 const ProfileMenuItem = () => {
   const isAuthorized = false;
