@@ -1,11 +1,12 @@
-.userProgress{
+.userProgress {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   &-bar{
     height: 24px;
-    width: inherit;
+    width: 80%;
+    margin: 0 19px;
     // border: 1px solid $denim-color;
   }
 }
@@ -14,4 +15,7 @@ span.numberCards {
   font-size: 50px;
   font-family: "BalsamiqSans Bold" , serif;
   // color: $denim-color;
+  // @include media-small{
+  //   font-size: 25px;
+  // }
 }
