@@ -15,3 +15,13 @@
         opacity: 0.5;
     }
 }
+
+.menu-item-active {
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 33px;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: underline;
+}
