@@ -2,3 +2,10 @@
 @import "./base/constants";
 @import "./base/fonts";
 @import "./base/mixes";
+
+@import './components/progressBar/_ProgressBar.scss';
+@import './components/userMenu/_UserMenu.scss';
+@import './components/card/_Card.scss';
+@import './components/footer/_Footer.scss';
+@import './components/mainMenuItem/_MainMenuItem.scss';
+@import './components/header/_Header.scss';
