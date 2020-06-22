@@ -5,7 +5,7 @@ export const api = (page, group) => fetch(URL.words.getWords(page, group))
   .then((result) => result)
   .catch((error) => error);
 
-export const getId = async (fn, group = 0, page = 0) => {
+export const getWordsData = async (fn, group = 0, page = 0) => {
   const arrWords = await api(group, page);
   return fn(arrWords);
 };
