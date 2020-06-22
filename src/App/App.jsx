@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
-import Swiper from '../components/blockWithCards/Slider';
+import Swiper from '../components/blockWithCards/Swiper';
 
 // Swiper is here temporarily
 const App = () => (

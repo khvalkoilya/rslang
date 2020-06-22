@@ -3,9 +3,9 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 
-import './_slider.scss';
+import './_swiper.scss';
 
-const SimpleSwiper = () => {
+const renderBlockWithCards = () => {
   const arr = ['Slide 1', 'Slide 2', 'Slide 3'] // This array is for example
     .map((e) => (
       <div>
@@ -28,7 +28,7 @@ const SimpleSwiper = () => {
   };
 
   return (
-    <div className="slider">
+    <div className="swiper">
       <Swiper {...params}>
         {arr}
       </Swiper>
@@ -36,4 +36,4 @@ const SimpleSwiper = () => {
   );
 };
 
-export default SimpleSwiper;
+export default renderBlockWithCards;
