@@ -2,10 +2,11 @@
 @import "./base/constants";
 @import "./base/fonts";
 @import "./base/mixes";
+@import "./components/mainMenuItem/mainMenuItem";
+@import "./components/userMenuItem/userMenuItem";
+@import "./components/userMenu/userMenu";
+@import "./components/header/header";
+@import "./components/footer/footer";
+@import "./components/progressBar/progressBar";
+@import "./components/card/card";
 
-@import './components/progressBar/_ProgressBar.scss';
-@import './components/userMenu/_UserMenu.scss';
-@import './components/card/_Card.scss';
-@import './components/footer/_Footer.scss';
-@import './components/mainMenuItem/_MainMenuItem.scss';
-@import './components/header/_Header.scss';
