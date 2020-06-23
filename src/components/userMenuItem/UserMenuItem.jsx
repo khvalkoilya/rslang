@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 import USER_MENU_ITEMS from '../../variables/userMenuItems';
 
 const UserMenuItem = ({ isAuth }) => {
-  const needMenuItems = [];
-
-  for (let i = 0; i < USER_MENU_ITEMS.length; i += 1) {
-    if (USER_MENU_ITEMS[i].isAuthorized === isAuth) {
-      needMenuItems.push(USER_MENU_ITEMS[i]);
+  const menuItems = USER_MENU_ITEMS.map((e) => {
+    if (e.isAuthorized === isAuth) {
+      return (
+        <button key={e.id} className="profile-menu__button" type="button">
+          {e.name}
+        </button>
+      );
     }
-  }
+    return null;
+  });
 
   return (
     <div className="profile-menu__list">
-      {needMenuItems.map((item) => <button className="profile-menu__button" type="button">{item.name}</button>)}
+      {menuItems}
     </div>
   );
 };
