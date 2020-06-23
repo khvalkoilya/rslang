@@ -15,7 +15,8 @@ function Header() {
         <UserMenu isAuth={isAuth} />
       </div>
     </div>
-  );
-}
+    <div className="header__profile-menu" />
+  </div>
+);
 
 export default Header;

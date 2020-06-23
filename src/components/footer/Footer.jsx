@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './_footer.scss';
-
 const Footer = () => (
   <div className="footerWrapper">
     <div className="footerContainer">

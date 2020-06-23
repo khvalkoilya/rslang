@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import Input from '../input/Input';
 import { getLetterArr } from './utils';
 
-import './_card.scss';
-
 const Card = ({
   word,
   image,
