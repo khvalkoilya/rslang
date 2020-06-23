@@ -6,7 +6,7 @@ import 'swiper/css/swiper.css';
 import './_swiper.scss';
 
 const renderBlockWithCards = () => {
-  const arr = ['Slide 1', 'Slide 2', 'Slide 3'] // This array is for example
+  const arr = ['Slide 1', 'Slide 2', 'Slide 3']
     .map((e) => (
       <div>
         {e}
