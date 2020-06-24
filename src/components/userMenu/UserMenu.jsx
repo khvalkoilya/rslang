@@ -8,7 +8,10 @@ const UserMenu = ({ isAuth }) => {
   const title = isAuth ? 'Меню' : 'Гость';
   return (
     <>
-      <button type="button" className="user__menu__button" onClick={() => setVisible(!visible)}>{title}</button>
+      <button type="button" className="user__menu__button" onClick={() => setVisible(!visible)}>
+        <img src="../../assets/images/user.svg" alt="icon" />
+        <span>{title}</span>
+      </button>
       <div className={`user__menu ${visible ? 'block' : 'none'}`}>
         <UserMenuItem isAuth={isAuth} />
       </div>

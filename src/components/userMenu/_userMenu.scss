@@ -18,14 +18,27 @@
 .user__menu__button {
   width: 169px;
   height: 55px;
+  position: relative;
   border: 1px solid $denim-color;
-  font-family: "BalsamiqSans Regular", sans-serif;
-  font-size: 20px;
   background-color: $white-color;
-  color: $light-grey-color;
   outline: none;
   cursor: pointer;
   transition: .5s all ease-in;
+
+  img {
+    width: 30px;
+    position: absolute;
+    left: 13%;
+    top: 16%;
+  }
+
+  span {
+    color: $light-grey-color;
+    font-family: "BalsamiqSans Regular", sans-serif;
+    font-size: 20px;
+    line-height: 45px;
+    margin-left: 35px;
+  }
 
   @include media-medium {
     width: 130px;
