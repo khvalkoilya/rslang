@@ -26,31 +26,44 @@
 .header__main-menu {
   width: 70%;
   text-align: center;
+
+  @include media-small {
+    width: 100%;
+    margin-top: 100px;
+  }
 }
 
 .header__profile-menu {
   margin: 1rem;
 
-  @include media-medium {
-
+  @include media-small {
+    margin: 0;
   }
 }
 
 
-nav {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 70%;
+  transition: 0.5s all ease-out;
 
   @include media-small {
     z-index: 10;
     position: absolute;
     display: block;
-    width: 162px;
+    width: 200px;
     background-color: #fff;
     left: 0;
-    top: 86px;
-    height: auto;
+    top: 0;
+    height: 100vh;
   }
+}
+
+nav.visible {
+  left: 0;
+}
+nav.unvisible {
+  left: -200px;
 }

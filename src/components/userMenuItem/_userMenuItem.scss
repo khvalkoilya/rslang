@@ -5,8 +5,8 @@
   left: 0;
   right: 0;
   background-color: $white-color;
-  @include  media-medium{
-
+  @include  media-small {
+    display: block;
   }
 }
 
@@ -26,6 +26,17 @@
 
   @include media-medium {
     height: 45px;
+  }
+
+  @include media-small {
+    display: block;
+    height: auto;
+    margin: 0 0 10px 20px;
+    color: $black-color;
+    border: none;
+    outline: none;
+    background: $white-color;
+
   }
 
   &:hover{

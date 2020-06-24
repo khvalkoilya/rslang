@@ -3,6 +3,9 @@
 }
 .none{
   display: none;
+  @include media-small {
+    display: block;
+  }
 }
 
 .user__menu{
@@ -27,6 +30,10 @@
   @include media-medium {
     width: 130px;
     height: 45px;
+  }
+
+  @include media-small {
+    display: none;
   }
 
   &:hover{
