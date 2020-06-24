@@ -24,9 +24,9 @@ const MainMenu = ({ isAuth }) => {
   ));
 
   return (
-    <div>
+    <>
       {menuList}
-    </div>
+    </>
   );
 };
 

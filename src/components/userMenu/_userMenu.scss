@@ -1,9 +1,29 @@
 .block{
- display: block;
+   display: block;
 }
 .none{
   display: none;
 }
-.user__menu {
-  color: red;
+
+.user__menu{
+  position: relative;
+  width: inherit;
+}
+
+
+
+.user__menu__button {
+  width: 169px;
+  height: 55px;
+  border: 1px solid $denim-color;
+  font-family: "BalsamiqSans Regular", sans-serif;
+  font-size: 20px;
+  background-color: $white-color;
+  color: $light-grey-color;
+  outline: none;
+  cursor: pointer;
+  transition: .5s all ease-in;
+  &:hover{
+    box-shadow: 0px 0px 8px -1px $dark-blue-color;
+  }
 }

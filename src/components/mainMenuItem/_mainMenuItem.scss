@@ -5,6 +5,9 @@
     font-size: 20px;
     background: transparent;
     cursor: pointer;
+    margin-right: 2.5rem;
+    font-family: "BalsamiqSans Regular", sans-serif;
+    margin-right: 7%;
     &-active {
         text-decoration: underline;
         font-size: 22px;
@@ -16,4 +19,3 @@
         opacity: 0.5;
     }
 }
-
