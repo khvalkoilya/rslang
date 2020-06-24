@@ -1,19 +1,15 @@
 const BASE_PATH = 'https://afternoon-falls-25894.herokuapp.com';
-const WORDS = '/words';
-const USERS = '/users';
-const SIGNIN = '/signin';
-const STATISTIC = '/statistics';
-const SETTING = '/settings';
-const SEARCH_PARAM_PAGE = 'page=';
-const SEARCH_PARAM_GROUP = 'group=';
+const WORDS = 'words';
+const USERS = 'users';
+const SIGNIN = 'signin';
+const STATISTICS = 'statistics';
+const SETTINGS = 'settings';
 
 const URL = {
-  words: {
-    getWords: (page, group) => `${BASE_PATH}${WORDS}?${SEARCH_PARAM_PAGE}${page}&${SEARCH_PARAM_GROUP}${group}`,
-  },
+  getWords: (page, group) => `${BASE_PATH}/${WORDS}?page=${page}&group=${group}`,
   userApi: {
-    createUser: `${BASE_PATH}${USERS}`,
-    loginUser: `${BASE_PATH}${SIGNIN}`,
+    createUser: `${BASE_PATH}/${USERS}`,
+    loginUser: `${BASE_PATH}/${SIGNIN}`,
     headerUser: (user) => ({
       method: 'POST',
       headers: {
@@ -24,8 +20,8 @@ const URL = {
     }),
   },
   userSetting: {
-    setting: (idUser) => `${BASE_PATH}${USERS}/${idUser}${SETTING}`,
-    putSetting: (token, option) => ({
+    settings: (idUser) => `${BASE_PATH}/${USERS}/${idUser}/${SETTINGS}`,
+    putSettings: (token, option) => ({
       method: 'PUT',
       withCredentials: true,
       headers: {
@@ -35,7 +31,7 @@ const URL = {
       },
       body: JSON.stringify(option),
     }),
-    getSetting: (token) => ({
+    getSettings: (token) => ({
       method: 'GET',
       withCredentials: true,
       headers: {
@@ -46,8 +42,8 @@ const URL = {
     }),
   },
   userStatistic: {
-    statistic: (idUser) => `${BASE_PATH}${USERS}/${idUser}${STATISTIC}`,
-    putStatistic: (option, token) => ({
+    statistics: (idUser) => `${BASE_PATH}/${USERS}/${idUser}/${STATISTICS}`,
+    putStatistics: (option, token) => ({
       method: 'PUT',
       withCredentials: true,
       headers: {
@@ -57,7 +53,7 @@ const URL = {
       },
       body: JSON.stringify(option),
     }),
-    getStatistic: (token) => ({
+    getStatistics: (token) => ({
       method: 'GET',
       withCredentials: true,
       headers: {
