@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './_speakLt.scss';
 
 const SpeakLt = ({ words }) => {
-  const [audio] = useState('https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/files/02_0038.mp3');
   const [actualEl, setActualEl] = useState(null);
   const [isRecognize, setIsRecognize] = useState(false);
   const [spokenWord, setSpokenWord] = useState(null);
@@ -15,7 +14,8 @@ const SpeakLt = ({ words }) => {
       type="button"
       onClick={() => {
         setActualEl(e);
-        // setAudio(new Audio(`https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${e.audio}`));
+        const audio = new Audio(`https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${e.audio}`);
+        audio.play();
       }}
     >
       <div>{e.word}</div>
@@ -24,21 +24,21 @@ const SpeakLt = ({ words }) => {
     </button>
   ));
 
+  const recognizeSpeech = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.continous = false;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    recognition.start();
+    recognition.onspeechend = () => {
+      setIsRecognize(!isRecognize);
+      recognition.onresult = (e) => setSpokenWord(e.results[0][0].transcript);
+    };
+  };
+
   useEffect(() => {
-    if (isRecognize) {
-      audio.play();
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-      recognition.continous = false;
-      recognition.interimResults = true;
-      recognition.lang = 'en-US';
-      recognition.start();
-      recognition.onspeechend = () => {
-        setIsRecognize(!isRecognize);
-        recognition.onresult = (e) => setSpokenWord(e.results[0][0].transcript);
-      };
-      audio.play();
-    }
+    if (isRecognize) recognizeSpeech();
   }, [isRecognize]);
 
   const getImg = () => (
