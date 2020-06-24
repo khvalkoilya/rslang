@@ -6,7 +6,8 @@
   "scripts": {
     "develop": "cross-env NODE_ENV=development webpack --mode development",
     "product": "cross-env NODE_ENV=production webpack --mode production",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "lint": "eslint --fix src/**/*.js src/**/*.jsx"
   },
   "repository": {
     "type": "git",
@@ -55,7 +56,9 @@
     "@babel/polyfill": "^7.10.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-id-swiper": "^3.0.0",
+    "swiper": "^5.4.5"
   },
   "main": ".eslintrc.js"
 }

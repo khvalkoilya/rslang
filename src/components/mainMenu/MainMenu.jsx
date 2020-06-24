@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { MAIN_MENU_ITEMS_VALUES } from '../../variables/menuVariables';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
-const isAuth = true;
-
-const MainMenu = () => {
+const MainMenu = ({ isAuth }) => {
   const startPage = isAuth ? 0 : 2;
   const [actualPage, setActualPage] = useState(startPage);
 
@@ -29,6 +28,10 @@ const MainMenu = () => {
       {menuList}
     </div>
   );
+};
+
+MainMenu.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
 };
 
 export default MainMenu;

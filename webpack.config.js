@@ -65,6 +65,11 @@ module.exports = {
   module: {
     rules: [
       {
+        exclude: [/node_modules\/(?!(swiper|dom7)\/).*/, /\.test\.js(x)?$/],
+        test: /\.js(x)?$/,
+        use: [{ loader: 'babel-loader' }],
+      },
+      {
         enforce: 'pre',
         test: /\.jsx$/,
         exclude: /node_modules/,
