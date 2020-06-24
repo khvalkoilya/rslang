@@ -1,23 +1,17 @@
 import URL from '../variables/UrlApi';
 
-export const getWordsData = async (setState, group = 0, page = 0) => {
-  const arrWords = await fetch(URL.words.getWords(page, group))
+const data = async (arg) => {
+  const arr = await fetch(...arg)
     .then((res) => res.json())
     .then((result) => result)
     .catch((error) => error);
-  return setState(arrWords);
+  return arr;
 };
 
-export const createUser = async (user) => {
-  await fetch(URL.userApi.createUser, URL.userApi.headerUser(user));
-};
+export const getWordsData = (group = 0, page = 0) => data([URL.getWords(page, group)]);
 
-export const loginUser = async (setState, user) => {
-  const arr = await fetch(URL.userApi.loginUser, URL.userApi.headerUser(user))
-    .then((res) => res.json())
-    .then((result) => result)
-    .catch((error) => error);
-  return setState(arr);
-};
+export const createUser = (user) => data([URL.userApi.createUser, URL.userApi.headerUser(user)]);
+
+export const loginUser = (user) => data([URL.userApi.loginUser, URL.userApi.headerUser(user)]);
 
 export const getUrlData = (name) => `https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${name}`;
