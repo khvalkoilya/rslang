@@ -10,12 +10,14 @@ const Header = () => (
     <div className="header__logo">
       <Logo />
     </div>
-    <div className="header__main-menu">
-      <MainMenu isAuth={isAuth} />
-    </div>
-    <div className="header__profile-menu">
-      <UserMenu isAuth={isAuth} />
-    </div>
+    <nav>
+      <div className="header__main-menu">
+        <MainMenu isAuth={isAuth} />
+      </div>
+      <div className="header__profile-menu">
+        <UserMenu isAuth={isAuth} />
+      </div>
+    </nav>
   </div>
 );
 
