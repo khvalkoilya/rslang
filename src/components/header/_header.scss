@@ -1,5 +1,3 @@
-
-
 .header {
     width: 100%;
     margin: 0;
@@ -8,11 +6,11 @@
     grid-template: 'main-menu logo' auto
                     'profile-menu profile-menu' auto
                     / 1fr 3fr;
-    background-color: #fff;
-    box-shadow: 0px -3px 11px 0px #000000;
+    background-color: $white-color;
+    box-shadow: 0px -3px 11px 0px $dark-blue-color;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: $m-screen) {
     .header {
         display: flex;
         flex-direction: row;

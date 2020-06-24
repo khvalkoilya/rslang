@@ -1,4 +1,4 @@
-const profileMenuItems = [
+const USER_MENU_ITEMS = [
   {
     id: 0,
     name: 'Статистика',
@@ -26,4 +26,4 @@ const profileMenuItems = [
   },
 ];
 
-export default profileMenuItems;
+export default USER_MENU_ITEMS;
