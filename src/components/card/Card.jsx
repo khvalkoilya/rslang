@@ -33,13 +33,13 @@ const Card = ({
         <div className="card__ruSentence">{textExampleTranslate}</div>
         <div className="card__sentence">{textMeaning}</div>
         <div className="card__ruSentence">{textMeaningTranslate}</div>
-        <div>{transcription}</div>
-        <img src={image} alt={word} />
-        <button type="button">выкл перевод</button>
-        <button type="button">вкл воспр</button>
-        <button type="button">удалить</button>
-        <button type="button">сложно</button>
-        <button type="button" onClick={compareWords}>далее</button>
+        {/* <div>{transcription}</div> */}
+        {/* <img src={image} alt={word} /> */}
+        {/* <button type="button">выкл перевод</button> */}
+        {/* <button type="button">вкл воспр</button> */}
+        <button type="button" className="card__button">Удалить</button>
+        <button type="button" className="card__button">Сложное</button>
+        <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>
       </div>
     </div>
   );
@@ -60,9 +60,9 @@ Card.defaultProps = {
   word: 'Run',
   image: 'image',
   wordTranslate: 'Бежать, бегать',
-  textExample: 'I run every morning.',
+  textExample: 'I <b>run</b> every morning.',
   textExampleTranslate: 'Я бегаю каждое утро',
-  textMeaning: 'Run - moving fast.',
+  textMeaning: '<i>Run</i> - moving fast.',
   textMeaningTranslate: 'Бежать - двигаться быстро',
   transcription: '[RAN]',
 };

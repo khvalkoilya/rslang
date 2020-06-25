@@ -32,7 +32,6 @@
     font-family: "BalsamiqSans Bold";
     font-size: 30px;
     padding-top: 35px;
-    width: 400px;
     padding-bottom: 20px;
   }
 
@@ -40,7 +39,9 @@
     border-top: 2px solid $whitesmoke-card-border;
     font-family: "BalsamiqSans Bold Italic";
     font-size: 30px;
+    width: 400px;
     padding-top: 20px;
+    white-space: nowrap;
   }
 
   &__ruSentence {
@@ -49,5 +50,22 @@
     color: $denim-color;
     padding-top: 7px;
     padding-bottom: 26px;
+  }
+
+  &__button {
+    background-color: $brown-color;
+    color: $white-color;
+    padding: 0 24px;
+    height: 36px;
+    border: none;
+    outline: none;
+    font-family: "BalsamiqSans Regular";
+    font-size: 20px;
+    margin-right: 25px;
+
+    &-show {
+      float: right;
+      margin-right: 0;
+    }
   }
 }
