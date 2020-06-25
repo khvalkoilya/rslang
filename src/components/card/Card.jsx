@@ -8,11 +8,11 @@ const Card = ({
   word,
   image,
   wordTranslate,
-  textMeaning,
   textExample,
-  transcription,
   textExampleTranslate,
+  textMeaning,
   textMeaningTranslate,
+  transcription,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -29,11 +29,11 @@ const Card = ({
           defaultVal={defaultVal}
         />
         <div className="card__translate">{wordTranslate}</div>
-        <div>{textMeaning}</div>
-        <div>{textExample}</div>
+        <div className="card__sentence">{textExample}</div>
+        <div className="card__ruSentence">{textExampleTranslate}</div>
+        <div className="card__sentence">{textMeaning}</div>
+        <div className="card__ruSentence">{textMeaningTranslate}</div>
         <div>{transcription}</div>
-        <div>{textExampleTranslate}</div>
-        <div>{textMeaningTranslate}</div>
         <img src={image} alt={word} />
         <button type="button">выкл перевод</button>
         <button type="button">вкл воспр</button>
@@ -49,22 +49,22 @@ Card.propTypes = {
   word: PropTypes.string,
   image: PropTypes.string,
   wordTranslate: PropTypes.string,
-  textMeaning: PropTypes.string,
   textExample: PropTypes.string,
-  transcription: PropTypes.string,
   textExampleTranslate: PropTypes.string,
+  textMeaning: PropTypes.string,
   textMeaningTranslate: PropTypes.string,
+  transcription: PropTypes.string,
 };
 
 Card.defaultProps = {
   word: 'Run',
   image: 'image',
   wordTranslate: 'Бежать, бегать',
-  textMeaning: 'textMeaning',
-  textExample: 'textExample',
-  transcription: 'transcription',
-  textExampleTranslate: 'textExampleTranslate',
-  textMeaningTranslate: 'textMeaningTranslate',
+  textExample: 'I run every morning.',
+  textExampleTranslate: 'Я бегаю каждое утро',
+  textMeaning: 'Run - moving fast.',
+  textMeaningTranslate: 'Бежать - двигаться быстро',
+  transcription: '[RAN]',
 };
 
 export default Card;

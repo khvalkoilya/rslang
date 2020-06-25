@@ -30,7 +30,24 @@
 
   &__translate {
     font-family: "BalsamiqSans Bold";
-    font-size: 20px;
+    font-size: 30px;
     padding-top: 35px;
+    width: 400px;
+    padding-bottom: 20px;
+  }
+
+  &__sentence {
+    border-top: 2px solid $whitesmoke-card-border;
+    font-family: "BalsamiqSans Bold Italic";
+    font-size: 30px;
+    padding-top: 20px;
+  }
+
+  &__ruSentence {
+    font-family: "BalsamiqSans Italic";
+    font-size: 25px;
+    color: $denim-color;
+    padding-top: 7px;
+    padding-bottom: 26px;
   }
 }
