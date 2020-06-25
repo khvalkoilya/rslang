@@ -8,7 +8,8 @@ const UserMenuItem = ({ isAuth }) => {
     if (e.isAuthorized === isAuth) {
       return (
         <button key={e.id} className="profile-menu__button" type="button">
-          {e.name}
+          <img src={e.icon} alt="icon" />
+          <span>{e.name}</span>
         </button>
       );
     }
