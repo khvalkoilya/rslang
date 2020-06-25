@@ -21,11 +21,21 @@ const USER_MENU_ITEMS = [
     id: 3,
     name: 'Авторизация',
     isAuthorized: false,
+    icon: '../../assets/images/log-in.svg',
+    styles: {
+      width: '20px',
+      top: '28%',
+    }
   },
   {
     id: 4,
     name: 'Регистрация',
     isAuthorized: false,
+    icon: '../../assets/images/contract.svg',
+    styles: {
+      width: '20px',
+      top: '28%',
+    }
   },
 ];
 
