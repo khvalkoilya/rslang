@@ -34,7 +34,7 @@ const Card = ({
         <div className="card__sentence">{textMeaning}</div>
         <div className="card__ruSentence">{textMeaningTranslate}</div>
         {/* <div>{transcription}</div> */}
-        {/* <img src={image} alt={word} /> */}
+        <img src={image} alt={word} className="card__image" />
         <div className="card__translation-button" />
         <div className="card__audio-button" />
         <button type="button" className="card__button">Удалить</button>
@@ -58,7 +58,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   word: 'Run',
-  image: 'image',
+  image: './assets/images/run.jpg',
   wordTranslate: 'Бежать, бегать',
   textExample: 'I <b>run</b> every morning.',
   textExampleTranslate: 'Я бегаю каждое утро',

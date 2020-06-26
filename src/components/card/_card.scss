@@ -92,13 +92,20 @@
   }
 
   &__translation-button {
-    background-image: url('./assets/images/translation.svg');
+    background-image: url('./assets/images/languages.svg');
     right: 120px;
   }
 
   &__audio-button {
     background-image: url('./assets/images/speaker.svg');
-    right: 60px;
+    right: 62px;
+  }
+
+  &__image {
+    position: absolute;
+    right: 62px;
+    top: 140px;
+    width: 280px;
   }
 
 
