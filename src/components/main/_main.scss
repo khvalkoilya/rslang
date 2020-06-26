@@ -1,5 +1,5 @@
-body {
-  background-color: $lighter-blue-color;
+.main {
   background: url('./assets/images/background.jpg') repeat;
+  min-height: calc(100vh - 105px - 80px);
 }
 
