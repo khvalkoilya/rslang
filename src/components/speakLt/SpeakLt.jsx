@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './_speakLt.scss';
 
 const SpeakLt = ({ words }) => {
-  const [actualEl, setActualEl] = useState(null);
+  const [actualEl] = useState(null);
   const [isRecognize, setIsRecognize] = useState(false);
-  const [spokenWord, setSpokenWord] = useState(null);
+  const [spokenWord] = useState(null);
 
   const btn = words.map((e) => (
     <button
@@ -13,7 +13,6 @@ const SpeakLt = ({ words }) => {
       className="btn"
       type="button"
       onClick={() => {
-        setActualEl(e);
         const audio = new Audio(`https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${e.audio}`);
         audio.play();
       }}
@@ -32,14 +31,9 @@ const SpeakLt = ({ words }) => {
     recognition.lang = 'en-US';
     recognition.start();
     recognition.onspeechend = () => {
-      setIsRecognize(!isRecognize);
-      recognition.onresult = (e) => setSpokenWord(e.results[0][0].transcript);
+      recognition.onresult = (e) => console.log(e.results[0][0].transcript);
     };
   };
-
-  useEffect(() => {
-    if (isRecognize) recognizeSpeech();
-  }, [isRecognize]);
 
   const getImg = () => (
     <div>
@@ -51,26 +45,43 @@ const SpeakLt = ({ words }) => {
     </div>
   );
 
-  const isIdentical = () => {
-    if (!actualEl) return '';
-    return actualEl.word === spokenWord ? 'correct' : 'incorrect';
-  };
+  const showMicrophone = () => (
+    <div>
+      <div>
+        &#127897;
+      </div>
+      <div>{spokenWord || ''}</div>
+    </div>
+  );
+
+  const levelToggle = () => (
+    Array.from({ length: 5 }, (e, i) => i).map((e) => (
+      <button type="button" onClick={() => {}}>
+        {e}
+      </button>
+    ))
+  );
 
   return (
     <div className="wrapper">
-      <button
-        type="button"
-        className={`microphone ${isIdentical()}`}
-        onClick={() => setIsRecognize(!isRecognize)}
-      >
-        &#127897;
-      </button>
-      <div>{spokenWord || ''}</div>
+      {levelToggle()}
+      {isRecognize && showMicrophone()}
       <div className="img">
         {actualEl && getImg()}
       </div>
       <div className="wrapper">
         {btn}
+        <button type="button" onClick={() => console.log('Повторить')}>Повторить</button>
+        <button
+          type="button"
+          onClick={() => {
+            setIsRecognize(!isRecognize);
+            recognizeSpeech();
+          }}
+        >
+          Проговорить
+        </button>
+        <button type="button" onClick={() => console.log('Результаты')}>Результаты</button>
       </div>
     </div>
   );
