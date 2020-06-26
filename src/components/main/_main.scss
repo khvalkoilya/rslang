@@ -1,4 +1,10 @@
-body {
-    background-color: $lighter-blue-color;
+#root {
+    height: 100vh;
 }
-
+.main{
+    font-family: "BalsamiqSans Regular", sans-serif;
+    min-height: 70%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
