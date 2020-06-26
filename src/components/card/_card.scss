@@ -13,6 +13,7 @@
 
   &-wrapper {
     padding: 0 62px;
+    position: relative;
   }
 
   &__input {
@@ -63,9 +64,42 @@
     font-size: 20px;
     margin-right: 25px;
 
+    &:hover {
+      cursor: pointer;
+      background-color: $light-brown-color;
+      transition: all 0.2s ease-in-out;
+    }
+
     &-show {
       float: right;
       margin-right: 0;
     }
   }
+
+  &__translation-button, &__audio-button {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $white-color;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 30px;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &__translation-button {
+    background-image: url('./assets/images/translation.svg');
+    right: 120px;
+  }
+
+  &__audio-button {
+    background-image: url('./assets/images/speaker.svg');
+    right: 60px;
+  }
+
+
 }

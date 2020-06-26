@@ -35,8 +35,8 @@ const Card = ({
         <div className="card__ruSentence">{textMeaningTranslate}</div>
         {/* <div>{transcription}</div> */}
         {/* <img src={image} alt={word} /> */}
-        {/* <button type="button">выкл перевод</button> */}
-        {/* <button type="button">вкл воспр</button> */}
+        <div className="card__translation-button" />
+        <div className="card__audio-button" />
         <button type="button" className="card__button">Удалить</button>
         <button type="button" className="card__button">Сложное</button>
         <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>
