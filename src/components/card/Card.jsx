@@ -32,8 +32,8 @@ const Card = ({
         <div className="card__sentence">{textExample}</div>
         <div className="card__ruSentence">{textExampleTranslate}</div>
         <div className="card__sentence">{textMeaning}</div>
+        <div className="card__transcription">{transcription}</div>
         <div className="card__ruSentence">{textMeaningTranslate}</div>
-        {/* <div>{transcription}</div> */}
         <img src={image} alt={word} className="card__image" />
         <div className="card__translation-button" />
         <div className="card__audio-button" />

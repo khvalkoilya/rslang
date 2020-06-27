@@ -104,9 +104,16 @@
   &__image {
     position: absolute;
     right: 62px;
-    top: 140px;
+    bottom: 133px;
     width: 280px;
   }
 
-
+  &__transcription {
+    float: right;
+    width: 280px;
+    text-align: center;
+    font-family: "BalsamiqSans Regular";
+    font-size: 30px;
+    margin-top: -25px;
+  }
 }
