@@ -1,8 +1,9 @@
 import React from 'react';
+import GamesPage from '../gamesPage/GamesPage';
 
 const Main = () => (
   <main className="main">
-    this is main
+    <GamesPage />
   </main>
 );
 
