@@ -8,8 +8,8 @@ const Main = ({ page }) => (
     {page === 'settings' && <input type="text" />}
     {page === 'statistics' && <div>statistics</div>}
     {page === 'logOut' && <div>logOut</div>}
-    {page === 'signIn' && <div>signIn</div>}
-    {page === 'registration' && <Registration />}
+    {page === 'signIn' && <Registration state={page} />}
+    {page === 'registration' && <Registration state={page} />}
     {page === 'train' && <div>train</div>}
     {page === 'vocabulary' && <div>settings</div>}
   </main>
