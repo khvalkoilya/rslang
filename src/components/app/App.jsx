@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import Card from '../card/Card'
+import Main from '../main/Main';
 
 const App = () => (
   <>
     <Header />
-    <Card />
+    <Main />
     <Footer />
   </>
 );
