@@ -38,7 +38,8 @@
     }
 
     @include media-small {
-      display: none;
+      position: static;
+      margin-right: 8px;
     }
   }
 

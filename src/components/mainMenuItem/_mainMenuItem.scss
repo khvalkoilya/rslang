@@ -1,36 +1,63 @@
 .menu-item {
-    color: black;
-    border: none;
-    outline: none;
-    font-size: 25px;
-    background: $white-color;
-    cursor: pointer;
-    margin-right: 2.5rem;
-    font-family: "BalsamiqSans Regular", sans-serif;
-    margin-right: 6%;
+  position: relative;
+  color: black;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  background: $white-color;
+  cursor: pointer;
+  margin-right: 2.5rem;
+  font-family: "BalsamiqSans Regular", sans-serif;
+  margin-right: 6%;
 
-    @include media-large {
-      font-size: 22px;
+  @include media-large {
+    font-size: 22px;
+  }
+
+  @include media-medium {
+    font-size: 20px;
+    margin-bottom: 2px;
+    margin-right: 2%;
+  }
+
+  @include media-small {
+    display: block;
+    margin: 0 0 15px 20px;
+  }
+
+  &-active {
+      text-decoration: underline;
+  }
+
+  &-lock {
+      pointer-events: none;
+      cursor: auto;
+      opacity: 0.5;
+  }
+
+  &-icon {
+    width: 20px;
+    display: none;
+    @include media-small {
+      display: inline;
+      margin-right: 8px;
     }
+  }
+
+  img.lock {
+    width: 20px;
+    position: absolute;
+    top: -21px;
+    left: 42%;
 
     @include media-medium {
-      font-size: 20px;
-      margin-bottom: 6px;
-      margin-right: 2%;
+      width: 15px;
+      top: -12px;
     }
 
     @include media-small {
-      display: block;
-      margin: 0 0 15px 20px;
+      position: static;
+      margin-left: 5px;
     }
-
-    &-active {
-        text-decoration: underline;
-    }
-
-    &-lock {
-        pointer-events: none;
-        cursor: auto;
-        opacity: 0.5;
-    }
+  }
 }

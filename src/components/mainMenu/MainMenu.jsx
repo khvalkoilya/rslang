@@ -20,6 +20,8 @@ const MainMenu = ({ isAuth }) => {
       isAuthorized={word.isAuthorized}
       setPage={setPage}
       isAuth={isAuth}
+      lock={word.lock}
+      icon={word.icon}
     />
   ));
 
