@@ -22,18 +22,18 @@ const REGISTRATION = [
   },
   {
     id: 2,
-    name: 'password__first',
+    name: 'password_first',
     type: 'password',
-    placeholder: 'password',
-    icon: '../../assets/images/password.png',
+    placeholder: 'Пароль',
+    icon: '../../assets/images/locked-padlock.svg',
     state: true,
   },
   {
     id: 3,
     name: 'password_second',
     type: 'password',
-    placeholder: 'password',
-    icon: '../../assets/images/password.png',
+    placeholder: 'Повторить пароль',
+    icon: '../../assets/images/locked-padlock.svg',
     state: false,
   },
 ];
@@ -64,7 +64,12 @@ const Registration = ({ state }) => {
   }
 
   return (
-    <form className="reg__form">
+    <form
+      className="reg__form"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       {state === 'registration' ? <h1 className="reg__h1">Создать аккаунт</h1> : <h1 className="reg__h1">Вход</h1>}
       {input}
       <div className={state === 'signIn' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
@@ -74,7 +79,6 @@ const Registration = ({ state }) => {
           className={state === 'signIn' ? 'reg__button_second' : 'reg__button_first'}
           onClick={() => {
             if (state === 'signIn') setPage('registration');
-            console.log('sdvsdvsdvsdv');
           }}
         >
           Присоединиться
@@ -87,15 +91,11 @@ const Registration = ({ state }) => {
           className={state === 'registration' ? 'reg__button_second' : 'reg__button_first'}
           onClick={() => {
             if (state === 'registration') setPage('signIn');
-            console.log('sdvsdvsdvsdv');
           }}
-
         >
           Войти
-
         </button>
       </div>
-
     </form>
   );
 };
