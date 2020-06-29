@@ -7,16 +7,13 @@ const data = async (arg) => {
 };
 
 export class User {
-  constructor(page, group) {
-    this.page = page || 0;
-    this.group = group || 0;
-  }
-
   setData(res) {
     this.data = res;
   }
 
-  async getWordsData() {
+  async getWordsData(page, group) {
+    this.page = page || 0;
+    this.group = group || 0;
     data([URL.getWords(this.page, this.group)])
       .then((res) => this.setData(res));
   }
