@@ -3,10 +3,15 @@
   height: 476px;
   margin: 0 auto;
   margin-top: 32px;
+  margin-bottom: 38px;
   -webkit-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   background-color: $white-color;
+
+  @include media-medium {
+    width: 560px;
+  }
 
   &-wrapper {
     padding: 0 62px;
@@ -24,6 +29,13 @@
     font-size: 30px;
     font-family: "BalsamiqSans Bold";
     letter-spacing: 3px;
+    display: inline-block;
+
+    @include media-medium {
+      margin: 0 auto;
+      margin-top: 60px;
+      display: block;
+    }
   }
 
   &__translate {
@@ -37,9 +49,8 @@
     border-top: 2px solid $whitesmoke-card-border;
     font-family: "BalsamiqSans Bold Italic";
     font-size: 30px;
-    width: 400px;
+    width: 480px;
     padding-top: 20px;
-    white-space: nowrap;
   }
 
   &__ruSentence {
@@ -48,6 +59,7 @@
     color: $denim-color;
     padding-top: 7px;
     padding-bottom: 26px;
+    width: 480px;
   }
 
   &__button {
@@ -60,6 +72,7 @@
     font-family: "BalsamiqSans Regular";
     font-size: 20px;
     margin-right: 25px;
+    margin-bottom: 26px;
 
     &:hover {
       cursor: pointer;
@@ -81,6 +94,13 @@
     height: 32px;
     position: absolute;
     top: 30px;
+
+    @include media-medium {
+      width: 28px;
+      height: 28px;
+      top: -40px;
+    }
+
     &:hover {
       cursor: pointer;
       transform: scale(1.05);
@@ -91,17 +111,25 @@
   &__translation-button {
     background-image: url('./assets/images/languages.svg');
     right: 120px;
+
+    @include media-medium {
+      right: 70px;
+    }
   }
 
   &__audio-button {
     background-image: url('./assets/images/speaker.svg');
     right: 62px;
+
+    @include media-medium {
+      right: 20px;
+    }
   }
 
   &__image {
     position: absolute;
     right: 62px;
-    bottom: 133px;
+    top: 100px;
     width: 280px;
   }
 
