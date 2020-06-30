@@ -25,7 +25,7 @@ const USER_MENU_ITEMS = [
     styles: {
       width: '20px',
       top: '28%',
-    }
+    },
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const USER_MENU_ITEMS = [
     styles: {
       width: '20px',
       top: '28%',
-    }
+    },
   },
 ];
 

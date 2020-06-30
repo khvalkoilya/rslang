@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Page } from '../context/Context';
 import USER_MENU_ITEMS from '../../variables/userMenuItems';
 
 const UserMenuItem = ({ isAuth }) => {
