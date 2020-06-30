@@ -1,0 +1,31 @@
+.main {
+    border: 1px solid;
+    margin: 0 auto;
+    width: 90%;
+    height: 29rem;
+    margin-top: 1rem;
+    background: url('./assets/images/bgrSpeakIt.jpg');
+    background-size: cover;
+}
+
+.intro {
+    text-align: center;
+    color: #fff;
+    margin-top: 6rem;
+}
+
+.btn__start {
+    background: $brown-color;
+    padding: 15px 25px;
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    min-width: 200px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.description__game {
+    padding: 2rem;
+    font-size: 1.3rem;
+}
