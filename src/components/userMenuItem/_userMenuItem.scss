@@ -21,7 +21,6 @@
   border-radius: 0;
   outline: 0;
   cursor: pointer;
-  transition: .2s all ease-in;
 
   @include media-medium {
     height: 45px;
@@ -49,6 +48,11 @@
     color: $light-grey-color;
     line-height: 45px;
     margin-left: 30px;
+    transition: .2s all ease-in;
+
+    &:hover {
+      color: $dark-blue-color;
+    }
 
     @include media-medium {
       font-size: 15px;
@@ -70,9 +74,5 @@
     border: none;
     outline: none;
     background: $white-color;
-  }
-
-  &:hover{
-    color: $dark-blue-color;
   }
 }
