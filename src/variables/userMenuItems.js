@@ -4,38 +4,33 @@ const USER_MENU_ITEMS = [
     name: 'Статистика',
     isAuthorized: true,
     icon: '../../assets/images/growth.svg',
+    props: 'statistics',
   },
   {
     id: 1,
     name: 'Настройки',
     isAuthorized: true,
     icon: '../../assets/images/settings.svg',
+    props: 'settings',
   },
   {
     id: 2,
     name: 'Выйти',
     isAuthorized: true,
     icon: '../../assets/images/exit.svg',
+    props: 'logOut',
   },
   {
     id: 3,
     name: 'Авторизация',
     isAuthorized: false,
-    icon: '../../assets/images/log-in.svg',
-    styles: {
-      width: '20px',
-      top: '28%',
-    },
+    props: 'signIn',
   },
   {
     id: 4,
     name: 'Регистрация',
     isAuthorized: false,
-    icon: '../../assets/images/contract.svg',
-    styles: {
-      width: '20px',
-      top: '28%',
-    },
+    props: 'registration',
   },
 ];
 
