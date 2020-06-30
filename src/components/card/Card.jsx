@@ -28,18 +28,18 @@ const Card = ({
           setWord={setInnerWord}
           defaultVal={defaultVal}
         />
-        {/* <div className="card__translate">{wordTranslate}</div> */}
-        {/* <div className="card__sentence">{textExample}</div> */}
-        {/* <div className="card__ruSentence">{textExampleTranslate}</div> */}
-        {/* <div className="card__sentence">{textMeaning}</div> */}
-        {/* <div className="card__transcription">{transcription}</div> */}
-        {/* <div className="card__ruSentence">{textMeaningTranslate}</div> */}
-        {/* <img src={image} alt={word} className="card__image" /> */}
+        <div className="card__translate">{wordTranslate}</div>
+        <div className="card__sentence">{textExample}</div>
+        <div className="card__ruSentence">{textExampleTranslate}</div>
+        <div className="card__sentence">{textMeaning}</div>
+        <div className="card__transcription">{transcription}</div>
+        <div className="card__ruSentence">{textMeaningTranslate}</div>
+        <img src={image} alt={word} className="card__image" />
         <div className="card__translation-button" />
         <div className="card__audio-button" />
-        {/* <button type="button" className="card__button">Удалить</button> */}
-        {/* <button type="button" className="card__button">Сложное</button> */}
-        {/* <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button> */}
+        <button type="button" className="card__button">Удалить</button>
+        <button type="button" className="card__button">Сложное</button>
+        <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>
       </div>
     </div>
   );

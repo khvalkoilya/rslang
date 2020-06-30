@@ -1,6 +1,5 @@
 .card {
   width: 905px;
-  height: 476px;
   margin: 0 auto;
   margin-top: 32px;
   margin-bottom: 38px;
@@ -16,6 +15,10 @@
   &-wrapper {
     padding: 0 62px;
     position: relative;
+
+    @include media-medium {
+      padding: 0 40px;
+    }
   }
 
   &__input {
@@ -74,6 +77,12 @@
     margin-right: 25px;
     margin-bottom: 26px;
 
+    @include media-medium {
+      font-size: 19px;
+      padding: 0 20px;
+      margin-top: 30px;
+    }
+
     &:hover {
       cursor: pointer;
       background-color: $light-brown-color;
@@ -113,7 +122,7 @@
     right: 120px;
 
     @include media-medium {
-      right: 70px;
+      right: 90px;
     }
   }
 
@@ -122,7 +131,7 @@
     right: 62px;
 
     @include media-medium {
-      right: 20px;
+      right: 40px;
     }
   }
 
@@ -131,6 +140,11 @@
     right: 62px;
     top: 100px;
     width: 280px;
+
+    @include media-medium {
+      display: block;
+      position: static;
+    }
   }
 
   &__transcription {
@@ -140,5 +154,12 @@
     font-family: "BalsamiqSans Regular";
     font-size: 30px;
     margin-top: -25px;
+
+    @include media-medium {
+      text-align: right;
+      position: absolute;
+      right: 88px;
+      bottom: 170px;
+    }
   }
 }
