@@ -1,4 +1,4 @@
-const BASE_PATH = 'https://afternoon-falls-25894.herokuapp.com';
+const BASE_PATH = 'https://afternoon-falls-25894.herokuapp.com'; // 'http://pacific-castle-12388.herokuapp.com';// 'https://afternoon-falls-25894.herokuapp.com';
 const WORDS = 'words';
 const USERS = 'users';
 const SIGNIN = 'signin';
