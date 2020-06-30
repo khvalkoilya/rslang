@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 const Input = ({
-  word, wordLen, setWord, defaultVal,
+  word, wordLen, setWord, defaultVal
 }) => (
   <>
     {console.log(wordLen)}
@@ -11,10 +11,14 @@ const Input = ({
         ? (
           <div>{word}</div>
         ) : (
-          <input
-            type="text"
-            onChange={useCallback((e) => setWord(e.target.value), [])}
-          />
+          <>
+            <input
+              style={{width: `${wordLen*19}px`}}
+              className="card__input"
+              type="text"
+              onChange={useCallback((e) => setWord(e.target.value), [])}
+            />
+          </>
         )
     }
   </>
