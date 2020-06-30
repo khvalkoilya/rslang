@@ -5,7 +5,7 @@ import Main from '../main/Main';
 import Props from '../context/Context';
 
 const App = () => {
-  const [page, setPage] = useState('registration');
+  const [page, setPage] = useState('train');
   return (
     <>
       <Props.Provider value={setPage}>

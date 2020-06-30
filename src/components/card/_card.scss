@@ -12,12 +12,20 @@
     width: 560px;
   }
 
+  @include media-small {
+    width: 300px;
+  }
+
   &-wrapper {
     padding: 0 62px;
     position: relative;
 
     @include media-medium {
       padding: 0 40px;
+    }
+
+    @include media-small {
+      padding: 0 30px;
     }
   }
 
@@ -42,6 +50,7 @@
   }
 
   &__translate {
+    overflow: hidden;
     font-family: "BalsamiqSans Bold";
     font-size: 30px;
     padding-top: 35px;
@@ -49,20 +58,30 @@
   }
 
   &__sentence {
+    overflow: hidden;
     border-top: 2px solid $whitesmoke-card-border;
     font-family: "BalsamiqSans Bold Italic";
     font-size: 30px;
     width: 480px;
     padding-top: 20px;
+
+    @include media-small {
+      width: 100%;
+    }
   }
 
   &__ruSentence {
+    overflow: hidden;
     font-family: "BalsamiqSans Italic";
     font-size: 25px;
     color: $denim-color;
     padding-top: 7px;
     padding-bottom: 26px;
     width: 480px;
+
+    @include media-small {
+      width: 100%;
+    }
   }
 
   &__button {
@@ -77,10 +96,21 @@
     margin-right: 25px;
     margin-bottom: 26px;
 
+    &:first-of-type {
+      @include media-small {
+        margin-right: 15px;
+      }
+    }
+
     @include media-medium {
-      font-size: 19px;
       padding: 0 20px;
       margin-top: 30px;
+    }
+
+    @include media-small {
+      padding: 0 16px;
+      margin-top: 0;
+      margin-right: 0;
     }
 
     &:hover {
@@ -92,6 +122,11 @@
     &-show {
       float: right;
       margin-right: 0;
+
+      @include media-small {
+        margin-left: 32px;
+        float: none;
+      }
     }
   }
 
@@ -110,6 +145,12 @@
       top: -40px;
     }
 
+    @include media-small {
+      top: -48px;
+      width: 24px;
+      height: 24px;
+    }
+
     &:hover {
       cursor: pointer;
       transform: scale(1.05);
@@ -124,6 +165,10 @@
     @include media-medium {
       right: 90px;
     }
+
+    @include media-small {
+      right: 48px;
+    }
   }
 
   &__audio-button {
@@ -132,6 +177,10 @@
 
     @include media-medium {
       right: 40px;
+    }
+
+    @include media-small {
+      right: 10px;
     }
   }
 
@@ -144,6 +193,11 @@
     @include media-medium {
       display: block;
       position: static;
+    }
+
+    @include media-small {
+      width: 240px;
+      margin-bottom: 100px;
     }
   }
 
@@ -160,6 +214,13 @@
       position: absolute;
       right: 88px;
       bottom: 170px;
+    }
+
+    @include media-small {
+      width: 240px;
+      text-align: center;
+      bottom: 157px;
+      right: auto;
     }
   }
 }
