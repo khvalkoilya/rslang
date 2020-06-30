@@ -51,7 +51,7 @@
 
   @include media-small {
     z-index: 10;
-    position: absolute;
+    position: fixed;
     display: block;
     width: 200px;
     background-color: #fff;

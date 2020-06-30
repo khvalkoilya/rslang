@@ -8,6 +8,7 @@ const Main = ({ page }) => (
     {page === 'train' && <Card />}
     {page === 'vocabulary' && <div>settings</div>}
     {page === 'games' && <div>Games</div>}
+    {page === 'demo' && <div>DEMO</div>}
     {page === 'statistics' && <div>statistics</div>}
     {page === 'settings' && <input type="text" />}
     {page === 'logOut' && <div>logOut</div>}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import UserMenuItem from '../userMenuItem/UserMenuItem';
 
 const UserMenu = ({ isAuth }) => {
@@ -24,3 +23,4 @@ UserMenu.propTypes = {
 };
 
 export default UserMenu;
+// onMouseLeave={() => setVisible(!visible)}

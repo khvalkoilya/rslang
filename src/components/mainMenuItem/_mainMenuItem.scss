@@ -51,10 +51,6 @@
 
     @include media-medium {
       width: 15px;
-      top: -12px;
-    }
-
-    @include media-small {
       position: static;
       margin-left: 5px;
     }

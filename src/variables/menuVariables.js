@@ -2,8 +2,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
   {
     id: 0,
     name: 'Тренировка',
-    isAuthorized: false,
-    lock: '../../assets/images/locked-padlock.svg',
+    isAuthorized: true,
     icon: '../../assets/images/dumbbell.svg',
     props: 'train',
   },
@@ -18,10 +17,18 @@ export const MAIN_MENU_ITEMS_VALUES = [
   {
     id: 2,
     name: 'Игры',
-    isAuthorized: true,
+    isAuthorized: false,
+    lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/game-controller.svg',
     props: 'games',
   },
+  {
+    id: 3,
+    name: 'Демо',
+    isAuthorized: true,
+    icon: '../../assets/images/flask.svg',
+    props: 'demo',
+  }
 ];
 
 export const MENU = [];

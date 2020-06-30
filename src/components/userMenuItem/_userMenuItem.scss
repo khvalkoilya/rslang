@@ -27,16 +27,18 @@
   }
 
   img {
-    width: 30px;
+    width: 27px;
     position: absolute;
     left: 5%;
-    top: 16%;
+    top: 20%;
 
     @include media-medium {
-      width: 25px;
+      width: 23px;
+      top: 23%;
     }
 
     @include media-small {
+      width: 20px;
       position: static;
       margin-right: 8px;
     }
@@ -70,9 +72,16 @@
   @include media-small {
     display: block;
     height: 35px;
-    margin: 0 0 7px 20px;
+    margin: 0 0 8px 20px;
     border: none;
     outline: none;
     background: $white-color;
+  }
+}
+
+span.active{
+  color: $dark-blue-color;
+  @include media-small {
+    text-decoration: underline;
   }
 }

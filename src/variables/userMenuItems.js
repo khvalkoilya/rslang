@@ -23,6 +23,7 @@ const USER_MENU_ITEMS = [
   {
     id: 3,
     name: 'Авторизация',
+    icon: '../../assets/images/log-in.svg',
     isAuthorized: false,
     props: 'signIn',
   },
@@ -30,6 +31,7 @@ const USER_MENU_ITEMS = [
     id: 4,
     name: 'Регистрация',
     isAuthorized: false,
+    icon: '../../assets/images/contract.svg',
     props: 'registration',
   },
 ];
