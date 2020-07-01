@@ -4,7 +4,7 @@ import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
 
-const isAuth = true;
+const isAuth = false;
 
 const Header = () => {
   const [visible, setVisible] = useState(false);

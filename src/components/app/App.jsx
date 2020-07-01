@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
-import Props from '../context/Context';
+import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
 
 const App = () => {
   const [page, setPage] = useState('train');
   return (
     <>
-      <Props.Provider value={setPage}>
-        <Header />
+      <MainMenuPagesContext.Provider value={setPage}>
+        <UserMenuPagesContext.Provider value={page}>
+          <Header />
+        </UserMenuPagesContext.Provider>
         <Main page={page} />
         <Footer />
-      </Props.Provider>
+      </MainMenuPagesContext.Provider>
     </>
   );
 };

@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   background-color: $white-color;
-  
+
   @include  media-small {
     display: block;
   }
@@ -21,24 +21,26 @@
   border-radius: 0;
   outline: 0;
   cursor: pointer;
-  transition: .2s all ease-in;
 
   @include media-medium {
     height: 45px;
   }
 
   img {
-    width: 30px;
+    width: 27px;
     position: absolute;
-    left: 7%;
-    top: 16%;
+    left: 5%;
+    top: 20%;
 
     @include media-medium {
-      width: 25px;
+      width: 23px;
+      top: 23%;
     }
 
     @include media-small {
-      display: none;
+      width: 20px;
+      position: static;
+      margin-right: 8px;
     }
   }
 
@@ -47,7 +49,12 @@
     font-family: "BalsamiqSans Regular", sans-serif;
     color: $light-grey-color;
     line-height: 45px;
-    margin-left: 35px;
+    margin-left: 30px;
+    transition: .2s all ease-in;
+
+    &:hover {
+      color: $dark-blue-color;
+    }
 
     @include media-medium {
       font-size: 15px;
@@ -65,13 +72,16 @@
   @include media-small {
     display: block;
     height: 35px;
-    margin: 0 0 7px 20px;
+    margin: 0 0 8px 20px;
     border: none;
     outline: none;
     background: $white-color;
   }
+}
 
-  &:hover{
-    color: $dark-blue-color;
+span.active{
+  color: $dark-blue-color;
+  @include media-small {
+    text-decoration: underline;
   }
 }
