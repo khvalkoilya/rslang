@@ -1,17 +1,29 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
-import USER_MENU_ITEMS from '../../variables/userMenuItems';
+import ChangePage from '../context/Context';
+import { USER_MENU_ITEMS } from '../../variables/MenuVariables';
 
-const UserMenuItem = ({ isAuth }) => {
-  const setPage = useContext(MainMenuPagesContext);
-  const currentPage = useContext(UserMenuPagesContext);
-  const menuItems = USER_MENU_ITEMS.map((e) => {
-    if (e.isAuthorized === isAuth) {
+const UserMenuItem = ({ isAuth, setVisible }) => {
+  const { page, setPage, setIsAuth } = useContext(ChangePage);
+  const menuItems = USER_MENU_ITEMS.map((element) => {
+    if (element.isAuthorized === isAuth) {
       return (
-        <button key={e.id} onClick={() => setPage(e.props)} className="profile-menu__button" type="button">
-          <img src={e.icon} alt="icon" style={e.styles} />
-          <span className={currentPage === e.props ? 'active' : ''}>{e.name}</span>
+        <button
+          key={element.id}
+          onClick={() => {
+            if (element.title === 'logOut') {
+              setIsAuth(false);
+              setVisible(false);
+              setPage('train');
+            } else {
+              setPage(element.title);
+            }
+          }}
+          className="profile-menu__button"
+          type="button"
+        >
+          <img src={element.icon} alt="icon" style={element.styles} />
+          <span className={page === element.title ? 'active' : ''}>{element.name}</span>
         </button>
       );
     }
@@ -27,6 +39,7 @@ const UserMenuItem = ({ isAuth }) => {
 
 UserMenuItem.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  setVisible: PropTypes.func.isRequired,
 };
 
 export default UserMenuItem;

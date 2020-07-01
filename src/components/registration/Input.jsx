@@ -26,7 +26,6 @@ const Input = ({
       title={name === 'password_first' ? 'Enter min 8 characters, [0-9], [a-z], [A-Z], [+-_@$!%*?&#.,;:[]{}]' : undefined}
       onInput={name === 'password_second' ? () => checkPassword() : undefined}
       required
-
     />
   </div>
 );

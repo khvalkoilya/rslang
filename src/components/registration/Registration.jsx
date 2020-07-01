@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import Input from './Input';
-import { MainMenuPagesContext } from '../context/Context';
+import ChangePage from '../context/Context';
 
 const REGISTRATION = [
   {
@@ -38,10 +37,11 @@ const REGISTRATION = [
   },
 ];
 
-const Registration = ({ state }) => {
+const Registration = () => {
   let input;
-  const setPage = useContext(MainMenuPagesContext);
-  if (state === 'signIn') {
+  const { page, setPage, funcFormRegistration } = useContext(ChangePage);
+
+  if (page === 'signIn') {
     input = REGISTRATION.map((element) => element.state && (
     <Input
       key={`${element.name}-${element.id}`}
@@ -66,31 +66,36 @@ const Registration = ({ state }) => {
   return (
     <form
       className="reg__form"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
+      onSubmit={(event) => funcFormRegistration(event, { email: 'pmad@tut.by', password: 'Smouk_123' })}
     >
-      {state === 'registration' ? <h1 className="reg__h1">Создать аккаунт</h1> : <h1 className="reg__h1">Вход</h1>}
+      {page === 'registration' ? <h1 className="reg__h1">Создать аккаунт</h1> : <h1 className="reg__h1">Вход</h1>}
       {input}
-      <div className={state === 'signIn' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
-        {state === 'signIn' && <p>Ещё не с нами?</p>}
+      <div className={page === 'signIn' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
+        {page === 'signIn' && <p>Ещё не с нами?</p>}
         <button
           type="submit"
-          className={state === 'signIn' ? 'reg__button_second' : 'reg__button_first'}
-          onClick={() => {
-            if (state === 'signIn') setPage('registration');
+          className={page === 'signIn' ? 'reg__button_second' : 'reg__button_first'}
+          onClick={(event) => {
+            if (page === 'signIn') {
+              event.preventDefault();
+              setPage('registration');
+            }
           }}
+
         >
           Присоединиться
         </button>
       </div>
-      <div className={state === 'registration' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
-        {state === 'registration' && <p>Уже с нами?</p>}
+      <div className={page === 'registration' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
+        {page === 'registration' && <p>Уже с нами?</p>}
         <button
           type="submit"
-          className={state === 'registration' ? 'reg__button_second' : 'reg__button_first'}
-          onClick={() => {
-            if (state === 'registration') setPage('signIn');
+          className={page === 'registration' ? 'reg__button_second' : 'reg__button_first'}
+          onClick={(e) => {
+            if (page === 'registration') {
+              e.preventDefault();
+              setPage('signIn');
+            }
           }}
         >
           Войти
@@ -100,7 +105,4 @@ const Registration = ({ state }) => {
   );
 };
 
-Registration.propTypes = {
-  state: PropTypes.string.isRequired,
-};
 export default Registration;

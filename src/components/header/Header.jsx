@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import MainMenu from '../mainMenu/MainMenu';
 import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
 
-const isAuth = false;
-
-const Header = () => {
+const Header = ({ isAuth }) => {
   const [visible, setVisible] = useState(false);
   const Click = () => setVisible(!visible);
   return (
@@ -27,4 +26,7 @@ const Header = () => {
   );
 };
 
+Header.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+};
 export default Header;
