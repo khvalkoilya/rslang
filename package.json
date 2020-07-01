@@ -58,6 +58,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-id-swiper": "^3.0.0",
+    "react-sizeme": "^2.6.12",
     "swiper": "^5.4.5"
   },
   "main": ".eslintrc.js"
