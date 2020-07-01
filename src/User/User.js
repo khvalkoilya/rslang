@@ -29,18 +29,9 @@ class User {
 
   async createUser() {
     await fetchData([URL.userApi.createUser, URL.userApi.headerUser(this.user)]);
-    await fetchData([URL.userApi.loginUser, URL.userApi.headerUser(this.user)])
-      .then((res) => this.setUser(res));
-  }
-
-  loginUser() {
-    fetchData([URL.userApi.loginUser, URL.userApi.headerUser(this.user)])
-      .then((res) => this.setUser(res));
+    const res = await fetchData([URL.userApi.loginUser, URL.userApi.headerUser(this.user)]);
+    this.setUser(res);
   }
 }
 
 export default User;
-
-// export const createUser = (user) => data([URL.userApi.createUser, URL.userApi.headerUser(user)]);
-
-// export const loginUser = (user) => data([URL.userApi.loginUser, URL.userApi.headerUser(user)]);
