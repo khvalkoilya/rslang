@@ -1,0 +1,19 @@
+.menu-item {
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+    &-active {
+        text-decoration: underline;
+        font-size: 22px;
+    }
+
+    &-lock {
+        pointer-events: none;
+        cursor: auto;
+        opacity: 0.5;
+    }
+}
+
