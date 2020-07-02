@@ -17,10 +17,10 @@ const Header = () => {
       </div>
       <nav className={`nav ${visible ? 'visible' : 'unvisible'}`}>
         <div className="header__main-menu">
-          <MainMenu isAuth={isAuth} />
+          <MainMenu isAuth={isAuth} isNavVisible={Click} />
         </div>
         <div className="header__profile-menu">
-          <UserMenu isAuth={isAuth} />
+          <UserMenu isAuth={isAuth} isNavVisible={Click} />
         </div>
       </nav>
     </div>

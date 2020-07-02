@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
 
 const MainMenuItem = ({
-  name, isAuthorized, isAuth, props, icon, lock,
+  name, isAuthorized, isAuth, isNavVisible, props, icon, lock,
 }) => {
   const setPage = useContext(MainMenuPagesContext);
   const currentPage = useContext(UserMenuPagesContext);
@@ -12,6 +12,7 @@ const MainMenuItem = ({
       type="button"
       onClick={isAuthorized || isAuth ? (() => {
         setPage(props);
+        isNavVisible();
       }) : undefined}
       className={`menu-item ${props === currentPage ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
     >
@@ -26,6 +27,7 @@ MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   isAuthorized: PropTypes.bool,
   isAuth: PropTypes.bool.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
   lock: PropTypes.string,
   icon: PropTypes.string.isRequired,
   props: PropTypes.string.isRequired,

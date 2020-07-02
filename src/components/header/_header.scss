@@ -47,7 +47,7 @@
   justify-content: space-between;
   align-items: center;
   width: 70%;
-  transition: 0.5s all ease-out;
+  transition: 0.3s all linear;
 
   @include media-small {
     z-index: 10;
