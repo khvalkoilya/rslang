@@ -1,6 +1,7 @@
 .block{
    display: block;
 }
+
 .none{
   display: none;
   @include media-small {

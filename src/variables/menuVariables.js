@@ -28,7 +28,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
     icon: '../../assets/images/flask.svg',
     props: 'demo',
-  }
+  },
 ];
 
 export const MENU = [];

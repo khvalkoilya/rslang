@@ -1,6 +1,7 @@
 .nav__burger__button {
   display: none;
   background-color: $white-color;
+  outline: none;
   z-index: 30;
   border: 0;
   position: absolute;
@@ -18,4 +19,5 @@
 
 .rotated {
   transform: rotate(90deg);
+  position: fixed;
 }

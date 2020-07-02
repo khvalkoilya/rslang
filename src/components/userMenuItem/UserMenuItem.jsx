@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
 import USER_MENU_ITEMS from '../../variables/userMenuItems';
 
-const UserMenuItem = ({ isAuth, isNavVisible }) => {
+const UserMenuItem = ({ isAuth, isNavVisible, burgerState }) => {
   const setPage = useContext(MainMenuPagesContext);
   const currentPage = useContext(UserMenuPagesContext);
   const menuItems = USER_MENU_ITEMS.map((e) => {
@@ -13,7 +13,10 @@ const UserMenuItem = ({ isAuth, isNavVisible }) => {
           key={e.id}
           onClick={() => {
             setPage(e.props);
-            isNavVisible();
+            if (document.body.offsetWidth <= 600) {
+              isNavVisible();
+              burgerState();
+            }
           }}
           className="profile-menu__button"
           type="button"
@@ -36,6 +39,7 @@ const UserMenuItem = ({ isAuth, isNavVisible }) => {
 UserMenuItem.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   isNavVisible: PropTypes.func.isRequired,
+  burgerState: PropTypes.func.isRequired,
 };
 
 export default UserMenuItem;
