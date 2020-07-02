@@ -1,11 +1,16 @@
 import React from 'react';
-import Card from '../card/Card'
 import PropTypes from 'prop-types';
+import Card from '../card/Card';
 import Registration from '../registration/Registration';
+import DEFAULT_WORDS from '../../variables/defaultWords';
+import DEFAULT_SETTINGS from '../../variables/defaultSettings';
+
+const words = DEFAULT_WORDS[0];
+const settings = DEFAULT_SETTINGS.optional;
 
 const Main = ({ page }) => (
   <main className="main">
-    {page === 'train' && <Card />}
+    {page === 'train' && <Card words={words} settings={settings} />}
     {page === 'vocabulary' && <div>settings</div>}
     {page === 'games' && <div>Games</div>}
     {page === 'statistics' && <div>statistics</div>}

@@ -1,21 +1,21 @@
-import DEFAULT_WORDS from './defaultWords';
-
-export default DEFAULT_SETTINGS = {
+const DEFAULT_SETTINGS = {
   wordsPedDay: 20,
   optional: {
-    translation: true,
-    meaning: true,
-    example: true,
-    transcription: true,
-    image: true,
-    delete: true,
-    difficult: true,
-    autoSpeech: true,
-    autoTranslation: true,
-    showing: true,
-    intervalAgain: true,
-    intervalHard: true,
-    intervalGood: true,
-    intervalEasy: true,
+    hasTranslation: true,
+    hasMeaning: true,
+    hasExample: true,
+    hasTranscription: true,
+    hasImage: true,
+    hasDelete: true,
+    hasDifficult: true,
+    hasAutoSpeech: true,
+    hasAutoTranslation: true,
+    hasShowing: true,
+    hasIntervalAgain: true,
+    hasIntervalHard: true,
+    hasIntervalGood: true,
+    hasIntervalEasy: true,
   },
 };
+
+export default DEFAULT_SETTINGS;

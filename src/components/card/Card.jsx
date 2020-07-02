@@ -1,21 +1,41 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import Input from '../input/Input';
 import { getLetterArr } from './utils';
 
+const filePath = 'https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/';
+
 const Card = ({
-  word,
-  image,
-  wordTranslate,
-  textExample,
-  textExampleTranslate,
-  textMeaning,
-  textMeaningTranslate,
-  transcription,
+  words: {
+    word,
+    image,
+    wordTranslate,
+    textExample,
+    textExampleTranslate,
+    textMeaning,
+    textMeaningTranslate,
+    transcription,
+  },
+  settings: {
+    hasTranslation,
+    hasMeaning,
+    hasExample,
+    hasTranscription,
+    hasImage,
+    hasDelete,
+    hasDifficult,
+    hasAutoSpeech,
+    hasAutoTranslation,
+    hasShowing,
+    hasIntervalAgain,
+    hasIntervalHard,
+    hasIntervalGood,
+    hasIntervalEasy,
+  },
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
+  const [completed, setCompleted] = useState(false);
 
   const compareWords = () => setDefaultVal(getLetterArr(word, innerWord));
 
@@ -28,43 +48,63 @@ const Card = ({
           setWord={setInnerWord}
           defaultVal={defaultVal}
         />
-        <div className="card__translate">{wordTranslate}</div>
-        <div className="card__sentence">{textExample}</div>
-        <div className="card__ruSentence">{textExampleTranslate}</div>
-        <div className="card__sentence">{textMeaning}</div>
-        <div className="card__transcription">{transcription}</div>
-        <div className="card__ruSentence">{textMeaningTranslate}</div>
-        <img src={image} alt={word} className="card__image" />
-        <div className="card__translation-button" />
-        <div className="card__audio-button" />
-        <button type="button" className="card__button">Удалить</button>
-        <button type="button" className="card__button">Сложное</button>
-        <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>
+        {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
+        {hasExample && <div className="card__sentence">{textExample}</div>}
+        {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
+        {hasMeaning && <div className="card__sentence">{textMeaning}</div>}
+        {hasTranscription && <div className="card__transcription">{transcription}</div>}
+        {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
+        {hasImage && <img src={`${filePath}${image}`} alt={word} className="card__image" />}
+        {hasAutoTranslation && <div className="card__translation-button" />}
+        {hasAutoSpeech && <div className="card__audio-button" />}
+        {hasDelete && <button type="button" className="card__button">Удалить</button>}
+        {hasDifficult && <button type="button" className="card__button">Сложное</button>}
+        {hasShowing && <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>}
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
-  word: PropTypes.string,
-  image: PropTypes.string,
-  wordTranslate: PropTypes.string,
-  textExample: PropTypes.string,
-  textExampleTranslate: PropTypes.string,
-  textMeaning: PropTypes.string,
-  textMeaningTranslate: PropTypes.string,
-  transcription: PropTypes.string,
+  words: PropTypes.shape({
+    word: PropTypes.string,
+    image: PropTypes.string,
+    wordTranslate: PropTypes.string,
+    textExample: PropTypes.string,
+    textExampleTranslate: PropTypes.string,
+    textMeaning: PropTypes.string,
+    textMeaningTranslate: PropTypes.string,
+    transcription: PropTypes.string,
+  }),
+  settings: PropTypes.shape({
+    hasTranslation: PropTypes.bool.isRequired,
+    hasMeaning: PropTypes.bool.isRequired,
+    hasExample: PropTypes.bool.isRequired,
+    hasTranscription: PropTypes.bool.isRequired,
+    hasImage: PropTypes.bool.isRequired,
+    hasDelete: PropTypes.bool.isRequired,
+    hasDifficult: PropTypes.bool.isRequired,
+    hasAutoSpeech: PropTypes.bool.isRequired,
+    hasAutoTranslation: PropTypes.bool.isRequired,
+    hasShowing: PropTypes.bool.isRequired,
+    hasIntervalAgain: PropTypes.bool.isRequired,
+    hasIntervalHard: PropTypes.bool.isRequired,
+    hasIntervalGood: PropTypes.bool.isRequired,
+    hasIntervalEasy: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 Card.defaultProps = {
-  word: 'Run',
-  image: './assets/images/run.jpg',
-  wordTranslate: 'Бежать, бегать',
-  textExample: 'I <b>run</b> every morning.',
-  textExampleTranslate: 'Я бегаю каждое утро',
-  textMeaning: '<i>Run</i> - moving fast.',
-  textMeaningTranslate: 'Бежать - двигаться быстро',
-  transcription: '[RAN]',
+  words: {
+    word: 'Run',
+    image: './assets/images/run.jpg',
+    wordTranslate: 'Бежать, бегать',
+    textExample: 'I <b>run</b> every morning.',
+    textExampleTranslate: 'Я бегаю каждое утро',
+    textMeaning: '<i>Run</i> - moving fast.',
+    textMeaningTranslate: 'Бежать - двигаться быстро',
+    transcription: '[RAN]',
+  },
 };
 
 export default Card;
