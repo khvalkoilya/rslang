@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from '../components/card/Card';
 import Registration from '../components/registration/Registration';
+import SignIn from '../components/registration/SignIn';
+import GamesPage from '../components/gamesPage/GamesPage';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -27,7 +29,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/game-controller.svg',
     title: 'games',
-    render: (id, title) => <div key={`${id}-${title}`}>Games</div>,
+    render: (id, title) => <GamesPage key={`${id}-${title}`} />,
   },
   {
     id: 3,
@@ -70,7 +72,7 @@ export const USER_MENU_ITEMS = [
     icon: '../../assets/images/log-in.svg',
     isAuthorized: false,
     title: 'signIn',
-    render: (id, title) => <Registration key={`${id}-${title}`} />,
+    render: (id, title) => <SignIn key={`${id}-${title}`} />,
   },
   {
     id: 4,
