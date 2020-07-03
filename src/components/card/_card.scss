@@ -226,6 +226,25 @@
   }
 }
 
-.true-letter {
+//styles for input word after typing
 
+.checked-word {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 3px;
+  position: absolute;
+  top: 6px;
+  left: 213px;
+}
+
+.completed-word-letter {
+  color: $completed-word-color;
+}
+
+.calm-mistake {
+  color: $calm-mistake-color;
+}
+
+.dangerous-mistake {
+  color: $dangerous-mistake-color;
 }

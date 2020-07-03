@@ -8,11 +8,9 @@ const CheckOnMatch = ({ defaultVal, completed }) => {
     const goodStyle = percentOfMistakes === 0 ? 'completed-word-letter' : 'true-letter';
     const badStyle = percentOfMistakes > 0.3 ? 'dangerous-mistake' : 'calm-mistake';
 
-    const arr = defaultVal.map((item) => {
-      return <span className={item.isCorrect ? goodStyle : badStyle}>{item.letter}</span>;
-    });
+    const arr = defaultVal.map((item) => <span className={item.isCorrect ? goodStyle : badStyle}>{item.letter}</span>);
 
-    return arr;
+    return <div className="checked-word">{arr}</div>;
   }
   return <></>;
 };

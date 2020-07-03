@@ -41,6 +41,7 @@ const Card = ({
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));
+    document.querySelector('.card__input').value = '';
   };
 
   return (
