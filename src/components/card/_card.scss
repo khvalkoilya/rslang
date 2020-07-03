@@ -7,6 +7,7 @@
   -moz-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   background-color: $white-color;
+  font-weight: 700;
 
   @include media-medium {
     width: 560px;
@@ -39,9 +40,9 @@
     padding: 0 10px;
     outline: none;
     font-size: 30px;
-    font-family: "BalsamiqSans Bold";
     letter-spacing: 3px;
     display: inline-block;
+    font-weight: 700;
 
     @include media-medium {
       margin-right: auto;
@@ -53,7 +54,6 @@
 
   &__translate {
     overflow: hidden;
-    font-family: "BalsamiqSans Bold";
     font-size: 30px;
     padding-bottom: 20px;
   }
@@ -61,7 +61,7 @@
   &__sentence {
     overflow: hidden;
     border-top: 2px solid $whitesmoke-card-border;
-    font-family: "BalsamiqSans Bold Italic";
+    font-style: italic;
     font-size: 30px;
     width: 480px;
     padding: 20px 0;
@@ -73,7 +73,8 @@
 
   &__ruSentence {
     overflow: hidden;
-    font-family: "BalsamiqSans Italic";
+    font-weight: 400;
+    font-style: italic;
     font-size: 25px;
     color: $denim-color;
     padding-bottom: 26px;
@@ -91,7 +92,7 @@
     height: 36px;
     border: none;
     outline: none;
-    font-family: "BalsamiqSans Regular";
+    font-weight: 400;
     font-size: 20px;
     margin-right: 25px;
     margin-bottom: 26px;
@@ -205,9 +206,9 @@
     float: right;
     width: 280px;
     text-align: center;
-    font-family: "BalsamiqSans Regular";
+    font-weight: 400;
     font-size: 30px;
-    margin-top: -25px;
+    margin-top: -100px;
 
     @include media-medium {
       text-align: right;
@@ -223,4 +224,8 @@
       right: auto;
     }
   }
+}
+
+.true-letter {
+
 }

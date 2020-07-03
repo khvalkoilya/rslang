@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/Input';
-import { getLetterArr } from './utils';
+import getLetterArr from './getArray';
+import CheckOnMatch from './GetPlaceholder';
 
 const filePath = 'https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/';
 
@@ -36,17 +37,22 @@ const Card = ({
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
+  const [nextButton, setNextButton] = useState(false);
 
-  const compareWords = () => setDefaultVal(getLetterArr(word, innerWord));
+  const checkWord = () => {
+    setDefaultVal(getLetterArr(word, innerWord));
+  };
 
   return (
     <div className="card">
       <div className="card-wrapper">
+        <CheckOnMatch defaultVal={defaultVal} />
         <Input
           word={word}
           wordLen={word.length}
           setWord={setInnerWord}
           defaultVal={defaultVal}
+          setNextButton={setNextButton}
         />
         {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
         {hasExample && <div className="card__sentence">{textExample}</div>}
@@ -59,7 +65,20 @@ const Card = ({
         {hasAutoSpeech && <div className="card__audio-button" />}
         {hasDelete && <button type="button" className="card__button">Удалить</button>}
         {hasDifficult && <button type="button" className="card__button">Сложное</button>}
-        {hasShowing && <button type="button" className="card__button card__button-show" onClick={compareWords}>Показать ответ</button>}
+        <button
+          type="button"
+          className="card__button card__button-show"
+          onClick={nextButton
+            ? () => {
+              checkWord();
+            }
+            : () => {
+              checkWord();
+            }
+          }
+        >
+          {hasShowing && !nextButton ? 'Показать ответ' : 'Далее'}
+        </button>
       </div>
     </div>
   );
