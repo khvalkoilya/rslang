@@ -237,6 +237,13 @@
   left: 213px;
 }
 
+.word-fade span {
+  transition-delay: 1s;
+  transition: all 1s ease-in-out;
+  opacity: 0.5;
+  color: $black-color;
+}
+
 .completed-word-letter {
   color: $completed-word-color;
 }

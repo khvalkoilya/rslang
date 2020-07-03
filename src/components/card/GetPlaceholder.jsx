@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CheckOnMatch = ({ defaultVal, completed }) => {
+const CheckOnMatch = ({ defaultVal, setCompleted, completed, setDefaultVal }) => {
   if (defaultVal.length) {
     const mistakes = defaultVal.filter((item) => item.isCorrect === false);
     const percentOfMistakes = mistakes.length / defaultVal.length;
@@ -9,8 +9,9 @@ const CheckOnMatch = ({ defaultVal, completed }) => {
     const badStyle = percentOfMistakes > 0.3 ? 'dangerous-mistake' : 'calm-mistake';
 
     const arr = defaultVal.map((item) => <span className={item.isCorrect ? goodStyle : badStyle}>{item.letter}</span>);
-
-    return <div className="checked-word">{arr}</div>;
+    if (arr.every((item) => item.props.className === 'completed-word-letter')) setCompleted(true);
+    else setCompleted(false);
+    return <div className={`checked-word ${completed ? '' : 'word-fade'}`}>{arr}</div>;
   }
   return <></>;
 };
@@ -18,6 +19,8 @@ const CheckOnMatch = ({ defaultVal, completed }) => {
 CheckOnMatch.propTypes = {
   defaultVal: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   completed: PropTypes.bool.isRequired,
+  setCompleted: PropTypes.func.isRequired,
+  setDefaultVal: PropTypes.func.isRequired,
 };
 
 export default CheckOnMatch;

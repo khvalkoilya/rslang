@@ -4,13 +4,6 @@ import PropTypes from 'prop-types';
 const Input = ({
   word, wordLen, setWord, defaultVal, setNextButton,
 }) => (
-  // <>
-  //   {
-  // defaultVal.length
-  //   ? (
-  //     <div>{word}</div>
-  //   ) : (
-  //     <>
   <input
     style={{ width: `${wordLen * 19}px` }}
     className="card__input"
@@ -25,10 +18,6 @@ const Input = ({
       setWord(val);
     }, [])}
   />
-  //   </>
-  // )
-  //   }
-  // </>
 );
 
 Input.propTypes = {

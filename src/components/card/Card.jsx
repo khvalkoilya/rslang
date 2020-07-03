@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/Input';
 import getLetterArr from './getArray';
@@ -47,7 +47,7 @@ const Card = ({
   return (
     <div className="card">
       <div className="card-wrapper">
-        <CheckOnMatch defaultVal={defaultVal} />
+        <CheckOnMatch defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
         <Input
           word={word}
           wordLen={word.length}
@@ -75,8 +75,7 @@ const Card = ({
             }
             : () => {
               checkWord();
-            }
-          }
+            }}
         >
           {hasShowing && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>
