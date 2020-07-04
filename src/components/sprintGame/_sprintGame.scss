@@ -1,4 +1,42 @@
 .sprint-game {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: grey;
+}
+
+.sprint-game__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.sprint-game__words {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.sprint-game__control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.sprint-game__button {
+    padding: 1rem 2rem;
+    min-width: 100px;
+    cursor: pointer;
+}
+
+.sprint-game__button--no {
     background-color: red;
-    padding: 2rem;
+    color: black;
+}
+
+.sprint-game__button--yes {
+    background-color: green;
+    color: black;
 }
