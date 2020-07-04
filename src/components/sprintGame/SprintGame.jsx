@@ -4,7 +4,7 @@ import words from '../../variables/defaultWords';
 // https://youtu.be/ynmb9pb2mUs
 
 function Sprint() {
-  const [seconds, setSeconds] = useState(60);
+  const [seconds, setSeconds] = useState(10);
 
   const [level, setLevel] = useState(0);
 
@@ -12,25 +12,24 @@ function Sprint() {
 
   const [currentWord, setCurrentWord] = useState([]);
 
-  const gameStep = () => {
-    console.log('нажали на кнопку');
-    if (level === 0) {
-      setLevel(1);
-      startTimer();
-      setLevel(level + 1);
+  function randomWord(x) {
+    const rand = Math.floor(Math.random() * (2));
+    if (rand === 0) {
+      return words[x].wordTranslate;
     }
+    const secondWord = Math.floor(Math.random() * (words.length));
+    console.log(secondWord);
+    return words[secondWord].wordTranslate;
+  }
+
+  const wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
+
+  const endGame = () => {
+    console.log('заканчиваем игру');
   };
 
-  const startTimer = () => {
-    const x = seconds - 1;
-    if (x === 0) {
-      endGame();
-    } else {
-      setInterval(() => {
-        console.log(x);
-        setSeconds(x);
-      }, 1000);
-    }
+  const gameStep = () => {
+    console.log(wordsArray);
   };
 
   return (
@@ -53,7 +52,7 @@ function Sprint() {
           Cat
         </p>
         <p className="sprint-game__russian-word">
-          Кошка
+          кошка
         </p>
       </div>
       <div className="sprint-game__control">
