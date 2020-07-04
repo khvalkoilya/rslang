@@ -5,7 +5,6 @@ const Input = ({
   word, wordLen, setWord, defaultVal, setNextButton,
 }) => (
   <input
-    style={{ width: `${wordLen * 19}px` }}
     className="card__input"
     type="text"
     onChange={useCallback((e) => {

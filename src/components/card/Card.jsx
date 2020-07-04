@@ -47,14 +47,19 @@ const Card = ({
   return (
     <div className="card">
       <div className="card-wrapper">
-        <CheckOnMatch defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
-        <Input
-          word={word}
-          wordLen={word.length}
-          setWord={setInnerWord}
-          defaultVal={defaultVal}
-          setNextButton={setNextButton}
-        />
+        <span className="card__input__container">
+          <CheckOnMatch defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
+          <span className="card__input__background">
+            <span className="card__input__background__text">{word}</span>
+          </span>
+          <Input
+            word={word}
+            wordLen={word.length}
+            setWord={setInnerWord}
+            defaultVal={defaultVal}
+            setNextButton={setNextButton}
+          />
+        </span>
         {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
         {hasExample && <div className="card__sentence">{textExample}</div>}
         {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
@@ -115,7 +120,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   words: {
-    word: 'Run',
+    word: 'run',
     image: './assets/images/run.jpg',
     wordTranslate: 'Бежать, бегать',
     textExample: 'I <b>run</b> every morning.',

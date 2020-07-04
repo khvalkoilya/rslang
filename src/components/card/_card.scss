@@ -31,24 +31,40 @@
   }
 
   &__input {
-    background-color: $light-blue-color;
-    border: none;
-    height: 46px;
-    margin-top: 47px;
-    margin-left: 40px;
-    margin-bottom: 35px;
+    background: transparent;
     padding: 0 10px;
     outline: none;
-    font-size: 30px;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     letter-spacing: 3px;
-    display: inline-block;
-    font-weight: 700;
 
-    @include media-medium {
-      margin-right: auto;
-      margin-left: auto;
-      margin-top: 60px;
-      display: block;
+    &__container {
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      margin-top: 47px;
+      margin-left: 40px;
+      font-size: 30px;
+      font-family: "BalsamiqSans Bold";
+      letter-spacing: 3px;
+
+      @include media-medium {
+        margin-top: 60px;
+        margin-left: 0;   
+      }
+    }
+
+    &__background {
+      padding: 4px 10px;
+      background-color: $light-blue-color;
+
+      &__text {
+        visibility: hidden;
+      }
     }
   }
 
@@ -143,11 +159,11 @@
     @include media-medium {
       width: 28px;
       height: 28px;
-      top: -40px;
+      top: 25px;
     }
 
     @include media-small {
-      top: -48px;
+      top: 9px;
       width: 24px;
       height: 24px;
     }
@@ -233,16 +249,15 @@
   font-size: 30px;
   letter-spacing: 3px;
   position: absolute;
-  top: 6px;
-  left: 213px;
+  left: 10px;
 }
 
-.word-fade span {
-  transition-delay: 1s;
-  transition: all 1s ease-in-out;
-  opacity: 0.5;
-  color: $black-color;
-}
+// .word-fade span {
+//   transition-delay: 1s;
+//   transition: all 1s ease-in-out;
+//   opacity: 0.5;
+//   color: $black-color;
+// }
 
 .completed-word-letter {
   color: $completed-word-color;
