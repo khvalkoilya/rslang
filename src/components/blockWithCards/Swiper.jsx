@@ -2,22 +2,16 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
+import DEFAULT_WORDS from '../../variables/defaultWords';
+import Card from '../card/Card';
 
 const renderBlockWithCards = () => {
-  const arr = ['Slide 1', 'Slide 2', 'Slide 3']
-    .map((e) => (
-      <div>
-        {e}
-      </div>
-    ));
+  const arr = DEFAULT_WORDS.map((e) => (
+    <div key={e.word}><Card data={e} /></div>
+  ));
 
   const params = {
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      dynamicBullets: 'true',
-      clickable: true,
-    },
+
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -26,11 +20,11 @@ const renderBlockWithCards = () => {
   };
 
   return (
-    <div className="swiper">
-      <Swiper {...params}>
-        {arr}
-      </Swiper>
-    </div>
+    <Swiper
+      {...params}
+    >
+      {arr}
+    </Swiper>
   );
 };
 

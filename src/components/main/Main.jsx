@@ -1,11 +1,11 @@
 import React from 'react';
-import Card from '../card/Card'
 import PropTypes from 'prop-types';
+import Swiper from '../blockWithCards/Swiper';
 import Registration from '../registration/Registration';
 
 const Main = ({ page }) => (
   <main className="main">
-    {page === 'train' && <Card />}
+    {page === 'train' && <Swiper />}
     {page === 'vocabulary' && <div>settings</div>}
     {page === 'games' && <div>Games</div>}
     {page === 'statistics' && <div>statistics</div>}
