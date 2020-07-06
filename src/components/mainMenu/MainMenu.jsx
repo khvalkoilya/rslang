@@ -18,15 +18,16 @@ const MainMenu = ({ isAuth }) => {
       id={word.id}
       key={word.id}
       isAuthorized={word.isAuthorized}
-      setPage={setPage}
+      setPages={setPage}
       isAuth={isAuth}
+      props={word.props}
     />
   ));
 
   return (
-    <div>
+    <>
       {menuList}
-    </div>
+    </>
   );
 };
 

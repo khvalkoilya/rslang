@@ -1,0 +1,16 @@
+.nav__button {
+  display: none;
+  background-color: $white-color;
+  z-index: 30;
+  border: 0;
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  @include media-small {
+    display: block;
+  }
+}
+
+.burgerButton {
+  width: 30px;
+}
