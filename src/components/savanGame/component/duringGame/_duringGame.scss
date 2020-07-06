@@ -1,0 +1,59 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60vh;
+  font-size: 2.6vh;
+}
+
+.currentWord {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 0 200px 0;
+  font-size: 4.6vh;
+  font-family: "BalsamiqSans Bold";
+}
+
+.btn {
+  padding: 15px 32px;
+  border: none;
+  background-color: whitesmoke;
+}
+
+.btnDuringGame {
+  margin: 10px;
+}
+
+.btnExit {
+  border: none;
+  background-color: inherit;
+}
+
+.btnExit:hover {
+  box-shadow: 0px 0px 5px 0px #00202e;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px 5px 0px #00202e;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.animation {
+  animation: move 5s;
+}
+
+@keyframes move {
+  0%   {left:0px; top:0px;}
+  100% {left:0px; top:200px;}
+}

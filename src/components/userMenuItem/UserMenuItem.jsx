@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import USER_MENU_ITEMS from '../../variables/userMenuItems';
+import USER_MENU_ITEMS from '../../Variables/userMenuItems';
 
 const UserMenuItem = ({ isAuth }) => {
   const menuItems = USER_MENU_ITEMS.map((e) => {

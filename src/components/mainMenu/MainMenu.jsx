@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MAIN_MENU_ITEMS_VALUES } from '../../variables/menuVariables';
+import { MAIN_MENU_ITEMS_VALUES } from '../../Variables/menuVariables';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
 const MainMenu = ({ isAuth }) => {
