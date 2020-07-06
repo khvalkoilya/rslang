@@ -38,6 +38,7 @@ const Card = ({
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
+  const [autoTranslation, setTranslation] = useState(true);
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));

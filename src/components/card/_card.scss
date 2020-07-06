@@ -259,8 +259,16 @@
 //   color: $black-color;
 // }
 
+.completed-word {
+  border-bottom: 2px dashed $true-letter-color;
+}
+
 .completed-word-letter {
-  color: $completed-word-color;
+  color: $true-letter-color;
+}
+
+.true-letter {
+  color: $true-letter-color;
 }
 
 .calm-mistake {
