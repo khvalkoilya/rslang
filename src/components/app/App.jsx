@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
-// import { loginUser, getWordsData, createUser } from '../../user/utilsApi';
 import ChangePage from '../context/Context';
+import DEFAULT_WORDS from '../../variables/defaultWords';
 
 const App = () => {
   const [page, setPage] = useState('train');
   const [isAuth, setIsAuth] = useState(false);
   const [userId, setUser] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState(DEFAULT_WORDS);
 
   return (
     <>
