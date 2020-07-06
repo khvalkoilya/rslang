@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/Input';
-import getLetterArr from './getArray';
-import CheckOnMatch from './GetPlaceholder';
+import getLetterArr from './getLetterArr';
+import GetPlaceholder from './GetPlaceholder';
+import ReplaceBrackets from './ReplaceBrackets';
 
 const filePath = 'https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/';
 
@@ -49,7 +50,7 @@ const Card = ({
     <div className="card">
       <div className="card-wrapper">
         <span className="card__input__container">
-          <CheckOnMatch defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
+          <GetPlaceholder defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
           <span className="card__input__background">
             <span className="card__input__background__text">{word}</span>
           </span>
@@ -62,9 +63,9 @@ const Card = ({
           />
         </span>
         {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
-        {hasExample && <div className="card__sentence">{textExample}</div>}
+        {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
         {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
-        {hasMeaning && <div className="card__sentence">{textMeaning}</div>}
+        {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
         {hasTranscription && <div className="card__transcription">{transcription}</div>}
         {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
         {hasImage && <img src={`${filePath}${image}`} alt={word} className="card__image" />}

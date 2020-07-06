@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CheckOnMatch = ({
+const GetPlaceholder = ({
   defaultVal, setCompleted, completed, setDefaultVal,
 }) => {
   if (defaultVal.length) {
@@ -18,11 +18,11 @@ const CheckOnMatch = ({
   return <></>;
 };
 
-CheckOnMatch.propTypes = {
+GetPlaceholder.propTypes = {
   defaultVal: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   completed: PropTypes.bool.isRequired,
   setCompleted: PropTypes.func.isRequired,
   setDefaultVal: PropTypes.func.isRequired,
 };
 
-export default CheckOnMatch;
+export default GetPlaceholder;

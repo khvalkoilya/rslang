@@ -240,6 +240,18 @@
       right: auto;
     }
   }
+
+  &__brackets {
+    font-style: italic;
+    font-size: 25px;
+    color: $denim-color;
+
+    &-guessed {
+      font-style: italic;
+      font-size: 30px;
+      text-decoration: underline;
+    }
+  }
 }
 
 //styles for input word after typing
