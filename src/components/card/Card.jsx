@@ -22,12 +22,17 @@ const Card = ({
   return (
     <div className="card">
       <div className="card-wrapper">
-        <Input
-          word={word}
-          wordLen={word.length}
-          setWord={setInnerWord}
-          defaultVal={defaultVal}
-        />
+        <span className="card__input__container">
+          <span className="card__input__background">
+            <span className="card__input__background__text">{word}</span>
+          </span>
+          <Input
+            word={word}
+            wordLen={word.length}
+            setWord={setInnerWord}
+            defaultVal={defaultVal}
+          />
+        </span>
         <div className="card__translate">{wordTranslate}</div>
         <div className="card__sentence">{textExample}</div>
         <div className="card__ruSentence">{textExampleTranslate}</div>
@@ -57,7 +62,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  word: 'Run',
+  word: 'run',
   image: './assets/images/run.jpg',
   wordTranslate: 'Бежать, бегать',
   textExample: 'I <b>run</b> every morning.',
