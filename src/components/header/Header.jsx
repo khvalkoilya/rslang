@@ -6,22 +6,31 @@ import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
 
 const Header = ({ isAuth }) => {
+  const [burgerState, setburgerState] = useState(false);
+  const changeStateOfBurger = () => setburgerState(!burgerState);
+  const currentBurgerState = burgerState;
+
   const [visible, setVisible] = useState(false);
   const Click = () => setVisible(!visible);
   return (
     <div className="header">
-      <BurgerButton click={Click} />
+      <BurgerButton
+        click={Click}
+        burgerState={currentBurgerState}
+        changeState={changeStateOfBurger}
+      />
       <div className="header__logo">
         <Logo />
       </div>
       <nav className={`nav ${visible ? 'visible' : 'unvisible'}`}>
         <div className="header__main-menu">
-          <MainMenu isAuth={isAuth} />
+          <MainMenu isAuth={isAuth} isNavVisible={Click} changeBurgerState={changeStateOfBurger} />
         </div>
         <div className="header__profile-menu">
-          <UserMenu isAuth={isAuth} />
+          <UserMenu isAuth={isAuth} isNavVisible={Click} changeBurgerState={changeStateOfBurger} />
         </div>
       </nav>
+      <div className={`empty__wrapper ${visible ? 'empty__wrapper_block' : ''}`} />
     </div>
   );
 };
