@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/Input';
 import getLetterArr from './getLetterArr';
@@ -29,37 +29,48 @@ const Card = ({
     hasAutoSpeech,
     hasAutoTranslation,
     hasShowing,
-    hasIntervalAgain,
-    hasIntervalHard,
-    hasIntervalGood,
-    hasIntervalEasy,
+    // hasIntervalAgain,
+    // hasIntervalHard,
+    // hasIntervalGood,
+    // hasIntervalEasy,
   },
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
-  const [autoTranslation, setTranslation] = useState(true);
+  // const [autoTranslation, setTranslation] = useState(true);
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));
-    document.querySelector('.card__input').value = '';
+    const input = document.querySelector('.card__input');
+    input.value = '';
+    if (word === innerWord) {
+      setCompleted(true);
+      input.classList.add('card__input-none');
+    } else {
+      setCompleted(false);
+    }
   };
 
   return (
     <div className="card">
       <div className="card-wrapper">
         <span className="card__input__container">
-          <GetPlaceholder defaultVal={defaultVal} setCompleted={setCompleted} completed={completed} setDefaultVal={setDefaultVal} />
+          <GetPlaceholder
+            defaultVal={defaultVal}
+            setCompleted={setCompleted}
+            completed={completed}
+            setDefaultVal={setDefaultVal}
+          />
           <span className="card__input__background">
             <span className="card__input__background__text">{word}</span>
           </span>
           <Input
-            word={word}
             wordLen={word.length}
             setWord={setInnerWord}
-            defaultVal={defaultVal}
             setNextButton={setNextButton}
+            completed={completed}
           />
         </span>
         {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
@@ -76,13 +87,7 @@ const Card = ({
         <button
           type="button"
           className="card__button card__button-show"
-          onClick={nextButton
-            ? () => {
-              checkWord();
-            }
-            : () => {
-              checkWord();
-            }}
+          onClick={checkWord}
         >
           {hasShowing && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>

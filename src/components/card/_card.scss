@@ -66,6 +66,10 @@
         visibility: hidden;
       }
     }
+
+    &-none {
+      display: none;
+    }
   }
 
   &__translate {
@@ -264,12 +268,12 @@
   left: 10px;
 }
 
-// .word-fade span {
-//   transition-delay: 1s;
-//   transition: all 1s ease-in-out;
-//   opacity: 0.5;
-//   color: $black-color;
-// }
+.word-fade {
+  transition: all 1s ease-in-out;
+  transition-delay: 1s;
+  opacity: 0.3;
+  color: $black-color;
+}
 
 .completed-word {
   border-bottom: 2px dashed $true-letter-color;
