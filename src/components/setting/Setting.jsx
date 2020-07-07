@@ -11,6 +11,8 @@ import {
 const Setting = ({ settings }) => (
   <div className="card">
     <div className="card-wrapper">
+      <h3 className="setting__header">Настройки</h3>
+      <hr />
       <form>
         { console.log(settings) }
         <div className="common_settings">
