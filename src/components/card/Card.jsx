@@ -6,7 +6,7 @@ import { getLetterArr } from './utils';
 import { getUrlData } from '../../utils/utilsApi';
 
 const Card = ({
-  data, swiper,
+  data, swiper, setAddSlide,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -39,7 +39,11 @@ const Card = ({
           onClick={() => {
             compareWords();
             swiper.slideNext();
-            document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+            console.log(swiper.activeIndex);
+            if (swiper.activeIndex === 2) {
+              setAddSlide(true);
+              console.log('hbdvfkjhbfvkjvb');
+            }
           }}
         >
           Показать ответ
@@ -51,8 +55,10 @@ const Card = ({
 };
 
 Card.propTypes = {
+  setAddSlide: PropTypes.func.isRequired,
   swiper: PropTypes.shape({
     slideNext: PropTypes.func,
+    activeIndex: PropTypes.number,
   }),
   data: PropTypes.shape({
     word: PropTypes.string,
