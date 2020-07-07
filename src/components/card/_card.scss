@@ -17,6 +17,16 @@
     width: 300px;
   }
 
+  &__grid {
+    display: grid;
+    grid-template-columns: 480px 300px;
+    gap: 20px;
+
+    @include media-medium {
+      display: block;
+    }
+  }
+
   &-wrapper {
     padding: 0 62px;
     position: relative;
@@ -206,42 +216,23 @@
   }
 
   &__image {
-    position: absolute;
-    right: 62px;
-    top: 100px;
     width: 280px;
-
-    @include media-medium {
-      display: block;
-      position: static;
-    }
 
     @include media-small {
       width: 240px;
-      margin-bottom: 100px;
     }
   }
 
   &__transcription {
-    float: right;
     width: 280px;
+    padding: 20px 0;
     text-align: center;
     font-weight: 400;
     font-size: 30px;
-    margin-top: -100px;
-
-    @include media-medium {
-      text-align: right;
-      position: absolute;
-      right: 88px;
-      bottom: 170px;
-    }
 
     @include media-small {
       width: 240px;
       text-align: center;
-      bottom: 157px;
-      right: auto;
     }
   }
 

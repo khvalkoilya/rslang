@@ -28,7 +28,7 @@ const Card = ({
     hasDifficult,
     hasAutoSpeech,
     hasAutoTranslation,
-    hasShowing,
+    hasShowingAnswer,
   },
 }) => {
   const [innerWord, setInnerWord] = useState('');
@@ -74,13 +74,19 @@ const Card = ({
             setDefaultVal={setDefaultVal}
           />
         </span>
-        {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
-        {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
-        {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
-        {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
-        {hasTranscription && <div className="card__transcription">{transcription}</div>}
-        {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
-        {hasImage && <img src={`${filePath}${image}`} alt={word} className="card__image" />}
+        <div className="card__grid">
+          <div className="card__grid__text">
+            {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
+            {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
+            {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
+            {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
+            {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
+          </div>
+          <div className="card__grid__beauty">
+            {hasImage && <img src={`${filePath}${image}`} alt={word} className="card__image" />}
+            {hasTranscription && <div className="card__transcription">{transcription}</div>}
+          </div>
+        </div>
         {hasAutoTranslation && <div className="card__translation-button" />}
         {hasAutoSpeech && <div className="card__audio-button" />}
         {hasDelete && <button type="button" className="card__button">Удалить</button>}
@@ -90,7 +96,7 @@ const Card = ({
           className="card__button card__button-show"
           onClick={checkWord}
         >
-          {hasShowing && !nextButton ? 'Показать ответ' : 'Далее'}
+          {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>
       </div>
     </div>
@@ -118,7 +124,7 @@ Card.propTypes = {
     hasDifficult: PropTypes.bool.isRequired,
     hasAutoSpeech: PropTypes.bool.isRequired,
     hasAutoTranslation: PropTypes.bool.isRequired,
-    hasShowing: PropTypes.bool.isRequired,
+    hasShowingAnswer: PropTypes.bool.isRequired,
     hasIntervalAgain: PropTypes.bool.isRequired,
     hasIntervalHard: PropTypes.bool.isRequired,
     hasIntervalGood: PropTypes.bool.isRequired,
