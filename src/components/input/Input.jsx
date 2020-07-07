@@ -5,16 +5,18 @@ const Input = ({
   word, wordLen, setWord, defaultVal,
 }) => (
   <>
-    {console.log(wordLen)}
     {
       defaultVal.length
         ? (
           <div>{word}</div>
         ) : (
-          <input
-            type="text"
-            onChange={useCallback((e) => setWord(e.target.value), [])}
-          />
+          <>
+            <input
+              className="card__input"
+              type="text"
+              onChange={useCallback((e) => setWord(e.target.value), [])}
+            />
+          </>
         )
     }
   </>

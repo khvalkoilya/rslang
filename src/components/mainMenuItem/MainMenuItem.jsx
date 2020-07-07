@@ -1,33 +1,45 @@
-import React, { useCallback } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
 
 const MainMenuItem = ({
-  name, isUnderlined, id, isAuthorized, setPage, isAuth,
-}) => (
-  <button
-    type="button"
-    onClick={isAuth ? useCallback(() => {
-      setPage(id);
-    }, []) : null}
-    className={`menu-item ${isUnderlined ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
-  >
-    { name }
-  </button>
-);
+  name, isAuthorized, isAuth, isNavVisible, props, icon, lock, burgerState,
+}) => {
+  const setPage = useContext(MainMenuPagesContext);
+  const currentPage = useContext(UserMenuPagesContext);
+  return (
+    <button
+      type="button"
+      onClick={isAuthorized || isAuth ? (() => {
+        setPage(props);
+        if (document.body.offsetWidth <= 600) {
+          isNavVisible();
+          burgerState();
+        }
+      }) : undefined}
+      className={`menu-item ${props === currentPage ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
+    >
+      <img src={icon} alt="icon" className="menu-item-icon" />
+      { name }
+      { !isAuth && lock && <img src={lock} alt="lock" className="lock" /> }
+    </button>
+  );
+};
 
 MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
-  isUnderlined: PropTypes.bool,
-  id: PropTypes.number,
   isAuthorized: PropTypes.bool,
-  setPage: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
+  lock: PropTypes.string,
+  icon: PropTypes.string.isRequired,
+  props: PropTypes.string.isRequired,
+  burgerState: PropTypes.func.isRequired,
 };
 
 MainMenuItem.defaultProps = {
-  isUnderlined: false,
-  id: 0,
   isAuthorized: false,
+  lock: '',
 };
 
 export default MainMenuItem;
