@@ -29,17 +29,12 @@ const Card = ({
     hasAutoSpeech,
     hasAutoTranslation,
     hasShowing,
-    // hasIntervalAgain,
-    // hasIntervalHard,
-    // hasIntervalGood,
-    // hasIntervalEasy,
   },
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
-  // const [autoTranslation, setTranslation] = useState(true);
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));
@@ -59,9 +54,7 @@ const Card = ({
         <span className="card__input__container">
           <GetPlaceholder
             defaultVal={defaultVal}
-            setCompleted={setCompleted}
             completed={completed}
-            setDefaultVal={setDefaultVal}
           />
           <span className="card__input__background">
             <span className="card__input__background__text">{word}</span>
