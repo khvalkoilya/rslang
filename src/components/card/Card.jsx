@@ -71,6 +71,8 @@ const Card = ({
             setWord={setInnerWord}
             setNextButton={setNextButton}
             completed={completed}
+            defaultVal={defaultVal}
+            setDefaultVal={setDefaultVal}
           />
         </span>
         {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
