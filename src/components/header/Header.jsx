@@ -4,7 +4,7 @@ import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
 
-import EmptyWrapper from './listenerFucntion';
+import EmptyWrapper from './listenerFunction';
 
 const isAuth = true;
 

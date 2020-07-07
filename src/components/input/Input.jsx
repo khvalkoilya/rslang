@@ -12,7 +12,6 @@ const Input = ({
         ) : (
           <>
             <input
-              style={{ width: `${wordLen * 19}px` }}
               className="card__input"
               type="text"
               onChange={useCallback((e) => setWord(e.target.value), [])}
