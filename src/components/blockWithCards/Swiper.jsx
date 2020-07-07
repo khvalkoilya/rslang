@@ -3,6 +3,8 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 
+import './_swiper.scss';
+
 const renderBlockWithCards = () => {
   const arr = ['Slide 1', 'Slide 2', 'Slide 3']
     .map((e) => (

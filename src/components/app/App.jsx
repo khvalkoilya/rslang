@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
+import StartPageSpeakIt from '../speakItStartPage/SpeakItStartPage';
 import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
           <Header />
         </UserMenuPagesContext.Provider>
         <Main page={page} />
+        <StartPageSpeakIt />
         <Footer />
       </MainMenuPagesContext.Provider>
     </>
