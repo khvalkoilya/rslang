@@ -48,8 +48,14 @@ const Card = ({
     }
   };
 
+  const pressEnter = (e) => {
+    if (e.charCode === 13) {
+      checkWord();
+    }
+  };
+
   return (
-    <div className="card">
+    <div className="card" onKeyPressCapture={pressEnter}>
       <div className="card-wrapper">
         <span className="card__input__container">
           <GetPlaceholder
