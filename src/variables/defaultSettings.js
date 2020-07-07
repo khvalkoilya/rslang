@@ -3,9 +3,9 @@ const DEFAULT_SETTINGS = {
   optional: {
     hasTranslation: true,
     hasMeaning: true,
-    hasExample: false,
+    hasExample: true,
     hasTranscription: true,
-    hasImage: false,
+    hasImage: true,
     hasDelete: true,
     hasDifficult: true,
     hasAutoSpeech: true,
