@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
-import Props from '../context/Context';
+import { MainMenuPagesContext } from '../context/Context';
 
 const REGISTRATION = [
   {
@@ -40,7 +40,7 @@ const REGISTRATION = [
 
 const Registration = ({ state }) => {
   let input;
-  const setPage = useContext(Props);
+  const setPage = useContext(MainMenuPagesContext);
   if (state === 'signIn') {
     input = REGISTRATION.map((element) => element.state && (
     <Input

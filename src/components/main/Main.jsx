@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../card/Card'
 import PropTypes from 'prop-types';
+import Card from '../card/Card';
 import Registration from '../registration/Registration';
 
 const Main = ({ page }) => (
@@ -8,6 +8,7 @@ const Main = ({ page }) => (
     {page === 'train' && <Card />}
     {page === 'vocabulary' && <div>settings</div>}
     {page === 'games' && <div>Games</div>}
+    {page === 'demo' && <div>DEMO</div>}
     {page === 'statistics' && <div>statistics</div>}
     {page === 'settings' && <input type="text" />}
     {page === 'logOut' && <div>logOut</div>}

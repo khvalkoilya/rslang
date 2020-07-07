@@ -1,5 +1,7 @@
 import React from 'react';
 
-const Props = React.createContext();
+const MainMenuPagesContext = React.createContext();
 
-export default Props;
+const UserMenuPagesContext = React.createContext();
+
+export { MainMenuPagesContext, UserMenuPagesContext };

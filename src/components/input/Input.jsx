@@ -2,10 +2,9 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 const Input = ({
-  word, wordLen, setWord, defaultVal
+  word, wordLen, setWord, defaultVal,
 }) => (
   <>
-    {console.log(wordLen)}
     {
       defaultVal.length
         ? (
