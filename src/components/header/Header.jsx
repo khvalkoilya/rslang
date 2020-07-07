@@ -3,8 +3,7 @@ import MainMenu from '../mainMenu/MainMenu';
 import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
-
-import EmptyWrapper from './listenerFunction';
+import EmptyWrapper from './ListenerFunction';
 
 const isAuth = true;
 

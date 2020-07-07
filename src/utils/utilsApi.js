@@ -1,4 +1,4 @@
-import URL from '../variables/UrlApi';
+import URL from '../variables/urlApi';
 
 const fetchData = async (arg) => {
   try {
