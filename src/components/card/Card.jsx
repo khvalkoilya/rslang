@@ -6,7 +6,7 @@ import { getLetterArr } from './utils';
 import { getUrlData } from '../../utils/utilsApi';
 
 const Card = ({
-  data, setButtonDisable,
+  data, swiper,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -37,8 +37,9 @@ const Card = ({
           type="button"
           className="card__button card__button-show"
           onClick={() => {
-            setButtonDisable();
             compareWords();
+            swiper.slideNext();
+            document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
           }}
         >
           Показать ответ
@@ -50,7 +51,9 @@ const Card = ({
 };
 
 Card.propTypes = {
-  setButtonDisable: PropTypes.func.isRequired,
+  swiper: PropTypes.shape({
+    slideNext: PropTypes.func,
+  }),
   data: PropTypes.shape({
     word: PropTypes.string,
     image: PropTypes.string,
@@ -74,6 +77,7 @@ Card.defaultProps = {
     textMeaningTranslate: 'Бежать - двигаться быстро',
     transcription: '[RAN]',
   },
+  swiper: {},
 };
 
 export default Card;
