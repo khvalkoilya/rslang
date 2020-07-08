@@ -7,6 +7,7 @@ import ChangePage from '../components/context/Context';
 import Card from '../components/card/Card';
 import DEFAULT_WORDS from './defaultWords';
 import DEFAULT_SETTINGS from './defaultSettings';
+import DemoPage from '../components/demoPage/DemoPage';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -49,7 +50,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
     icon: '../../assets/images/flask.svg',
     title: 'demo',
-    render: (id, title) => <div key={`${id}-${title}`}>DEMO</div>,
+    render: (id, title) => <DemoPage key={`${id}-${title}`} />,
   },
 ];
 
