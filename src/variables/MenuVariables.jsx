@@ -21,7 +21,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
       } = useContext(ChangePage);
       return (
         // data && <Swiper key={`${id}-${title}`} />
-        <Card words={DEFAULT_WORDS[0]} settings={DEFAULT_SETTINGS.optional} key={`${id}-${title}`} />
+        <Card words={DEFAULT_WORDS[5]} settings={DEFAULT_SETTINGS.optional} key={`${id}-${title}`} />
       );
     },
   },

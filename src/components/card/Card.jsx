@@ -4,8 +4,7 @@ import Input from '../input/Input';
 import getLetterArr from './getLetterArr';
 import GetPlaceholder from './GetPlaceholder';
 import ReplaceBrackets from './ReplaceBrackets';
-
-const filePath = 'https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/';
+import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
   words: {
@@ -83,7 +82,7 @@ const Card = ({
             {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
           </div>
           <div className="card__grid__beauty">
-            {hasImage && <img src={`${filePath}${image}`} alt={word} className="card__image" />}
+            {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
             {hasTranscription && <div className="card__transcription">{transcription}</div>}
           </div>
         </div>
