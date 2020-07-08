@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
-import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
+import ChangePage from '../context/Context';
+import DEFAULT_WORDS from '../../variables/defaultWords';
 
 const App = () => {
   const [page, setPage] = useState('train');
+  const [isAuth, setIsAuth] = useState(true);
+  const [userId, setUser] = useState();
+  const [data, setData] = useState(DEFAULT_WORDS);
+
   return (
     <>
-      <MainMenuPagesContext.Provider value={setPage}>
-        <UserMenuPagesContext.Provider value={page}>
-          <Header />
-        </UserMenuPagesContext.Provider>
-        <Main page={page} />
+      <ChangePage.Provider value={{
+        page, setPage, setData, setUser, setIsAuth, userId, data,
+      }}
+      >
+        <Header isAuth={isAuth} />
+        <Main />
         <Footer />
-      </MainMenuPagesContext.Provider>
+      </ChangePage.Provider>
     </>
   );
 };

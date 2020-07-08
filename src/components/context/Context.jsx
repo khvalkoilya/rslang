@@ -1,7 +1,5 @@
 import React from 'react';
 
-const MainMenuPagesContext = React.createContext();
+const ChangePage = React.createContext();
 
-const UserMenuPagesContext = React.createContext();
-
-export { MainMenuPagesContext, UserMenuPagesContext };
+export default ChangePage;
