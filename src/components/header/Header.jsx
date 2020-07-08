@@ -4,6 +4,7 @@ import MainMenu from '../mainMenu/MainMenu';
 import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
+import EmptyWrapper from './listenerFunction';
 
 const Header = ({ isAuth }) => {
   const [burgerState, setburgerState] = useState(false);
@@ -30,7 +31,7 @@ const Header = ({ isAuth }) => {
           <UserMenu isAuth={isAuth} isNavVisible={Click} changeBurgerState={changeStateOfBurger} />
         </div>
       </nav>
-      <div className={`empty__wrapper ${visible ? 'empty__wrapper_block' : ''}`} />
+      <EmptyWrapper changeState={changeStateOfBurger} visible={visible} handler={Click} />
     </div>
   );
 };

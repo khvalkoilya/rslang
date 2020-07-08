@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
 import ChangePage from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { createUser, getWordsData } from '../../user/utilsApi';
+import { createUser, getWordsData } from '../../utilsApi/utilsApi';
 
 const Registration = () => {
   const {
