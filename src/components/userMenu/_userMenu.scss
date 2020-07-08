@@ -1,6 +1,7 @@
 .block{
    display: block;
 }
+
 .none{
   display: none;
   @include media-small {
@@ -9,6 +10,7 @@
 }
 
 .user__menu{
+  z-index: 5;
   position: relative;
   width: inherit;
 }

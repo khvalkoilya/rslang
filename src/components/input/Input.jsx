@@ -5,7 +5,6 @@ const Input = ({
   word, wordLen, setWord, defaultVal,
 }) => (
   <>
-    {/* {console.log(wordLen)} */}
     {
       defaultVal.length
         ? (

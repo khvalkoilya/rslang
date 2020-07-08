@@ -59,7 +59,7 @@
     "react-dom": "^16.13.1",
     "react-id-swiper": "^3.0.0",
     "react-sizeme": "^2.6.12",
-    "swiper": "^6.0.0"
+    "swiper": "^6.0.1"
   },
   "main": ".eslintrc.js"
 }

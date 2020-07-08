@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Input from '../input/Input';
 import { getLetterArr } from './utils';
-import { getUrlData } from '../../utils/utilsApi';
+import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
   data, swiper, setAddSlide,
