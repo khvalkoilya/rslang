@@ -40,9 +40,10 @@ const Card = ({
             compareWords();
             swiper.slideNext();
             console.log(swiper.activeIndex);
-            if (swiper.activeIndex === 2) {
+            if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
               setAddSlide(true);
-              console.log('hbdvfkjhbfvkjvb');
+            } else {
+              setAddSlide(false);
             }
           }}
         >
