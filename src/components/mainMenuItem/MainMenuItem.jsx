@@ -30,11 +30,11 @@ MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   isAuthorized: PropTypes.bool,
   isAuth: PropTypes.bool.isRequired,
-  isNavVisible: PropTypes.func.isRequired,
   lock: PropTypes.string,
   icon: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   burgerState: PropTypes.func.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
 };
 
 MainMenuItem.defaultProps = {

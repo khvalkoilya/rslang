@@ -12,7 +12,6 @@ const UserMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
         <span>{title}</span>
       </button>
       <div className={`user__menu ${visible ? 'block' : 'none'}`} onMouseLeave={() => setVisible(!visible)}>
-
         <UserMenuItem
           isAuth={isAuth}
           setVisible={setVisible}
@@ -31,3 +30,4 @@ UserMenu.propTypes = {
 };
 
 export default UserMenu;
+//
