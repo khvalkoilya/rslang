@@ -3,6 +3,7 @@ import SwiperCore, { Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import DEFAULT_WORDS from '../../variables/defaultWords';
 import Card from '../card/Card';
+import UserProgressBar from '../progressBar/ProgressBar';
 
 const WORDS = [
   {
@@ -353,16 +354,17 @@ const renderBlockWithCards = () => {
   const [swiper, setSwiper] = useState();
   const [addSlide, setAddSlide] = useState(false);
   const [arrData, setArrData] = useState(DEFAULT_WORDS);
+  const [doneCards, setDoneCards] = useState(0);
+
   const arr = arrData.map((e) => (
     <SwiperSlide key={e.id}>
-      <Card data={e} swiper={swiper} setAddSlide={setAddSlide} />
+      <Card data={e} swiper={swiper} setAddSlide={setAddSlide} setDoneCards={setDoneCards} />
     </SwiperSlide>
   ));
-  console.log(arr);
-
   useEffect(() => {
     if (addSlide) {
       setArrData(WORDS.concat(arrData));
+      setAddSlide(false);
     }
   }, [addSlide]);
   return (
@@ -384,9 +386,10 @@ const renderBlockWithCards = () => {
           document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
         }}
       >
-        {addSlide && console.log('swiper.activeIndex', swiper.activeIndex)}
         {arr}
+        <UserProgressBar doneCards={doneCards} maxCards={40} />
       </Swiper>
+
     </>
 
   );

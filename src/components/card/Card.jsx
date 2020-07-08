@@ -6,7 +6,7 @@ import { getLetterArr } from './utils';
 import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
-  data, swiper, setAddSlide,
+  data, swiper, setAddSlide, setDoneCards,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -37,13 +37,11 @@ const Card = ({
           type="button"
           className="card__button card__button-show"
           onClick={() => {
+            setDoneCards(swiper.activeIndex + 1);
             compareWords();
             swiper.slideNext();
-            console.log(swiper.activeIndex);
             if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
               setAddSlide(true);
-            } else {
-              setAddSlide(false);
             }
           }}
         >
@@ -56,6 +54,7 @@ const Card = ({
 };
 
 Card.propTypes = {
+  setDoneCards: PropTypes.func.isRequired,
   setAddSlide: PropTypes.func.isRequired,
   swiper: PropTypes.shape({
     slideNext: PropTypes.func,

@@ -10,3 +10,17 @@
   background: gold;
   text-align: center;
 }
+
+.swiper-container{
+  @include media-medium {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.swiper-container >.swiper-button-prev,
+.swiper-container >.swiper-button-next{
+  @include media-extra-small{
+    display: none;
+  }
+}
