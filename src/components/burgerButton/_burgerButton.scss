@@ -1,11 +1,13 @@
-.nav__button {
+.nav__burger__button {
   display: none;
   background-color: $white-color;
+  outline: none;
   z-index: 30;
   border: 0;
   position: absolute;
   left: 20px;
   cursor: pointer;
+  transition: transform .3s linear;
   @include media-small {
     display: block;
   }
@@ -13,4 +15,9 @@
 
 .burgerButton {
   width: 30px;
+}
+
+.rotated {
+  transform: rotate(90deg);
+  position: fixed;
 }

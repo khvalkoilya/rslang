@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MAIN_MENU_ITEMS_VALUES } from '../../variables/MenuVariables';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
-const MainMenu = ({ isAuth }) => {
+const MainMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
   const menuList = MAIN_MENU_ITEMS_VALUES.map((word) => (
     <MainMenuItem
       name={word.name}
@@ -14,6 +14,8 @@ const MainMenu = ({ isAuth }) => {
       link={word.title}
       lock={word.lock}
       icon={word.icon}
+      isNavVisible={isNavVisible}
+      burgerState={changeBurgerState}
     />
   ));
 
@@ -26,6 +28,8 @@ const MainMenu = ({ isAuth }) => {
 
 MainMenu.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
+  changeBurgerState: PropTypes.func.isRequired,
 };
 
 export default MainMenu;

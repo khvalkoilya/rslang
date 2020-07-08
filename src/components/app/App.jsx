@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
-import { loginUser, getWordsData, createUser } from '../../user/utilsApi';
+import { loginUser, getWordsData, createUser } from '../../utilsApi/utilsApi';
 import ChangePage from '../context/Context';
 
 const App = () => {
@@ -32,7 +32,6 @@ const App = () => {
   }, [userData]);
   return (
     <>
-
       <ChangePage.Provider value={{
         page, setPage, funcFormRegistration, setIsAuth, userId, data,
       }}

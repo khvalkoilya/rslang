@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import ChangePage from '../context/Context';
 import { USER_MENU_ITEMS } from '../../variables/MenuVariables';
 
-const UserMenuItem = ({ isAuth, setVisible }) => {
+const UserMenuItem = ({
+  isAuth, setVisible, isNavVisible, burgerState,
+}) => {
   const { page, setPage, setIsAuth } = useContext(ChangePage);
   const menuItems = USER_MENU_ITEMS.map((element) => {
     if (element.isAuthorized === isAuth) {
@@ -17,6 +19,10 @@ const UserMenuItem = ({ isAuth, setVisible }) => {
               setPage('train');
             } else {
               setPage(element.title);
+              if (document.body.offsetWidth <= 600) {
+                isNavVisible();
+                burgerState();
+              }
             }
           }}
           className="profile-menu__button"
@@ -40,6 +46,8 @@ const UserMenuItem = ({ isAuth, setVisible }) => {
 UserMenuItem.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   setVisible: PropTypes.func.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
+  burgerState: PropTypes.func.isRequired,
 };
 
 export default UserMenuItem;
