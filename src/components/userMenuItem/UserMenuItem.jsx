@@ -1,28 +1,35 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
-import USER_MENU_ITEMS from '../../variables/userMenuItems';
+import ChangePage from '../context/Context';
+import { USER_MENU_ITEMS } from '../../variables/MenuVariables';
 
-const UserMenuItem = ({ isAuth, isNavVisible, burgerState }) => {
-  const setPage = useContext(MainMenuPagesContext);
-  const currentPage = useContext(UserMenuPagesContext);
-  const menuItems = USER_MENU_ITEMS.map((e) => {
-    if (e.isAuthorized === isAuth) {
+const UserMenuItem = ({
+  isAuth, setVisible, isNavVisible, burgerState,
+}) => {
+  const { page, setPage, setIsAuth } = useContext(ChangePage);
+  const menuItems = USER_MENU_ITEMS.map((element) => {
+    if (element.isAuthorized === isAuth) {
       return (
         <button
-          key={e.id}
+          key={element.id}
           onClick={() => {
-            setPage(e.props);
-            if (document.body.offsetWidth <= 600) {
-              isNavVisible();
-              burgerState();
+            if (element.title === 'logOut') {
+              setIsAuth(false);
+              setVisible(false);
+              setPage('train');
+            } else {
+              setPage(element.title);
+              if (document.body.offsetWidth <= 600) {
+                isNavVisible();
+                burgerState();
+              }
             }
           }}
           className="profile-menu__button"
           type="button"
         >
-          <img src={e.icon} alt="icon" style={e.styles} />
-          <span className={currentPage === e.props ? 'active' : ''}>{e.name}</span>
+          <img src={element.icon} alt="icon" style={element.styles} />
+          <span className={page === element.title ? 'active' : ''}>{element.name}</span>
         </button>
       );
     }
@@ -38,6 +45,7 @@ const UserMenuItem = ({ isAuth, isNavVisible, burgerState }) => {
 
 UserMenuItem.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  setVisible: PropTypes.func.isRequired,
   isNavVisible: PropTypes.func.isRequired,
   burgerState: PropTypes.func.isRequired,
 };

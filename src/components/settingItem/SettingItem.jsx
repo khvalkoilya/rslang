@@ -28,8 +28,8 @@ const SettingItem = ({
 SettingItem.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  type:PropTypes.string.isRequired,
-  text:PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default SettingItem;

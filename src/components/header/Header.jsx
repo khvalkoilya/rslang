@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import MainMenu from '../mainMenu/MainMenu';
 import UserMenu from '../userMenu/UserMenu';
 import BurgerButton from '../burgerButton/BurgerButton';
 import Logo from '../logo/Logo';
 import EmptyWrapper from './ListenerFunction';
 
-const isAuth = true;
-
-const Header = () => {
+const Header = ({ isAuth }) => {
   const [burgerState, setburgerState] = useState(false);
   const changeStateOfBurger = () => setburgerState(!burgerState);
   const currentBurgerState = burgerState;
@@ -37,4 +36,7 @@ const Header = () => {
   );
 };
 
+Header.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+};
 export default Header;
