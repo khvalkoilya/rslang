@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Swiper from 'react-id-swiper';
-import 'swiper/css/swiper.css';
 
 const renderBlockWithCards = () => {
   const arr = ['Slide 1', 'Slide 2', 'Slide 3']
