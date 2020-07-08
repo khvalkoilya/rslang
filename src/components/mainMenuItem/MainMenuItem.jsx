@@ -1,23 +1,19 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MainMenuPagesContext, UserMenuPagesContext } from '../context/Context';
+import ChangePage from '../context/Context';
 
 const MainMenuItem = ({
-  name, isAuthorized, isAuth, isNavVisible, props, icon, lock, burgerState,
+  name, isAuthorized, isAuth, link, icon, lock,
 }) => {
-  const setPage = useContext(MainMenuPagesContext);
-  const currentPage = useContext(UserMenuPagesContext);
+  const { page, setPage } = useContext(ChangePage);
+
   return (
     <button
       type="button"
       onClick={isAuthorized || isAuth ? (() => {
-        setPage(props);
-        if (document.body.offsetWidth <= 600) {
-          isNavVisible();
-          burgerState();
-        }
+        setPage(link);
       }) : undefined}
-      className={`menu-item ${props === currentPage ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
+      className={`menu-item ${link === page ? 'menu-item-active' : ''} ${!isAuth && !isAuthorized ? 'menu-item-lock' : ''}`}
     >
       <img src={icon} alt="icon" className="menu-item-icon" />
       { name }
@@ -30,11 +26,9 @@ MainMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   isAuthorized: PropTypes.bool,
   isAuth: PropTypes.bool.isRequired,
-  isNavVisible: PropTypes.func.isRequired,
   lock: PropTypes.string,
   icon: PropTypes.string.isRequired,
-  props: PropTypes.string.isRequired,
-  burgerState: PropTypes.func.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 MainMenuItem.defaultProps = {

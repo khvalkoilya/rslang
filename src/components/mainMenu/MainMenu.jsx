@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MAIN_MENU_ITEMS_VALUES } from '../../variables/menuVariables';
+import { MAIN_MENU_ITEMS_VALUES } from '../../variables/MenuVariables';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
 const MainMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
@@ -11,10 +11,10 @@ const MainMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
       key={word.id}
       isAuthorized={word.isAuthorized}
       isAuth={isAuth}
-      isNavVisible={isNavVisible}
-      props={word.props}
+      link={word.title}
       lock={word.lock}
       icon={word.icon}
+      isNavVisible={isNavVisible}
       burgerState={changeBurgerState}
     />
   ));
