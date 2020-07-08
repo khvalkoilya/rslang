@@ -83,10 +83,3 @@ Setting.defaultProps = {
 };
 
 export default Setting;
-
-/* eslint-disable */
-// {
-//   COMMON_SETTING_ITEMS[1].map((el) => (
-//     <SettingItem id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
-// }
-/* eslint-disable */
