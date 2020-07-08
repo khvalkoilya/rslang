@@ -1,8 +1,9 @@
-import React from 'react';
-import Card from '../components/card/Card';
+import React, { useContext } from 'react';
+import Swiper from '../components/blockWithCards/Swiper';
 import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
+import ChangePage from '../components/context/Context';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -11,7 +12,14 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
     icon: '../../assets/images/dumbbell.svg',
     title: 'train',
-    render: (id, title) => <Card key={`${id}-${title}`} />,
+    render: (id, title) => {
+      const {
+        data,
+      } = useContext(ChangePage);
+      return (
+        data && <Swiper key={`${id}-${title}`} />
+      );
+    },
   },
   {
     id: 1,

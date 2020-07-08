@@ -18,7 +18,6 @@ const UserMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
           isNavVisible={isNavVisible}
           burgerState={changeBurgerState}
         />
-
       </div>
     </>
   );

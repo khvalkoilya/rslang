@@ -12,9 +12,9 @@ const MainMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
       isAuthorized={word.isAuthorized}
       isAuth={isAuth}
       link={word.title}
+      isNavVisible={isNavVisible}
       lock={word.lock}
       icon={word.icon}
-      isNavVisible={isNavVisible}
       burgerState={changeBurgerState}
     />
   ));
