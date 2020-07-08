@@ -7,7 +7,7 @@ const Input = ({
   <input
     // eslint-disable-next-line jsx-a11y/no-autofocus
     autoFocus
-    onFocus={useCallback(() => {
+    onChangeCapture={useCallback(() => {
       let interval = null;
       if (!completed && defaultVal.length) {
         document.querySelector('.checked-word').classList.add('word-fade-full');
