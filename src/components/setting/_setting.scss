@@ -3,6 +3,7 @@
     font-size: 25px;
     padding-top: 24px;
     border-top: 1px solid $brown-color;
+    font-weight: normal;
 
     @include media-medium {
       font-size: 22px;

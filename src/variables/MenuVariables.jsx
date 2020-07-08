@@ -5,6 +5,7 @@ import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ChangePage from '../components/context/Context';
 import Card from '../components/card/Card';
+import Setting from '../components/setting/Setting';
 import DEFAULT_WORDS from './defaultWords';
 import DEFAULT_SETTINGS from './defaultSettings';
 
@@ -68,7 +69,7 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/settings.svg',
     title: 'settings',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Setting key={`${id}-${title}`} />,
   },
   {
     id: 2,
