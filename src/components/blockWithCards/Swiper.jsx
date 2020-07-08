@@ -361,7 +361,6 @@ const renderBlockWithCards = () => {
     <SwiperSlide key={e.id}>
       <Card
         words={e}
-        key={e.id}
         swiper={swiper}
         settings={DEFAULT_SETTINGS.optional}
         setAddSlide={setAddSlide}
@@ -378,7 +377,7 @@ const renderBlockWithCards = () => {
   return (
     <>
       <Swiper
-        spaceBetween={100}
+        spaceBetween={30}
         allowTouchMove={false}
         navigation
         onSwiper={(obj) => {
@@ -393,7 +392,9 @@ const renderBlockWithCards = () => {
           document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
           document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
         }}
+
       >
+        {console.log('12') }
         {arr}
         <UserProgressBar doneCards={doneCards} maxCards={40} />
       </Swiper>

@@ -55,10 +55,14 @@ const Card = ({
   };
 
   return (
-    <div className="card" onKeyPressCapture={pressEnter}>
+    <div
+      className="card"
+      onKeyPressCapture={pressEnter}
+    >
       <div className="card-wrapper">
         <span className="card__input__container">
           <GetPlaceholder
+            key={word}
             defaultVal={defaultVal}
             completed={completed}
           />
@@ -74,7 +78,7 @@ const Card = ({
             setDefaultVal={setDefaultVal}
           />
         </span>
-        <div className="card__grid">
+        <div key={word} className="card__grid">
           <div className="card__grid__text">
             {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
             {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
@@ -103,6 +107,7 @@ const Card = ({
             }
           }}
         >
+          {console.log('15') }
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>
       </div>
