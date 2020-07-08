@@ -12,10 +12,6 @@
   outline: none;
 }
 
-.correct {
-  border: 2px solid green;
-}
-
 .incorrect {
   border: 2px solid red;
 }
@@ -57,6 +53,10 @@
   cursor: pointer;
   display: grid;
   grid-template-columns: repeat(2, 6rem);
+}
+
+.correct {
+  border: 2px solid green;
 }
 
 .words-btn:hover {
