@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import DEFAULT_WORDS from '../../variables/defaultWords';
 import Card from '../card/Card';
 import UserProgressBar from '../progressBar/ProgressBar';
+import DEFAULT_SETTINGS from '../../variables/defaultSettings';
 
 const WORDS = [
   {
@@ -358,7 +359,14 @@ const renderBlockWithCards = () => {
 
   const arr = arrData.map((e) => (
     <SwiperSlide key={e.id}>
-      <Card data={e} swiper={swiper} setAddSlide={setAddSlide} setDoneCards={setDoneCards} />
+      <Card
+        words={e}
+        key={e.id}
+        swiper={swiper}
+        settings={DEFAULT_SETTINGS.optional}
+        setAddSlide={setAddSlide}
+        setDoneCards={setDoneCards}
+      />
     </SwiperSlide>
   ));
   useEffect(() => {

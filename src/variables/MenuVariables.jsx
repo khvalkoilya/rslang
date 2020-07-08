@@ -4,6 +4,9 @@ import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ChangePage from '../components/context/Context';
+// import Card from '../components/card/Card';
+// import DEFAULT_WORDS from './defaultWords';
+// import DEFAULT_SETTINGS from './defaultSettings';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -18,6 +21,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
       } = useContext(ChangePage);
       return (
         data && <Swiper key={`${id}-${title}`} />
+
       );
     },
   },

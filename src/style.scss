@@ -1,6 +1,6 @@
 @import "~normalize.css";
-@import "./base/constants";
 @import "./base/fonts";
+@import "./base/constants";
 @import "./base/mixes";
 @import "./components/mainMenuItem/mainMenuItem";
 @import "./components/userMenuItem/userMenuItem";
@@ -14,8 +14,6 @@
 @import './components/registration/input';
 @import "./components/main/main";
 @import "./components/gamesPage/gamesPage";
-
-
 @import 'swiper/swiper.scss';
 @import 'swiper/components/navigation/navigation.scss';
 @import 'swiper/components/pagination/pagination.scss';
