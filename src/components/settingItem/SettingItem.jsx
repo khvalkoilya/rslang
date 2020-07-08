@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SettingItem = ({ name, id, type }) => (
-  <label htmlFor={id} className={type === 'checkbox' ? 'setting_custom_checkbox' : ''}>
+const SettingItem = ({
+  name, id, type, text,
+}) => (
+  <label htmlFor={`${id}_${name}`} className={type === 'checkbox' ? 'setting_custom_checkbox' : ''}>
     {
       type === 'checkbox' ? (
         <>
           {' '}
-          <input id={id} type="checkbox" />
-          <span>{name}</span>
+          <input id={`${id}_${name}`} type="checkbox" />
+          <span>{text}</span>
         </>
       )
         : (
           <>
             {' '}
-            <span>{name}</span>
+            <span>{text}</span>
             {' '}
-            <input className="setting_input_text" id={id} type="text" />
+            <input className="setting_input_text" id={`${id}${name}`} type="text" />
           </>
         )
     }
@@ -40,6 +42,7 @@ SettingItem.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type:PropTypes.string.isRequired,
+  text:PropTypes.string.isRequired,
 };
 
 export default SettingItem;

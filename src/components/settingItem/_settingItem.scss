@@ -36,6 +36,11 @@
       background-position: center center;
       background-size: 80% 80%;
       transition: all .2s linear;
+
+      @include media-small {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 }
@@ -45,6 +50,16 @@
   height: 36px;
   padding-left: 10px;
   border: 1px solid $denim-color;
+  @include media-medium {
+    width: 30px;
+    height: 25px;
+    padding-left: 7px;
+  }
+  @include media-small {
+    width: 24px;
+    height: 20px;
+    padding-left: 5px;
+  }
 }
 
 
@@ -54,15 +69,51 @@
   justify-content: space-between;
   label {
     display: block;
-    margin-bottom: 18px;
+    margin-bottom: 2.6%;
   }
 }
 
 .help_settings{
-  margin-top: 2%;
+  label {
+    margin-left: 6px;
+
+    @include media-small {
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  .help_settings_labels_wrapper {
+    height: 75px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+    @include media-medium {
+      height: 110px;
+    }
+
+    @include media-small {
+      display: block;
+      height: 173px;
+    }
+  }
 }
 
 .classfication_settings {
-  margin-top: 5%;
+  margin-top: 4%;
   padding-bottom: 4%;
+
+  @include media-small {
+    padding-bottom: 10%;
+    margin-top: 4%;
+  }
+
+  label {
+    margin-left: 6px;
+
+    @include media-small {
+      display: block;
+      margin-top: 8px;
+    }
+  }
 }

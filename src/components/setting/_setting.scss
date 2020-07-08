@@ -4,6 +4,14 @@
     padding-top: 24px;
     border-top: 1px solid $brown-color;
 
+    @include media-medium {
+      font-size: 22px;
+    }
+
+    @include media-small {
+      font-size: 18px;
+    }
+
     h4 {
       margin: 0 0 2.5% 0;
     }

@@ -17,21 +17,23 @@ const Setting = ({ settings }) => (
         <div className="common_settings">
           {
             COMMON_SETTING_ITEMS.map((el) => (
-              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.name} text={el.text} type={el.type} />))
           }
         </div>
         <div className="help_settings">
           <h4>Помощь</h4>
-          {
-            HELP_SETTING_ITEMS.map((el) => (
-              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
-          }
+          <div className="help_settings_labels_wrapper">
+            {
+              HELP_SETTING_ITEMS.map((el) => (
+                <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
+            }
+          </div>
         </div>
         <div className="classfication_settings">
           <h4>Классификация трудных слов</h4>
           {
             CLASSIFICATION_SETTING_ITEMS.map((el) => (
-              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
           }
         </div>
         <div className="setting_button">

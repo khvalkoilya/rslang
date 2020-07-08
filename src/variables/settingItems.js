@@ -13,20 +13,6 @@ const COMMON_SETTING_ITEMS = [
     type: 'text',
     id: 1,
   },
-  {
-    name: 'transcription',
-    text: 'Транскрипция',
-    // state: false,
-    type: 'checkbox',
-    id: 2,
-  },
-  {
-    name: 'image',
-    text: 'Картинка-ассоциация',
-    // state: false,
-    type: 'checkbox',
-    id: 3,
-  },
 ];
 
 const HELP_SETTING_ITEMS = [
@@ -57,6 +43,20 @@ const HELP_SETTING_ITEMS = [
     // state: true,
     type: 'checkbox',
     id: 7,
+  },
+  {
+    name: 'transcription',
+    text: 'транскрипция',
+    // state: false,
+    type: 'checkbox',
+    id: 2,
+  },
+  {
+    name: 'image',
+    text: 'картинка-ассоциация',
+    // state: false,
+    type: 'checkbox',
+    id: 3,
   },
 ];
 
