@@ -262,11 +262,6 @@
 .word-fade {
   transition: all 1s ease-in-out;
   opacity: 0.3;
-  color: $black-color;
-
-  &-full {
-    opacity: 0;
-  }
 }
 
 .completed-word {

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = ({
@@ -7,19 +7,14 @@ const Input = ({
   <input
     // eslint-disable-next-line jsx-a11y/no-autofocus
     autoFocus
-    onChangeCapture={useCallback(() => {
-      let interval = null;
+    onChangeCapture={() => {
       if (!completed && defaultVal.length) {
-        document.querySelector('.checked-word').classList.add('word-fade-full');
-        interval = setTimeout(() => {
-          setDefaultVal([]);
-        }, 1000);
+        setDefaultVal([]);
       }
-      return () => clearTimeout(interval);
-    })}
+    }}
     className="card__input"
     type="text"
-    onChange={useCallback((e) => {
+    onChange={(e) => {
       const val = e.target.value;
       if (val.length === wordLen) {
         setNextButton(true);
@@ -27,7 +22,7 @@ const Input = ({
         setNextButton(false);
       }
       setWord(val);
-    }, [])}
+    }}
   />
 );
 
