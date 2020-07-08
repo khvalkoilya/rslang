@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SettingItemText, SettingItemCheckbox } from '../settingItem/SettingItem';
+import SettingItem from '../settingItem/SettingItem';
 import {
   CLASSIFICATION_SETTING_ITEMS,
   HELP_SETTING_ITEMS,
@@ -12,32 +12,31 @@ const Setting = ({ settings }) => (
   <div className="card">
     <div className="card-wrapper">
       <h3 className="setting__header">Настройки</h3>
-      <hr />
       <form>
         { console.log(settings) }
         <div className="common_settings">
           {
-            COMMON_SETTING_ITEMS[0].map((el) => (
-              <SettingItemText id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
-          }
-          {
-            COMMON_SETTING_ITEMS[1].map((el) => (
-              <SettingItemCheckbox id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
+            COMMON_SETTING_ITEMS.map((el) => (
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
           }
         </div>
         <div className="help_settings">
+          <h4>Помощь</h4>
           {
             HELP_SETTING_ITEMS.map((el) => (
-              <SettingItemCheckbox id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
           }
         </div>
         <div className="classfication_settings">
+          <h4>Классификация трудных слов</h4>
           {
             CLASSIFICATION_SETTING_ITEMS.map((el) => (
-              <SettingItemCheckbox id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.text} type={el.type} />))
           }
         </div>
-        <button type="submit">Save</button>
+        <div className="setting_button">
+          <button className="submit_settings" type="submit">Сохранить</button>
+        </div>
       </form>
     </div>
   </div>
@@ -82,3 +81,10 @@ Setting.defaultProps = {
 };
 
 export default Setting;
+
+/* eslint-disable */
+// {
+//   COMMON_SETTING_ITEMS[1].map((el) => (
+//     <SettingItem id={el.id} key={`${el.id}${el.name}`} state={el.state} name={el.text} />))
+// }
+/* eslint-disable */
