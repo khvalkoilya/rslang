@@ -10,7 +10,7 @@ const GetPlaceholder = ({
     const goodStyle = percentOfMistakes === 0 ? 'completed-word-letter' : 'true-letter';
     const badStyle = percentOfMistakes > 0.3 ? 'dangerous-mistake' : 'calm-mistake';
     const arr = defaultVal.map((item) => (
-      <span className={item.isCorrect ? goodStyle : badStyle}>
+      <span key={Math.random(1000)} className={item.isCorrect ? goodStyle : badStyle}>
         {item.letter}
       </span>
     ));
