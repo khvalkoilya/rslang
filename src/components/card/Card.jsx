@@ -7,7 +7,8 @@ import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
-  words: {
+  swiper, setAddSlide, setDoneCards,
+  word: {
     word,
     image,
     wordTranslate,
@@ -37,7 +38,8 @@ const Card = ({
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));
-    const input = document.querySelector('.card__input');
+    const active = document.querySelector('.swiper-slide-active');
+    const input = active.querySelector('.card__input');
     input.value = '';
     if (word === innerWord) {
       setCompleted(true);
@@ -54,10 +56,14 @@ const Card = ({
   };
 
   return (
-    <div className="card" onKeyPressCapture={pressEnter}>
+    <div
+      className="card"
+      onKeyPressCapture={pressEnter}
+    >
       <div className="card-wrapper">
         <span className="card__input__container">
           <GetPlaceholder
+            key={word}
             defaultVal={defaultVal}
             completed={completed}
           />
@@ -73,7 +79,7 @@ const Card = ({
             setDefaultVal={setDefaultVal}
           />
         </span>
-        <div className="card__grid">
+        <div key={word} className="card__grid">
           <div className="card__grid__text">
             {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
             {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
@@ -93,7 +99,14 @@ const Card = ({
         <button
           type="button"
           className="card__button card__button-show"
-          onClick={checkWord}
+          onClick={() => {
+            setDoneCards(swiper.activeIndex + 1);
+            checkWord();
+            swiper.slideNext();
+            if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
+              setAddSlide(true);
+            }
+          }}
         >
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>
@@ -103,7 +116,13 @@ const Card = ({
 };
 
 Card.propTypes = {
-  words: PropTypes.shape({
+  setDoneCards: PropTypes.func.isRequired,
+  setAddSlide: PropTypes.func.isRequired,
+  swiper: PropTypes.shape({
+    slideNext: PropTypes.func,
+    activeIndex: PropTypes.number,
+  }),
+  word: PropTypes.shape({
     word: PropTypes.string,
     image: PropTypes.string,
     wordTranslate: PropTypes.string,
@@ -132,7 +151,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  words: {
+  word: {
     word: 'run',
     image: './assets/images/run.jpg',
     wordTranslate: 'Бежать, бегать',
@@ -142,6 +161,7 @@ Card.defaultProps = {
     textMeaningTranslate: 'Бежать - двигаться быстро',
     transcription: '[RAN]',
   },
+  swiper: {},
 };
 
 export default Card;

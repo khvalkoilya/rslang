@@ -1,36 +1,73 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import Swiper from 'react-id-swiper';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import SwiperCore, { Navigation, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Card from '../card/Card';
+import UserProgressBar from '../progressBar/ProgressBar';
+import DEFAULT_SETTINGS from '../../variables/defaultSettings';
+import { getWordsData } from '../../utilsApi/utilsApi';
 
-const renderBlockWithCards = () => {
-  const arr = ['Slide 1', 'Slide 2', 'Slide 3']
-    .map((e) => (
-      <div>
-        {e}
-      </div>
-    ));
+SwiperCore.use([Navigation, A11y]);
 
-  const params = {
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      dynamicBullets: 'true',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    spaceBetween: 30,
-  };
-
+const RenderBlockWithCards = ({ words }) => {
+  const [swiper, setSwiper] = useState();
+  const [addSlide, setAddSlide] = useState(false);
+  const [arrData, setArrData] = useState(words);
+  const [doneCards, setDoneCards] = useState(0);
+  useEffect(() => {
+    const fn = async () => {
+      const WORDS = await getWordsData(arrData[0].group, arrData[0].page + 1);
+      setArrData(arrData.concat(WORDS));
+      setAddSlide(false);
+    };
+    if (addSlide) {
+      fn();
+    }
+  }, [addSlide]);
+  useEffect(() => {
+    setArrData(words);
+  }, [words]);
   return (
-    <div className="swiper">
-      <Swiper {...params}>
-        {arr}
-      </Swiper>
-    </div>
+    <Swiper
+      spaceBetween={30}
+      allowTouchMove={false}
+      navigation
+      onSwiper={(obj) => {
+        setSwiper(obj);
+        document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+        document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+      }}
+      onSlidePrevTransitionEnd={() => {
+        document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
+        document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
+      }}
+      onSlideNextTransitionEnd={() => {
+        document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
+        document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+        document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+      }}
+    >
+      {arrData.map((e) => (
+        <SwiperSlide key={e.id}>
+          <Card
+            word={e}
+            swiper={swiper}
+            settings={DEFAULT_SETTINGS.optional}
+            setAddSlide={setAddSlide}
+            setDoneCards={setDoneCards}
+          />
+        </SwiperSlide>
+      ))}
+      <UserProgressBar doneCards={doneCards} maxCards={40} />
+    </Swiper>
   );
 };
+RenderBlockWithCards.propTypes = {
+  words: PropTypes.arrayOf(PropTypes.object),
+};
 
-export default renderBlockWithCards;
+RenderBlockWithCards.defaultProps = {
+  words: undefined,
+};
+
+export default RenderBlockWithCards;

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import Swiper from '../components/blockWithCards/Swiper';
+import RenderBlockWithCards from '../components/blockWithCards/Swiper';
 import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ChangePage from '../components/context/Context';
-import Card from '../components/card/Card';
-import DEFAULT_WORDS from './defaultWords';
-import DEFAULT_SETTINGS from './defaultSettings';
+import Setting from '../components/setting/Setting';
+// import Card from '../components/card/Card';
+// import DEFAULT_WORDS from './defaultWords';
+// import DEFAULT_SETTINGS from './defaultSettings';
 import DemoPage from '../components/demoPage/DemoPage';
 
 export const MAIN_MENU_ITEMS_VALUES = [
@@ -18,11 +19,11 @@ export const MAIN_MENU_ITEMS_VALUES = [
     title: 'train',
     render: (id, title) => {
       const {
-        data,
+        words,
       } = useContext(ChangePage);
       return (
-        // data && <Swiper key={`${id}-${title}`} />
-        <Card words={DEFAULT_WORDS[5]} settings={DEFAULT_SETTINGS.optional} key={`${id}-${title}`} />
+        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
+
       );
     },
   },
@@ -69,7 +70,7 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/settings.svg',
     title: 'settings',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Setting key={`${id}-${title}`} />,
   },
   {
     id: 2,
@@ -94,5 +95,13 @@ export const USER_MENU_ITEMS = [
     icon: '../../assets/images/contract.svg',
     title: 'registration',
     render: (id, title) => <Registration key={`${id}-${title}`} />,
+  },
+];
+
+export const ABOUT_AS = [
+  {
+    id: 0,
+    title: 'aboutAs',
+    render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
   },
 ];

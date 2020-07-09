@@ -5,8 +5,6 @@ const Input = ({
   wordLen, setWord, setNextButton, completed, defaultVal, setDefaultVal,
 }) => (
   <input
-    // eslint-disable-next-line jsx-a11y/no-autofocus
-    autoFocus
     onChangeCapture={() => {
       if (!completed && defaultVal.length) {
         setDefaultVal([]);

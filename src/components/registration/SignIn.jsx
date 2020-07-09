@@ -6,7 +6,7 @@ import { loginUser, getWordsData } from '../../utilsApi/utilsApi';
 
 const SignIn = () => {
   const {
-    setPage, setData, setUser, setIsAuth,
+    setPage, setWords, setUser, setIsAuth,
   } = useContext(ChangePage);
   const [userData, setUserData] = useState();
   useEffect(() => {
@@ -16,7 +16,7 @@ const SignIn = () => {
         setUser(res);
         setPage('train');
         setIsAuth(true);
-        setTimeout(() => { getWordsData().then((result) => setData(result)); }, 3000);
+        setTimeout(() => { getWordsData(3, 1).then((result) => setWords(result)); }, 3000);
       }).catch(() => {
         error.innerHTML = 'Неверный e-mail или пароль';
         setPage('signIn');
