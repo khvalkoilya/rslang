@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import Swiper from '../components/blockWithCards/Swiper';
+import RenderBlockWithCards from '../components/blockWithCards/Swiper';
 import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ChangePage from '../components/context/Context';
-import Card from '../components/card/Card';
 import Setting from '../components/setting/Setting';
-import DEFAULT_WORDS from './defaultWords';
-import DEFAULT_SETTINGS from './defaultSettings';
+// import Card from '../components/card/Card';
+// import DEFAULT_WORDS from './defaultWords';
+// import DEFAULT_SETTINGS from './defaultSettings';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -18,11 +18,11 @@ export const MAIN_MENU_ITEMS_VALUES = [
     title: 'train',
     render: (id, title) => {
       const {
-        data,
+        words,
       } = useContext(ChangePage);
       return (
-        // data && <Swiper key={`${id}-${title}`} />
-        <Card words={DEFAULT_WORDS[5]} settings={DEFAULT_SETTINGS.optional} key={`${id}-${title}`} />
+        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
+
       );
     },
   },

@@ -7,14 +7,14 @@ import DEFAULT_WORDS from '../../variables/defaultWords';
 
 const App = () => {
   const [page, setPage] = useState('train');
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const [userId, setUser] = useState();
-  const [data, setData] = useState(DEFAULT_WORDS);
+  const [words, setWords] = useState(DEFAULT_WORDS);
 
   return (
     <>
       <ChangePage.Provider value={{
-        page, setPage, setData, setUser, setIsAuth, userId, data,
+        page, setPage, setWords, setUser, setIsAuth, userId, words,
       }}
       >
         <Header isAuth={isAuth} />
