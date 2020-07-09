@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Swiper from '../components/blockWithCards/Swiper';
+import RenderBlockWithCards from '../components/blockWithCards/Swiper';
 import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
@@ -17,10 +17,10 @@ export const MAIN_MENU_ITEMS_VALUES = [
     title: 'train',
     render: (id, title) => {
       const {
-        data,
+        words,
       } = useContext(ChangePage);
       return (
-        data && <Swiper key={`${id}-${title}`} />
+        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
 
       );
     },

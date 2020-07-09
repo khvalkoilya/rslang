@@ -8,7 +8,7 @@ import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
   swiper, setAddSlide, setDoneCards,
-  words: {
+  word: {
     word,
     image,
     wordTranslate,
@@ -38,7 +38,8 @@ const Card = ({
 
   const checkWord = () => {
     setDefaultVal(getLetterArr(word, innerWord));
-    const input = document.querySelector('.card__input');
+    const active = document.querySelector('.swiper-slide-active');
+    const input = active.querySelector('.card__input');
     input.value = '';
     if (word === innerWord) {
       setCompleted(true);
@@ -107,7 +108,6 @@ const Card = ({
             }
           }}
         >
-          {console.log('15') }
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
         </button>
       </div>
@@ -122,7 +122,7 @@ Card.propTypes = {
     slideNext: PropTypes.func,
     activeIndex: PropTypes.number,
   }),
-  words: PropTypes.shape({
+  word: PropTypes.shape({
     word: PropTypes.string,
     image: PropTypes.string,
     wordTranslate: PropTypes.string,
@@ -151,7 +151,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  words: {
+  word: {
     word: 'run',
     image: './assets/images/run.jpg',
     wordTranslate: 'Бежать, бегать',

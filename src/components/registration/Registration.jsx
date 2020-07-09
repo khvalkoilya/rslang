@@ -6,7 +6,7 @@ import { createUser, getWordsData } from '../../utilsApi/utilsApi';
 
 const Registration = () => {
   const {
-    setPage, setData, setUser, setIsAuth,
+    setPage, setWords, setUser, setIsAuth,
   } = useContext(ChangePage);
   const [userData, setUserData] = useState();
   useEffect(() => {
@@ -16,7 +16,7 @@ const Registration = () => {
         setUser(res);
         setPage('train');
         setIsAuth(true);
-        getWordsData().then((result) => setData(result));
+        getWordsData().then((result) => setWords(result));
       }).catch(() => {
         error.innerHTML = 'Неверный e-mail или пароль';
         setPage('registration');
