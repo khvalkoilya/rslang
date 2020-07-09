@@ -11,10 +11,7 @@ const DEFAULT_SETTINGS = {
     hasAutoSpeech: true,
     hasAutoTranslation: true,
     hasShowingAnswer: true,
-    hasIntervalAgain: true,
-    hasIntervalHard: true,
-    hasIntervalGood: true,
-    hasIntervalEasy: true,
+    hasIntervalButtons: true,
   },
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import SettingItem from '../settingItem/SettingItem';
 import {
   CLASSIFICATION_SETTING_ITEMS,
@@ -13,27 +12,27 @@ const Setting = ({ settings }) => (
     <div className="card-wrapper">
       <h3 className="setting__header">Настройки</h3>
       <form>
-        { console.log(settings) }
+        {console.log(settings)}
         <div className="common_settings">
           {
-            COMMON_SETTING_ITEMS.map((el) => (
-              <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.name} text={el.text} type={el.type} />))
-          }
+          COMMON_SETTING_ITEMS.map((el) => (
+            <SettingItem id={el.id} key={`${el.id}${el.name}`} name={el.name} text={el.text} type={el.type} />))
+        }
         </div>
         <div className="help_settings">
           <h4>Помощь</h4>
           <div className="help_settings_labels_wrapper">
             {
-              HELP_SETTING_ITEMS.map((el) => (
-                <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
-            }
+            HELP_SETTING_ITEMS.map((el) => (
+              <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
+          }
           </div>
         </div>
         <div className="classfication_settings">
           <h4>Классификация трудных слов</h4>
           {
-            CLASSIFICATION_SETTING_ITEMS.map((el) => (
-              <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
+          CLASSIFICATION_SETTING_ITEMS.map((el) => (
+            <SettingItem id={el.id} key={`${el.id}${el.name}`} text={el.text} name={el.name} type={el.type} />))
           }
         </div>
         <div className="setting_button">

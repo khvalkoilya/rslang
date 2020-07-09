@@ -83,18 +83,14 @@
     }
   }
   .help_settings_labels_wrapper {
-    height: 75px;
+    height: 135px;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
 
-    @include media-medium {
-      height: 110px;
-    }
-
     @include media-small {
       display: block;
-      height: 173px;
+      height: 230px;
     }
   }
 }
@@ -111,7 +107,7 @@
   label {
     margin-left: 6px;
 
-    @include media-small {
+    @include media-medium {
       display: block;
       margin-top: 8px;
     }

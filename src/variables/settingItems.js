@@ -2,7 +2,7 @@ const COMMON_SETTING_ITEMS = [
   {
     name: 'new_words',
     text: 'Количество новых слов',
-    type: 'text',
+    type: 'number',
     id: 0,
   },
   {
@@ -15,38 +15,50 @@ const COMMON_SETTING_ITEMS = [
 
 const HELP_SETTING_ITEMS = [
   {
-    name: 'translate',
+    name: 'hasTranslation',
     text: 'перевод',
     type: 'checkbox',
     id: 4,
   },
   {
-    name: 'meaning',
+    name: 'hasMeaning',
     text: 'значение',
     type: 'checkbox',
     id: 5,
   },
   {
-    name: 'use',
+    name: 'hasExample',
     text: 'использование',
     type: 'checkbox',
     id: 6,
   },
   {
-    name: 'show_result',
+    name: 'hasShowingAnswer',
     text: 'показать ответ',
     type: 'checkbox',
     id: 7,
   },
   {
-    name: 'transcription',
+    name: 'hasTranscription',
     text: 'транскрипция',
     type: 'checkbox',
     id: 2,
   },
   {
-    name: 'image',
+    name: 'hasImage',
     text: 'картинка-ассоциация',
+    type: 'checkbox',
+    id: 3,
+  },
+  {
+    name: 'hasAutoSpeech',
+    text: 'автовоспроизведение',
+    type: 'checkbox',
+    id: 3,
+  },
+  {
+    name: 'hasAutoTranslation',
+    text: 'автоперевод',
     type: 'checkbox',
     id: 3,
   },
@@ -54,16 +66,22 @@ const HELP_SETTING_ITEMS = [
 
 const CLASSIFICATION_SETTING_ITEMS = [
   {
-    name: 'deleted',
+    name: 'hasDelete',
     text: 'удаленные',
     type: 'checkbox',
     id: 8,
   },
   {
-    name: 'difficult',
+    name: 'hasDifficult',
     text: 'сложные',
     type: 'checkbox',
     id: 9,
+  },
+  {
+    name: 'hasIntervalButtons',
+    text: 'оценка угаданного слова',
+    type: 'checkbox',
+    id: 10,
   },
 ];
 
