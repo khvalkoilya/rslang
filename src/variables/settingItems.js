@@ -1,8 +1,8 @@
 const COMMON_SETTING_ITEMS = [
   {
-    name: 'new_words',
+    name: 'wordsPerDay',
     text: 'Количество новых слов',
-    type: 'number',
+    type: 'text',
     id: 0,
   },
   {
