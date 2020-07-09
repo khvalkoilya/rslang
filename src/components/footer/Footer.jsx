@@ -1,22 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ChangePage from '../context/Context';
 
-const Footer = () => (
-  <div className="footerWrapper">
-    <div className="footerContainer">
-      <a href="https://google.com">About us</a>
-      <div>
-        <a href="https://google.com" className="footerFedbackLink">
-          <img src="./assets/images/icoMail.png" alt="icoMail" />
-        </a>
-        <a href="https://youtube.com" className="footerFedbackLink">
-          <img src="./assets/images/icoYoutube.png" alt="icoYoutube" />
-        </a>
-        <a href="https://telegram.com" className="footerFedbackLink">
-          <img src="./assets/images/icoTelegram.png" alt="icoTelegram" />
-        </a>
-      </div>
+const Footer = () => {
+  const { page, setPage } = useContext(ChangePage);
+
+  return (
+    <div className="footerWrapper">
+      <button
+        type="button"
+        onClick={() => setPage('aboutAs')}
+        className={`menu-item ${page === 'aboutAs' ? 'menu-item-active' : ''}`}
+      >
+        About us
+      </button>
     </div>
-  </div>
-);
 
+  );
+};
 export default Footer;

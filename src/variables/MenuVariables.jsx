@@ -95,3 +95,11 @@ export const USER_MENU_ITEMS = [
     render: (id, title) => <Registration key={`${id}-${title}`} />,
   },
 ];
+
+export const ABOUT_AS = [
+  {
+    id: 0,
+    title: 'aboutAs',
+    render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+  },
+];

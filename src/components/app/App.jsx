@@ -7,7 +7,7 @@ import DEFAULT_WORDS from '../../variables/defaultWords';
 
 const App = () => {
   const [page, setPage] = useState('train');
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   const [userId, setUser] = useState();
   const [words, setWords] = useState(DEFAULT_WORDS);
 
