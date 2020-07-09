@@ -69,7 +69,14 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/settings.svg',
     title: 'settings',
-    render: (id, title) => <Setting key={`${id}-${title}`} />,
+    render: (id, title) => {
+      const {
+        settings,
+      } = useContext(ChangePage);
+      return (
+        <Setting key={`${id}-${title}`} settings={settings} />
+      );
+    },
   },
   {
     id: 2,

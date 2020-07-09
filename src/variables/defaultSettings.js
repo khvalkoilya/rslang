@@ -1,5 +1,5 @@
 const DEFAULT_SETTINGS = {
-  wordsPedDay: 20,
+  wordsPerDay: 5,
   optional: {
     hasTranslation: true,
     hasMeaning: true,
@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = {
     hasAutoTranslation: true,
     hasShowingAnswer: true,
     hasIntervalButtons: true,
+    hasHard: 0,
   },
 };
 

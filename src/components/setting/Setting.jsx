@@ -43,6 +43,8 @@ const Setting = ({ settings }) => {
               text={el.text}
               type={el.type}
               value={settings.wordsPerDay}
+              pattern={el.pattern}
+              maxLeng={el.maxLeng}
             />
           ))
             }
@@ -106,27 +108,7 @@ Setting.propTypes = {
       hasShowingAnswer: PropTypes.bool,
       hasInterval: PropTypes.bool,
     }),
-  }),
-};
-
-Setting.defaultProps = {
-  settings: {
-    wordsPerDay: 20,
-    optional: {
-      hasTranslation: true,
-      hasMeaning: true,
-      hasExample: true,
-      hasTranscription: true,
-      hasImage: true,
-      hasDelete: true,
-      hasDifficult: true,
-      hasAutoSpeech: true,
-      hasAutoTranslation: true,
-      hasShowingAnswer: true,
-      hasInterval: true,
-      hasIntervalButtons: true,
-    },
-  },
+  }).isRequired,
 };
 
 export default Setting;

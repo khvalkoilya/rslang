@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import SwiperCore, { Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
+import ChangePage from '../context/Context';
 import UserProgressBar from '../progressBar/ProgressBar';
-import DEFAULT_SETTINGS from '../../variables/defaultSettings';
 import { getWordsData } from '../../utilsApi/utilsApi';
 
 SwiperCore.use([Navigation, A11y]);
@@ -14,6 +14,7 @@ const RenderBlockWithCards = ({ words }) => {
   const [addSlide, setAddSlide] = useState(false);
   const [arrData, setArrData] = useState(words);
   const [doneCards, setDoneCards] = useState(0);
+  const { settings } = useContext(ChangePage);
   useEffect(() => {
     const fn = async () => {
       const WORDS = await getWordsData(arrData[0].group, arrData[0].page + 1);
@@ -52,7 +53,7 @@ const RenderBlockWithCards = ({ words }) => {
           <Card
             word={e}
             swiper={swiper}
-            settings={DEFAULT_SETTINGS.optional}
+            settings={settings.optional}
             setAddSlide={setAddSlide}
             setDoneCards={setDoneCards}
           />

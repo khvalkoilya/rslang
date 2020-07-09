@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SettingItem = ({
-  name, id, type, text, onClick, checked, onChangeValue, value,
+  name, id, type, text, onClick, checked, onChangeValue, value, pattern, maxLeng,
 }) => (
   <label htmlFor={`${id}_${name}`} className={type === 'checkbox' ? 'setting_custom_checkbox' : ''}>
     {
@@ -26,11 +26,11 @@ const SettingItem = ({
             <input
               className="setting_input_text"
               id={name}
-              title="ytdghfdgh"
               type="text"
-              pattern="[0-9]{2}"
+              pattern={pattern}
               onChange={() => onChangeValue(name)}
               defaultValue={value}
+              maxLength={maxLeng}
             />
           </>
         )
@@ -47,6 +47,8 @@ SettingItem.propTypes = {
   onClick: PropTypes.func,
   onChangeValue: PropTypes.func,
   value: PropTypes.number,
+  pattern: PropTypes.string,
+  maxLeng: PropTypes.number,
 };
 
 SettingItem.defaultProps = {
@@ -54,6 +56,8 @@ SettingItem.defaultProps = {
   onClick: undefined,
   onChangeValue: undefined,
   value: 0,
+  pattern: '',
+  maxLeng: 2,
 };
 
 export default SettingItem;
