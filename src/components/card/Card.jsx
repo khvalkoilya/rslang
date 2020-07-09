@@ -35,23 +35,30 @@ const Card = ({
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
+  const [skip, setSkip] = useState(false);
 
-  const checkWord = () => {
+  const checkWord = (enter = false) => {
     setDefaultVal(getLetterArr(word, innerWord));
     const active = document.querySelector('.swiper-slide-active');
     const input = active.querySelector('.card__input');
     input.value = '';
-    if (word === innerWord) {
+    let localSkip = false;
+    if (hasShowingAnswer && !nextButton && !enter) {
+      localSkip = true;
+      setSkip(localSkip);
+    }
+    if (word === innerWord || localSkip) {
       setCompleted(true);
       input.classList.add('card__input-none');
+      setNextButton(true);
     } else {
-      setCompleted(false);
+      setNextButton(false);
     }
   };
 
   const pressEnter = (e) => {
     if (e.charCode === 13) {
-      checkWord();
+      checkWord(true);
     }
   };
 
@@ -66,6 +73,7 @@ const Card = ({
             key={word}
             defaultVal={defaultVal}
             completed={completed}
+            skip={skip}
           />
           <span className="card__input__background">
             <span className="card__input__background__text">{word}</span>
@@ -100,11 +108,14 @@ const Card = ({
           type="button"
           className="card__button card__button-show"
           onClick={() => {
-            setDoneCards(swiper.activeIndex + 1);
-            checkWord();
-            swiper.slideNext();
-            if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
-              setAddSlide(true);
+            if (completed) {
+              setDoneCards(swiper.activeIndex + 1);
+              swiper.slideNext();
+              if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
+                setAddSlide(true);
+              }
+            } else {
+              checkWord();
             }
           }}
         >

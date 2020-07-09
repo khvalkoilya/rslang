@@ -266,6 +266,10 @@
 
 .completed-word {
   border-bottom: 2px dashed $true-letter-color;
+
+  &-false {
+    border-bottom: 2px dashed $dangerous-mistake-color;
+  }
 }
 
 .completed-word-letter {
