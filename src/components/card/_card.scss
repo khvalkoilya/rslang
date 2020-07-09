@@ -270,6 +270,10 @@
   &-false {
     border-bottom: 2px dashed $dangerous-mistake-color;
   }
+
+  &-false span {
+    color: $dangerous-mistake-color;
+  }
 }
 
 .completed-word-letter {

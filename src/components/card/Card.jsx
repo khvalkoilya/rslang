@@ -5,6 +5,7 @@ import getLetterArr from './getLetterArr';
 import GetPlaceholder from './GetPlaceholder';
 import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
+import cardAutoSpeech from './cardAutoSpeech';
 
 const Card = ({
   swiper, setAddSlide, setDoneCards,
@@ -17,6 +18,9 @@ const Card = ({
     textMeaning,
     textMeaningTranslate,
     transcription,
+    audio,
+    audioMeaning,
+    audioExample,
   },
   settings: {
     hasTranslation,
@@ -29,6 +33,7 @@ const Card = ({
     hasAutoSpeech,
     hasAutoTranslation,
     hasShowingAnswer,
+    // hasIntervalButtons,
   },
 }) => {
   const [innerWord, setInnerWord] = useState('');
@@ -37,7 +42,7 @@ const Card = ({
   const [nextButton, setNextButton] = useState(false);
   const [skip, setSkip] = useState(false);
 
-  const checkWord = (enter = false) => {
+  const checkWord = async (enter = false) => {
     setDefaultVal(getLetterArr(word, innerWord));
     const active = document.querySelector('.swiper-slide-active');
     const input = active.querySelector('.card__input');
@@ -51,6 +56,9 @@ const Card = ({
       setCompleted(true);
       input.classList.add('card__input-none');
       setNextButton(true);
+      if (hasAutoSpeech) {
+        cardAutoSpeech(audio, audioMeaning, audioExample, setDoneCards, swiper, setAddSlide);
+      }
     } else {
       setNextButton(false);
     }
@@ -100,6 +108,9 @@ const Card = ({
             {hasTranscription && <div className="card__transcription">{transcription}</div>}
           </div>
         </div>
+        <audio id="card-audio" autoPlay>
+          <track kind="captions" />
+        </audio>
         {hasAutoTranslation && <div className="card__translation-button" />}
         {hasAutoSpeech && <div className="card__audio-button" />}
         {hasDelete && <button type="button" className="card__button">Удалить</button>}
@@ -108,15 +119,16 @@ const Card = ({
           type="button"
           className="card__button card__button-show"
           onClick={() => {
-            if (completed) {
-              setDoneCards(swiper.activeIndex + 1);
-              swiper.slideNext();
-              if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
-                setAddSlide(true);
-              }
-            } else {
-              checkWord();
-            }
+            // if (completed) {
+            //   setDoneCards(swiper.activeIndex + 1);
+            //   swiper.slideNext();
+            //   if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
+            //     setAddSlide(true);
+            //   }
+            // } else {
+            //   checkWord();
+            // }
+            checkWord();
           }}
         >
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
@@ -142,6 +154,9 @@ Card.propTypes = {
     textMeaning: PropTypes.string,
     textMeaningTranslate: PropTypes.string,
     transcription: PropTypes.string,
+    audio: PropTypes.string,
+    audioMeaning: PropTypes.string,
+    audioExample: PropTypes.string,
   }),
   settings: PropTypes.shape({
     hasTranslation: PropTypes.bool.isRequired,
@@ -154,10 +169,7 @@ Card.propTypes = {
     hasAutoSpeech: PropTypes.bool.isRequired,
     hasAutoTranslation: PropTypes.bool.isRequired,
     hasShowingAnswer: PropTypes.bool.isRequired,
-    hasIntervalAgain: PropTypes.bool.isRequired,
-    hasIntervalHard: PropTypes.bool.isRequired,
-    hasIntervalGood: PropTypes.bool.isRequired,
-    hasIntervalEasy: PropTypes.bool.isRequired,
+    // hasIntervalButtons: PropTypes.bool.isRequired,
   }).isRequired,
 };
 
@@ -171,6 +183,9 @@ Card.defaultProps = {
     textMeaning: '<i>Run</i> - moving fast.',
     textMeaningTranslate: 'Бежать - двигаться быстро',
     transcription: '[RAN]',
+    audio: 'files/01_0002.mp3',
+    audioMeaning: 'files/01_0002_meaning.mp3',
+    audioExample: 'files/01_0002_example.mp3',
   },
   swiper: {},
 };
