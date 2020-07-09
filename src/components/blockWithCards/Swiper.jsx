@@ -40,6 +40,7 @@ const RenderBlockWithCards = ({ words }) => {
       onSlidePrevTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
         document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
+        document.querySelector('.swiper-button-prev').blur();
       }}
       onSlideNextTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
