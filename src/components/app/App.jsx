@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Main from '../main/Main';
-import Props from '../context/Context';
-
-import SavanGame from '../savanGame/SavanGame';
+import ChangePage from '../context/Context';
+import DEFAULT_WORDS from '../../variables/defaultWords';
 
 const App = () => {
   const [page, setPage] = useState('train');
+  const [isAuth, setIsAuth] = useState(true);
+  const [userId, setUser] = useState();
+  const [words, setWords] = useState(DEFAULT_WORDS);
+
   return (
     <>
-      <Props.Provider value={setPage}>
-        <Header />
-        <Main page={page} />
-        <SavanGame />
+      <ChangePage.Provider value={{
+        page, setPage, setWords, setUser, setIsAuth, userId, words,
+      }}
+      >
+        <Header isAuth={isAuth} />
+        <Main />
         <Footer />
-      </Props.Provider>
+      </ChangePage.Provider>
     </>
   );
 };

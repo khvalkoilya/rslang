@@ -1,22 +1,19 @@
-import React from 'react';
-import Card from '../card/Card'
-import PropTypes from 'prop-types';
-import Registration from '../registration/Registration';
+import React, { useContext } from 'react';
+import ChangePage from '../context/Context';
+import { USER_MENU_ITEMS, MAIN_MENU_ITEMS_VALUES, ABOUT_AS } from '../../variables/MenuVariables';
+import GAMES_VARIABLES from '../../variables/GamesVariables';
 
-const Main = ({ page }) => (
-  <main className="main">
-    {page === 'train' && <Card />}
-    {page === 'vocabulary' && <div>settings</div>}
-    {page === 'games' && <div>Games</div>}
-    {page === 'statistics' && <div>statistics</div>}
-    {page === 'settings' && <input type="text" />}
-    {page === 'logOut' && <div>logOut</div>}
-    {page === 'signIn' && <Registration state={page} />}
-    {page === 'registration' && <Registration state={page} />}
-  </main>
-);
-
-Main.propTypes = {
-  page: PropTypes.string.isRequired,
+const Main = () => {
+  const main = USER_MENU_ITEMS
+    .concat(MAIN_MENU_ITEMS_VALUES)
+    .concat(ABOUT_AS)
+    .concat(GAMES_VARIABLES);
+  const { page } = useContext(ChangePage);
+  return (
+    <main className="main">
+      {main.map((element) => page === element.title && element.render(element.id, element.title))}
+    </main>
+  );
 };
+
 export default Main;
