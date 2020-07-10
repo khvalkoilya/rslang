@@ -62,7 +62,8 @@ const Card = ({
       input.classList.add('card-none');
       setNextButton(true);
       cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
-        swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal);
+        swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal,
+        hasTranslation, hasExample, hasMeaning);
     } else {
       setNextButton(false);
     }
