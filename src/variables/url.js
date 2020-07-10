@@ -1,10 +1,15 @@
 const BASE_PATH = 'https://afternoon-falls-25894.herokuapp.com';
+const WORDS = 'words';
+const USERS = 'users';
+const SIGNIN = 'signin';
+const STATISTICS = 'statistics';
+const SETTINGS = 'settings';
 
 const URL = {
-  getWords: (page, group) => `${BASE_PATH}/words?page=${page}&group=${group}`,
+  getWords: (page, group) => `${BASE_PATH}/${WORDS}?page=${page}&group=${group}`,
   userApi: {
-    createUser: `${BASE_PATH}/users`,
-    loginUser: `${BASE_PATH}/signin`,
+    createUser: `${BASE_PATH}/${USERS}`,
+    loginUser: `${BASE_PATH}/${SIGNIN}`,
     headerUser: (user) => ({
       method: 'POST',
       headers: {
@@ -15,7 +20,7 @@ const URL = {
     }),
   },
   userSetting: {
-    settings: (idUser) => `${BASE_PATH}/users/${idUser}/settings`,
+    settings: (idUser) => `${BASE_PATH}/${USERS}/${idUser}/${SETTINGS}`,
     putSettings: (token, option) => ({
       method: 'PUT',
       withCredentials: true,
@@ -37,7 +42,7 @@ const URL = {
     }),
   },
   userStatistic: {
-    statistics: (idUser) => `${BASE_PATH}/users/${idUser}/statistics`,
+    statistics: (idUser) => `${BASE_PATH}/${USERS}/${idUser}/${STATISTICS}`,
     putStatistics: (option, token) => ({
       method: 'PUT',
       withCredentials: true,
