@@ -48,7 +48,7 @@ const Card = ({
   const [skip, setSkip] = useState(false);
 
   const checkWord = async (enter = false) => {
-    setDefaultVal(getLetterArr(word, innerWord));
+    setDefaultVal(getLetterArr(word, innerWord.toLowerCase()));
     const active = document.querySelector('.swiper-slide-active');
     const input = active.querySelector('.card__input');
     input.value = '';
@@ -57,7 +57,7 @@ const Card = ({
       localSkip = true;
       setSkip(localSkip);
     }
-    if (word === innerWord || localSkip) {
+    if (word.toLowerCase() === innerWord.toLowerCase() || localSkip) {
       setCompleted(true);
       input.classList.add('card-none');
       setNextButton(true);
