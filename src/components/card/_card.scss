@@ -26,6 +26,10 @@
       display: block;
     }
   }
+  
+  &-none {
+    display: none;
+  }
 
   &-wrapper {
     padding: 0 62px;
@@ -75,10 +79,6 @@
       &__text {
         visibility: hidden;
       }
-    }
-
-    &-none {
-      display: none;
     }
   }
 

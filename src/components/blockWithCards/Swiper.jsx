@@ -14,8 +14,8 @@ const RenderBlockWithCards = ({ words }) => {
   const [addSlide, setAddSlide] = useState(false);
   const [arrData, setArrData] = useState(words);
   const [doneCards, setDoneCards] = useState(0);
-  const [autoTranslationLocal, setAutoTranslationLocal] = useState(false);
-  const [autoSpeechLocal, setAutoSpeechLocal] = useState(false);
+  const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
+  const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
   useEffect(() => {
     const fn = async () => {
       const WORDS = await getWordsData(arrData[0].group, arrData[0].page + 1);

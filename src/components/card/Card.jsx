@@ -6,6 +6,7 @@ import GetPlaceholder from './GetPlaceholder';
 import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
 import cardAutoSpeech from './cardAutoSpeech';
+import changeSlide from './changeSlide';
 
 const Card = ({
   swiper, setAddSlide, setDoneCards,
@@ -58,7 +59,7 @@ const Card = ({
     }
     if (word === innerWord || localSkip) {
       setCompleted(true);
-      input.classList.add('card__input-none');
+      input.classList.add('card-none');
       setNextButton(true);
       cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
         swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal);
@@ -133,6 +134,9 @@ const Card = ({
           className="card__button card__button-show"
           onClick={() => {
             checkWord();
+            if ((!hasAutoSpeech || !autoSpeechLocal) && completed) {
+              changeSlide(setDoneCards, swiper, setAddSlide);
+            }
           }}
         >
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
