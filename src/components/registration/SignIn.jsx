@@ -1,28 +1,49 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { loginUser, getWordsData } from '../../utilsApi/utilsApi';
+import { loginUser, getWordsAgainAndNew, getSettingUser } from '../../utilsApi/utilsApi';
 
 const SignIn = () => {
   const {
-    setPage, setWords, setUser, setIsAuth,
-  } = useContext(ChangePage);
+    setSettings, setPage, setUser, setIsAuth, setWords,
+  } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
-  useEffect(() => {
+
+  const utilSignIn = async () => {
     const error = document.querySelector('.reg__error');
     if (userData) {
-      loginUser(userData).then((res) => {
-        setUser(res);
-        setPage('train');
+      try {
+        const user = await loginUser(userData);
+        const settings = await getSettingUser(user);
+        const { wordsPerDay } = settings;
+        const { group } = settings.optional;
+        const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
+        const words = wordsAgainAndNew[0].paginatedResults;
+        words.forEach((e) => {
+          const { _id } = e;
+          e.id = _id;
+        });
+        setWords(words);
+        setUser(user);
         setIsAuth(true);
-        setTimeout(() => { getWordsData(3, 1).then((result) => setWords(result)); }, 3000);
-      }).catch(() => {
+        setSettings(settings);
+        console.log(
+          'word', words,
+          'user', user,
+          'set', settings,
+        );
+        setPage('train');
+      } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
         setPage('signIn');
         setIsAuth(false);
-      });
+      }
     }
+  };
+
+  useEffect(() => {
+    utilSignIn();
   }, [userData]);
 
   return (

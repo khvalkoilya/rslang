@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ChangePage = React.createContext();
+const ApplicationData = React.createContext();
 
-export default ChangePage;
+export default ApplicationData;

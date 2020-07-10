@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import { USER_MENU_ITEMS } from '../../variables/MenuVariables';
 
 const UserMenuItem = ({
   isAuth, setVisible, isNavVisible, burgerState,
 }) => {
-  const { page, setPage, setIsAuth } = useContext(ChangePage);
+  const { page, setPage, setIsAuth } = useContext(ApplicationData);
   const menuItems = USER_MENU_ITEMS.map((element) => {
     if (element.isAuthorized === isAuth) {
       return (

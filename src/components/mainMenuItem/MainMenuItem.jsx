@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 
 const MainMenuItem = ({
   name, isAuthorized, isAuth, link, icon, lock, isNavVisible, burgerState,
 }) => {
-  const { page, setPage } = useContext(ChangePage);
+  const { page, setPage } = useContext(ApplicationData);
 
   return (
     <button

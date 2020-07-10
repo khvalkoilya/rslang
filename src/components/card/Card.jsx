@@ -7,7 +7,7 @@ import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
 
 const Card = ({
-  swiper, setAddSlide, setDoneCards,
+  swiper, setDoneCards,
   word: {
     word,
     image,
@@ -103,9 +103,6 @@ const Card = ({
             setDoneCards(swiper.activeIndex + 1);
             checkWord();
             swiper.slideNext();
-            if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
-              setAddSlide(true);
-            }
           }}
         >
           {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
@@ -117,7 +114,6 @@ const Card = ({
 
 Card.propTypes = {
   setDoneCards: PropTypes.func.isRequired,
-  setAddSlide: PropTypes.func.isRequired,
   swiper: PropTypes.shape({
     slideNext: PropTypes.func,
     activeIndex: PropTypes.number,
@@ -143,10 +139,10 @@ Card.propTypes = {
     hasAutoSpeech: PropTypes.bool.isRequired,
     hasAutoTranslation: PropTypes.bool.isRequired,
     hasShowingAnswer: PropTypes.bool.isRequired,
-    hasIntervalAgain: PropTypes.bool.isRequired,
-    hasIntervalHard: PropTypes.bool.isRequired,
-    hasIntervalGood: PropTypes.bool.isRequired,
-    hasIntervalEasy: PropTypes.bool.isRequired,
+    // hasIntervalAgain: PropTypes.bool.isRequired,
+    // hasIntervalHard: PropTypes.bool.isRequired,
+    // hasIntervalGood: PropTypes.bool.isRequired,
+    // hasIntervalEasy: PropTypes.bool.isRequired,
   }).isRequired,
 };
 
