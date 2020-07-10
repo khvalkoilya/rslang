@@ -14,6 +14,8 @@ const App = () => {
   const [words, setWords] = useState(DEFAULT_WORDS);
   const [wordsComplicated, setWordsComplicated] = useState([]);
   const [wordsDelete, setWordsDelete] = useState([]);
+  const [wordsNew, setWordsNew] = useState([]);
+  const [wordsAgain, setWordsAgain] = useState([]);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
   const utilWords = async () => {
@@ -29,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     utilWords();
-  }, [userId]);
+  }, [words]);
   return (
     <>
       <ApplicationData.Provider value={{
@@ -42,8 +44,23 @@ const App = () => {
         setIsAuth,
         settings,
         setSettings,
+        wordsComplicated,
+        setWordsComplicated,
+        wordsDelete,
+        setWordsDelete,
+        wordsNew,
+        setWordsNew,
+        wordsAgain,
+        setWordsAgain,
       }}
       >
+        {console.log(
+          'word', words,
+          'user', userId,
+          'set', settings,
+          'newWords', wordsNew,
+          'again', wordsAgain,
+        )}
         <Header isAuth={isAuth} />
         <Main />
         <Footer />

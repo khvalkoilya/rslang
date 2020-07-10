@@ -6,7 +6,7 @@ import { loginUser, getWordsAgainAndNew, getSettingUser } from '../../utilsApi/u
 
 const SignIn = () => {
   const {
-    setSettings, setPage, setUser, setIsAuth, setWords,
+    setSettings, setPage, setUser, setIsAuth, setWords, setWordsNew, setWordsAgain,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -24,15 +24,14 @@ const SignIn = () => {
           const { _id } = e;
           e.id = _id;
         });
+        const newWords = words.filter((e) => (e.userWord === undefined));
+        const againWords = words.filter((e) => (e.userWord !== undefined));
+        setWordsNew(newWords);
+        setWordsAgain(againWords);
         setWords(words);
         setUser(user);
         setIsAuth(true);
         setSettings(settings);
-        console.log(
-          'word', words,
-          'user', user,
-          'set', settings,
-        );
         setPage('train');
       } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
