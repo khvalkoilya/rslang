@@ -35,6 +35,10 @@ const Card = ({
     hasShowingAnswer,
     // hasIntervalButtons,
   },
+  autoTranslationLocal,
+  setAutoTranslationLocal,
+  autoSpeechLocal,
+  setAutoSpeechLocal,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -56,9 +60,8 @@ const Card = ({
       setCompleted(true);
       input.classList.add('card__input-none');
       setNextButton(true);
-      if (hasAutoSpeech) {
-        cardAutoSpeech(audio, audioMeaning, audioExample, setDoneCards, swiper, setAddSlide);
-      }
+      cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
+        swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal);
     } else {
       setNextButton(false);
     }
@@ -99,9 +102,9 @@ const Card = ({
           <div className="card__grid__text">
             {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
             {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
-            {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
+            {hasExample && completed && autoTranslationLocal && <div className="card__ruSentence">{textExampleTranslate}</div>}
             {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
-            {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
+            {hasMeaning && completed && autoTranslationLocal && <div className="card__ruSentence">{textMeaningTranslate}</div>}
           </div>
           <div className="card__grid__beauty">
             {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
@@ -111,23 +114,24 @@ const Card = ({
         <audio id="card-audio" autoPlay>
           <track kind="captions" />
         </audio>
-        {hasAutoTranslation && <div className="card__translation-button" />}
-        {hasAutoSpeech && <div className="card__audio-button" />}
+        {hasAutoTranslation && (
+        <div
+          className={`card__translation-button ${autoTranslationLocal ? '' : 'card__translation-button-disable'}`}
+          onMouseUpCapture={() => setAutoTranslationLocal(!autoTranslationLocal)}
+        />
+        )}
+        {hasAutoSpeech && (
+        <div
+          className={`card__audio-button ${autoSpeechLocal ? '' : 'card__audio-button-disable'}`}
+          onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
+        />
+        )}
         {hasDelete && <button type="button" className="card__button">Удалить</button>}
         {hasDifficult && <button type="button" className="card__button">Сложное</button>}
         <button
           type="button"
           className="card__button card__button-show"
           onClick={() => {
-            // if (completed) {
-            //   setDoneCards(swiper.activeIndex + 1);
-            //   swiper.slideNext();
-            //   if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
-            //     setAddSlide(true);
-            //   }
-            // } else {
-            //   checkWord();
-            // }
             checkWord();
           }}
         >
@@ -171,6 +175,10 @@ Card.propTypes = {
     hasShowingAnswer: PropTypes.bool.isRequired,
     // hasIntervalButtons: PropTypes.bool.isRequired,
   }).isRequired,
+  autoTranslationLocal: PropTypes.bool.isRequired,
+  setAutoTranslationLocal: PropTypes.func.isRequired,
+  autoSpeechLocal: PropTypes.bool.isRequired,
+  setAutoSpeechLocal: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

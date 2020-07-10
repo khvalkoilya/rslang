@@ -187,6 +187,10 @@
       transform: scale(1.05);
       transition: all 0.2s ease-in-out;
     }
+
+    &-disable {
+      opacity: 0.3;
+    }
   }
 
   &__translation-button {
