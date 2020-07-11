@@ -74,6 +74,29 @@ const URL = {
     filterNew: JSON.stringify({ userWord: null }),
     filterAgainAndNew: JSON.stringify({ $or: [{ 'userWord.difficulty': 'again' }, { userWord: null }] }),
   },
+  word: {
+    words: (userId, id) => `${BASE_PATH}/users/${userId}/words/${id}`,
+    createWord: (token, option) => ({
+      method: 'POST',
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(option),
+    }),
+    putWord: (token, option) => ({
+      method: 'PUT',
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(option),
+    }),
+  },
 };
 
 export default URL;

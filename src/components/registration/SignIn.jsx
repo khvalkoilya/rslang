@@ -2,7 +2,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
 import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { loginUser, getWordsAgainAndNew, getSettingUser } from '../../utilsApi/utilsApi';
+import {
+  loginUser, getWordsAgainAndNew, getSettingUser, createWord,
+} from '../../utilsApi/utilsApi';
+
+const WORD_OPTION_DEFAULT = {
+  difficulty: 'again',
+  optional: {
+    data: 0,
+    repeat: 0,
+    level: 'good',
+    error: 0,
+  },
+};
 
 const SignIn = () => {
   const {
@@ -26,12 +38,20 @@ const SignIn = () => {
         });
         const newWords = words.filter((e) => (e.userWord === undefined));
         const againWords = words.filter((e) => (e.userWord !== undefined));
+        const arrCreateWords = [];
+        newWords.forEach((e, index) => {
+          if (index % 7 === 0) {
+            e.userWord = WORD_OPTION_DEFAULT;
+            arrCreateWords.push(createWord(user, e.id));
+          }
+        });
+        setSettings(settings);
         setWordsNew(newWords);
         setWordsAgain(againWords);
-        setWords(words);
+        setWords(againWords.concat(newWords));
         setUser(user);
         setIsAuth(true);
-        setSettings(settings);
+        await Promise.all[arrCreateWords];
         setPage('train');
       } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
