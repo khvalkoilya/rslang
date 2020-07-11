@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DemoPage = () => (
-  <div className="demo-page">
+  <div className="demo-page card">
     <div className="demo-page__youtube">
       <iframe title="demo" width="560" height="315" src="https://www.youtube.com/embed/57T_njnD_T0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
     </div>
