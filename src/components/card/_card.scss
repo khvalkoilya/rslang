@@ -26,6 +26,10 @@
       display: block;
     }
   }
+  
+  &-none {
+    display: none;
+  }
 
   &-wrapper {
     padding: 0 62px;
@@ -75,10 +79,6 @@
       &__text {
         visibility: hidden;
       }
-    }
-
-    &-none {
-      display: none;
     }
   }
 
@@ -187,6 +187,10 @@
       transform: scale(1.05);
       transition: all 0.2s ease-in-out;
     }
+
+    &-disable {
+      opacity: 0.3;
+    }
   }
 
   &__translation-button {
@@ -266,6 +270,14 @@
 
 .completed-word {
   border-bottom: 2px dashed $true-letter-color;
+
+  &-false {
+    border-bottom: 2px dashed $dangerous-mistake-color;
+  }
+
+  &-false span {
+    color: $dangerous-mistake-color;
+  }
 }
 
 .completed-word-letter {

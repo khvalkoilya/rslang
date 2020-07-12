@@ -5,20 +5,11 @@ import REGISTRATION from '../../variables/inputRegistrationVariables';
 import {
   loginUser, getWordsAgainAndNew, getSettingUser, createWord,
 } from '../../utilsApi/utilsApi';
-
-const WORD_OPTION_DEFAULT = {
-  difficulty: 'again',
-  optional: {
-    data: 0,
-    repeat: 0,
-    level: 'good',
-    error: 0,
-  },
-};
+import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
 
 const SignIn = () => {
   const {
-    setSettings, setPage, setUser, setIsAuth, setWords, setWordsNew, setWordsAgain,
+    setSettings, setPage, setUser, setIsAuth, setWords, setWordsNew, setWordsAgain, setDoneCards,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -40,8 +31,8 @@ const SignIn = () => {
         const againWords = words.filter((e) => (e.userWord !== undefined));
         const arrCreateWords = [];
         newWords.forEach((e, index) => {
-          if (index % 7 === 0) {
-            e.userWord = WORD_OPTION_DEFAULT;
+          if ((index + 1) % 7 === 0) {
+            e.userWord = WORD_OPTIONAL_DEFAULT;
             arrCreateWords.push(createWord(user, e.id));
           }
         });
@@ -51,11 +42,11 @@ const SignIn = () => {
         setWords(againWords.concat(newWords));
         setUser(user);
         setIsAuth(true);
-        await Promise.all[arrCreateWords];
+        setDoneCards(0);
         setPage('train');
+        await Promise.all[arrCreateWords];
       } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
-        setPage('signIn');
         setIsAuth(false);
       }
     }

@@ -1,4 +1,5 @@
 import URL from '../variables/url';
+import WORD_OPTIONAL_DEFAULT from '../variables/defaultOptionalWord';
 
 const fetchData = async (arg) => {
   const res = await fetch(...arg);
@@ -6,15 +7,6 @@ const fetchData = async (arg) => {
   return result;
 };
 
-const WORD_OPTION_DEFAULT = {
-  difficulty: 'again',
-  optional: {
-    data: 0,
-    repeat: 0,
-    level: 'good',
-    error: 0,
-  },
-};
 export const loginUser = (user) => fetchData([URL.userApi.loginUser, URL.userApi.headerUser(user)]);
 
 export const createUser = async (user) => {
@@ -77,7 +69,7 @@ export const getWordsDelete = (
 export const createWord = (
   { userId, token },
   id,
-  option = WORD_OPTION_DEFAULT,
+option = WORD_OPTIONAL_DEFAULT,
 ) => fetchData(
   [
     URL.word.words(userId, id),

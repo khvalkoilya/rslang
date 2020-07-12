@@ -2,11 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
 import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { createUser, putSettingUser, getWordsAgainAndNew } from '../../utilsApi/utilsApi';
+import {
+  createUser, putSettingUser, getWordsAgainAndNew, createWord,
+} from '../../utilsApi/utilsApi';
+import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
 
 const Registration = () => {
   const {
-    settings, setPage, setWords, setUser, setIsAuth,
+    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -24,10 +27,20 @@ const Registration = () => {
           const { _id } = e;
           e.id = _id;
         });
+        const arrCreateWords = [];
+        words.forEach((e, index) => {
+          if ((index + 1) % 7 === 0) {
+            e.userWord = WORD_OPTIONAL_DEFAULT;
+            arrCreateWords.push(createWord(user, e.id));
+          }
+        });
+        setWordsNew(words);
         setWords(words);
         setUser(user);
         setIsAuth(true);
+        setDoneCards(0);
         setPage('train');
+        await Promise.all[arrCreateWords];
       } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
         setIsAuth(false);
