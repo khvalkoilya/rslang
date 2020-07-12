@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import { USER_MENU_ITEMS, MAIN_MENU_ITEMS_VALUES, ABOUT_AS } from '../../variables/MenuVariables';
 import GAMES_VARIABLES from '../../variables/GamesVariables';
 
@@ -8,7 +8,7 @@ const Main = () => {
     .concat(MAIN_MENU_ITEMS_VALUES)
     .concat(ABOUT_AS)
     .concat(GAMES_VARIABLES);
-  const { page } = useContext(ChangePage);
+  const { page } = useContext(ApplicationData);
   return (
     <main className="main">
       {main.map((element) => page === element.title && element.render(element.id, element.title))}

@@ -1,28 +1,68 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { loginUser, getWordsData } from '../../utilsApi/utilsApi';
+import {
+  loginUser, getWordsAgainAndNew, getSettingUser, createWord,
+} from '../../utilsApi/utilsApi';
+
+const WORD_OPTION_DEFAULT = {
+  difficulty: 'again',
+  optional: {
+    data: 0,
+    repeat: 0,
+    level: 'good',
+    error: 0,
+  },
+};
 
 const SignIn = () => {
   const {
-    setPage, setWords, setUser, setIsAuth,
-  } = useContext(ChangePage);
+    setSettings, setPage, setUser, setIsAuth, setWords, setWordsNew, setWordsAgain,
+  } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
-  useEffect(() => {
+
+  const utilSignIn = async () => {
     const error = document.querySelector('.reg__error');
     if (userData) {
-      loginUser(userData).then((res) => {
-        setUser(res);
-        setPage('train');
+      try {
+        const user = await loginUser(userData);
+        const settings = await getSettingUser(user);
+        const { wordsPerDay } = settings;
+        const { group } = settings.optional;
+        const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
+        const words = wordsAgainAndNew[0].paginatedResults;
+        words.forEach((e) => {
+          const { _id } = e;
+          e.id = _id;
+        });
+        const newWords = words.filter((e) => (e.userWord === undefined));
+        const againWords = words.filter((e) => (e.userWord !== undefined));
+        const arrCreateWords = [];
+        newWords.forEach((e, index) => {
+          if (index % 7 === 0) {
+            e.userWord = WORD_OPTION_DEFAULT;
+            arrCreateWords.push(createWord(user, e.id));
+          }
+        });
+        setSettings(settings);
+        setWordsNew(newWords);
+        setWordsAgain(againWords);
+        setWords(againWords.concat(newWords));
+        setUser(user);
         setIsAuth(true);
-        setTimeout(() => { getWordsData(3, 1).then((result) => setWords(result)); }, 3000);
-      }).catch(() => {
+        await Promise.all[arrCreateWords];
+        setPage('train');
+      } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
         setPage('signIn');
         setIsAuth(false);
-      });
+      }
     }
+  };
+
+  useEffect(() => {
+    utilSignIn();
   }, [userData]);
 
   return (

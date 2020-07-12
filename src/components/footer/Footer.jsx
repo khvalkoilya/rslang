@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 
 const Footer = () => {
-  const { page, setPage } = useContext(ChangePage);
+  const { page, setPage } = useContext(ApplicationData);
 
   return (
     <div className="footerWrapper">
