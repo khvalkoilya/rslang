@@ -1,37 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { MAIN_MENU_ITEMS_VALUES } from '../../variables/menuVariables';
+import { MAIN_MENU_ITEMS_VALUES } from '../../variables/MenuVariables';
 import MainMenuItem from '../mainMenuItem/MainMenuItem';
 
-const MainMenu = ({ isAuth }) => {
-  const startPage = isAuth ? 0 : 2;
-  const [actualPage, setActualPage] = useState(startPage);
-
-  const setUnderlined = (e) => e === actualPage;
-
-  const setPage = (id) => setActualPage(id);
-
+const MainMenu = ({ isAuth, isNavVisible, changeBurgerState }) => {
   const menuList = MAIN_MENU_ITEMS_VALUES.map((word) => (
     <MainMenuItem
       name={word.name}
-      isUnderlined={setUnderlined(word.id)}
       id={word.id}
       key={word.id}
       isAuthorized={word.isAuthorized}
-      setPage={setPage}
       isAuth={isAuth}
+      link={word.title}
+      isNavVisible={isNavVisible}
+      lock={word.lock}
+      icon={word.icon}
+      burgerState={changeBurgerState}
     />
   ));
 
   return (
-    <div>
+    <>
       {menuList}
-    </div>
+    </>
   );
 };
 
 MainMenu.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  isNavVisible: PropTypes.func.isRequired,
+  changeBurgerState: PropTypes.func.isRequired,
 };
 
 export default MainMenu;

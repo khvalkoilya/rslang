@@ -1,4 +1,297 @@
-.wrapper {
-  max-width: 500px;
-  border: 1px solid gray;
-} 
+.card {
+  width: 905px;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 38px;
+  -webkit-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
+  background-color: $white-color;
+  font-weight: 700;
+
+  @include media-medium {
+    width: 560px;
+  }
+
+  @include media-small {
+    width: 300px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 480px 300px;
+    gap: 20px;
+
+    @include media-medium {
+      display: block;
+    }
+  }
+  
+  &-none {
+    display: none;
+  }
+
+  &-wrapper {
+    padding: 0 62px;
+    position: relative;
+
+    @include media-medium {
+      padding: 0 40px;
+    }
+
+    @include media-small {
+      padding: 0 30px;
+    }
+  }
+
+  &__input {
+    background: transparent;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    letter-spacing: 3px;
+
+    &__container {
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      margin-top: 47px;
+      margin-left: 40px;
+      font-size: 30px;
+      font-family: "BalsamiqSans Bold";
+      letter-spacing: 3px;
+
+      @include media-medium {
+        margin-top: 60px;
+        margin-left: 0;   
+      }
+    }
+
+    &__background {
+      padding: 4px 10px;
+      background-color: $light-blue-color;
+
+      &__text {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__translate {
+    overflow: hidden;
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+
+  &__sentence {
+    overflow: hidden;
+    border-top: 2px solid $whitesmoke-card-border;
+    font-style: italic;
+    font-size: 30px;
+    width: 480px;
+    padding: 20px 0;
+
+    @include media-small {
+      width: 100%;
+    }
+  }
+
+  &__ruSentence {
+    overflow: hidden;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 25px;
+    color: $denim-color;
+    padding-bottom: 26px;
+    width: 480px;
+
+    @include media-small {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    background-color: $brown-color;
+    color: $white-color;
+    padding: 0 24px;
+    height: 36px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 20px;
+    margin-right: 25px;
+    margin-bottom: 26px;
+
+    &:first-of-type {
+      @include media-small {
+        margin-right: 15px;
+      }
+    }
+
+    @include media-medium {
+      padding: 0 20px;
+      margin-top: 30px;
+    }
+
+    @include media-small {
+      padding: 0 16px;
+      margin-top: 0;
+      margin-right: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $light-brown-color;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &-show {
+      float: right;
+      margin-right: 0;
+
+      @include media-small {
+        margin-left: 32px;
+        float: none;
+      }
+    }
+  }
+
+  &__translation-button, &__audio-button {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $white-color;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 30px;
+
+    @include media-medium {
+      width: 28px;
+      height: 28px;
+      top: 25px;
+    }
+
+    @include media-small {
+      top: 9px;
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+      transition: all 0.2s ease-in-out;
+    }
+
+    &-disable {
+      opacity: 0.3;
+    }
+  }
+
+  &__translation-button {
+    background-image: url('./assets/images/languages.svg');
+    right: 120px;
+
+    @include media-medium {
+      right: 90px;
+    }
+
+    @include media-small {
+      right: 48px;
+    }
+  }
+
+  &__audio-button {
+    background-image: url('./assets/images/speaker.svg');
+    right: 62px;
+
+    @include media-medium {
+      right: 40px;
+    }
+
+    @include media-small {
+      right: 10px;
+    }
+  }
+
+  &__image {
+    width: 280px;
+
+    @include media-small {
+      width: 240px;
+    }
+  }
+
+  &__transcription {
+    width: 280px;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 30px;
+
+    @include media-small {
+      width: 240px;
+      text-align: center;
+    }
+  }
+
+  &__brackets {
+    font-style: italic;
+    font-size: 25px;
+    color: $denim-color;
+
+    &-guessed {
+      font-style: italic;
+      font-size: 30px;
+      text-decoration: underline;
+    }
+  }
+}
+
+//styles for input word after typing
+
+.checked-word {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 3px;
+  position: absolute;
+  left: 10px;
+}
+
+.word-fade {
+  transition: all 1s ease-in-out;
+  opacity: 0.3;
+}
+
+.completed-word {
+  border-bottom: 2px dashed $true-letter-color;
+
+  &-false {
+    border-bottom: 2px dashed $dangerous-mistake-color;
+  }
+
+  &-false span {
+    color: $dangerous-mistake-color;
+  }
+}
+
+.completed-word-letter {
+  color: $true-letter-color;
+}
+
+.true-letter {
+  color: $true-letter-color;
+}
+
+.calm-mistake {
+  color: $calm-mistake-color;
+}
+
+.dangerous-mistake {
+  color: $dangerous-mistake-color;
+}

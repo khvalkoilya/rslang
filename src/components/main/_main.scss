@@ -1,0 +1,15 @@
+#root {
+    height: 100vh;
+}
+.main {
+    font-family: "BalsamiqSans Regular", sans-serif;
+    background: url('./assets/images/background.jpg') repeat;
+    min-height: calc(100vh - 107px - 80px);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+    @include media-medium {
+        min-height: calc(100vh - 85px - 80px); 
+    }
+}

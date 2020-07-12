@@ -1,18 +1,87 @@
 .profile-menu__list {
   display: flex;
   flex-direction: column;
-  border: 2px solid $brown-color;
-}
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: $white-color;
 
-@media (min-width: $m-screen) {
-  .profile-menu__list {
-    position: absolute;
-    right: 2rem;
+  @include  media-small {
+    display: block;
   }
 }
 
+
 .profile-menu__button {
+  position: relative;
+  height: 55px;
   display: inline-block;
-  margin: 0.5rem;
+  background-color: $white-color;
+  border: 1px solid $light-grey-color;
+  border-radius: 0;
+  outline: 0;
   cursor: pointer;
+
+  @include media-medium {
+    height: 45px;
+  }
+
+  img {
+    width: 27px;
+    position: absolute;
+    left: 5%;
+    top: 20%;
+
+    @include media-medium {
+      width: 23px;
+      top: 23%;
+    }
+
+    @include media-small {
+      width: 20px;
+      position: static;
+      margin-right: 8px;
+    }
+  }
+
+  span {
+    font-size: 20px;
+    font-family: "BalsamiqSans Regular", sans-serif;
+    color: $light-grey-color;
+    line-height: 45px;
+    margin-left: 30px;
+    transition: .2s all ease-in;
+
+    &:hover {
+      color: $dark-blue-color;
+    }
+
+    @include media-medium {
+      font-size: 15px;
+    }
+
+    @include media-small {
+      font-size: 20px;
+      color: $black-color;
+      margin: 0;
+    }
+  }
+
+
+
+  @include media-small {
+    display: block;
+    height: 35px;
+    margin: 0 0 8px 20px;
+    border: none;
+    outline: none;
+    background: $white-color;
+  }
+}
+
+span.active{
+  color: $dark-blue-color;
+  @include media-small {
+    text-decoration: underline;
+  }
 }
