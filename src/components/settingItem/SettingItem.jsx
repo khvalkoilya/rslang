@@ -28,9 +28,12 @@ const SettingItem = ({
               id={name}
               type="text"
               pattern={pattern}
+              title={pattern}
               onChange={() => onChangeValue(name)}
               defaultValue={value}
               maxLength={maxLeng}
+              autoComplete="off"
+              required
             />
           </>
         )

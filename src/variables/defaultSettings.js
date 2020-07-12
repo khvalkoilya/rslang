@@ -1,5 +1,5 @@
 const DEFAULT_SETTINGS = {
-  wordsPerDay: 5,
+  wordsPerDay: 20,
   optional: {
     hasTranslation: true,
     hasMeaning: true,

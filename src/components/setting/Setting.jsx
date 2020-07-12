@@ -19,11 +19,21 @@ const Setting = ({ settings }) => {
       },
     });
   };
-  const changeWordsPerDay = (el) => {
-    setNewSetting({
-      ...newSetting,
-      [el]: document.querySelector(`#${el}`).value,
-    });
+  const changeNumericalValue = (el) => {
+    if (el === 'wordsPerDay') {
+      setNewSetting({
+        ...newSetting,
+        [el]: +(document.querySelector(`#${el}`).value),
+      });
+    } else {
+      setNewSetting({
+        ...newSetting,
+        optional: {
+          ...newSetting.optional,
+          [el]: +(document.querySelector(`#${el}`).value),
+        },
+      });
+    }
   };
   return (
     <div className="card">
@@ -34,19 +44,30 @@ const Setting = ({ settings }) => {
           {console.log(newSetting)}
           <div className="common_settings">
             {
-          COMMON_SETTING_ITEMS.map((el) => (
-            <SettingItem
-              onChangeValue={changeWordsPerDay}
-              id={el.id}
-              key={`${el.id}${el.name}`}
-              name={el.name}
-              text={el.text}
-              type={el.type}
-              value={settings.wordsPerDay}
-              pattern={el.pattern}
-              maxLeng={el.maxLeng}
-            />
-          ))
+              <SettingItem
+                onChangeValue={changeNumericalValue}
+                id={COMMON_SETTING_ITEMS[0].id}
+                key={`${COMMON_SETTING_ITEMS[0].id}${COMMON_SETTING_ITEMS[0].name}`}
+                name={COMMON_SETTING_ITEMS[0].name}
+                text={COMMON_SETTING_ITEMS[0].text}
+                type={COMMON_SETTING_ITEMS[0].type}
+                value={settings.wordsPerDay}
+                pattern={COMMON_SETTING_ITEMS[0].regExp}
+                maxLeng={COMMON_SETTING_ITEMS[0].maxLeng}
+              />
+            }
+            {
+              <SettingItem
+                onChangeValue={changeNumericalValue}
+                id={COMMON_SETTING_ITEMS[1].id}
+                key={`${COMMON_SETTING_ITEMS[1].id}${COMMON_SETTING_ITEMS[1].name}`}
+                name={COMMON_SETTING_ITEMS[1].name}
+                text={COMMON_SETTING_ITEMS[1].text}
+                type={COMMON_SETTING_ITEMS[1].type}
+                value={settings.optional.hasHard}
+                pattern={COMMON_SETTING_ITEMS[1].regExp}
+                maxLeng={COMMON_SETTING_ITEMS[1].maxLeng}
+              />
             }
           </div>
           <div className="help_settings">
@@ -84,7 +105,7 @@ const Setting = ({ settings }) => {
           }
           </div>
           <div className="setting_button">
-            <button className="submit_settings" type="submit">Сохранить</button>
+            <button className="submit_settings" type="submit" onClick={() => {}}>Сохранить</button>
           </div>
         </form>
       </div>
@@ -107,6 +128,7 @@ Setting.propTypes = {
       hasAutoTranslation: PropTypes.bool,
       hasShowingAnswer: PropTypes.bool,
       hasInterval: PropTypes.bool,
+      hasHard: PropTypes.number,
     }),
   }).isRequired,
 };
