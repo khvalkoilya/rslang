@@ -5,6 +5,8 @@ import getLetterArr from './getLetterArr';
 import GetPlaceholder from './GetPlaceholder';
 import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
+import cardAutoSpeech from './cardAutoSpeech';
+import changeSlide from './changeSlide';
 
 const Card = ({
   swiper, setAddSlide, setDoneCards,
@@ -17,6 +19,9 @@ const Card = ({
     textMeaning,
     textMeaningTranslate,
     transcription,
+    audio,
+    audioMeaning,
+    audioExample,
   },
   settings: {
     hasTranslation,
@@ -29,29 +34,44 @@ const Card = ({
     hasAutoSpeech,
     hasAutoTranslation,
     hasShowingAnswer,
+    // hasIntervalButtons,
   },
+  autoTranslationLocal,
+  setAutoTranslationLocal,
+  autoSpeechLocal,
+  setAutoSpeechLocal,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
+  const [skip, setSkip] = useState(false);
 
-  const checkWord = () => {
-    setDefaultVal(getLetterArr(word, innerWord));
+  const checkWord = async (enter = false) => {
+    setDefaultVal(getLetterArr(word, innerWord.toLowerCase()));
     const active = document.querySelector('.swiper-slide-active');
     const input = active.querySelector('.card__input');
     input.value = '';
-    if (word === innerWord) {
+    let localSkip = false;
+    if (hasShowingAnswer && !nextButton && !enter) {
+      localSkip = true;
+      setSkip(localSkip);
+    }
+    if (word.toLowerCase() === innerWord.toLowerCase() || localSkip) {
       setCompleted(true);
-      input.classList.add('card__input-none');
+      input.classList.add('card-none');
+      setNextButton(true);
+      cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
+        swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal,
+        hasTranslation, hasExample, hasMeaning);
     } else {
-      setCompleted(false);
+      setNextButton(false);
     }
   };
 
   const pressEnter = (e) => {
     if (e.charCode === 13) {
-      checkWord();
+      checkWord(true);
     }
   };
 
@@ -66,6 +86,7 @@ const Card = ({
             key={word}
             defaultVal={defaultVal}
             completed={completed}
+            skip={skip}
           />
           <span className="card__input__background">
             <span className="card__input__background__text">{word}</span>
@@ -83,28 +104,39 @@ const Card = ({
           <div className="card__grid__text">
             {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
             {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
-            {hasExample && completed && <div className="card__ruSentence">{textExampleTranslate}</div>}
+            {hasExample && completed && autoTranslationLocal && <div className="card__ruSentence">{textExampleTranslate}</div>}
             {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
-            {hasMeaning && completed && <div className="card__ruSentence">{textMeaningTranslate}</div>}
+            {hasMeaning && completed && autoTranslationLocal && <div className="card__ruSentence">{textMeaningTranslate}</div>}
           </div>
           <div className="card__grid__beauty">
             {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
             {hasTranscription && <div className="card__transcription">{transcription}</div>}
           </div>
         </div>
-        {hasAutoTranslation && <div className="card__translation-button" />}
-        {hasAutoSpeech && <div className="card__audio-button" />}
+        <audio id="card-audio" autoPlay>
+          <track kind="captions" />
+        </audio>
+        {hasAutoTranslation && (
+        <div
+          className={`card__translation-button ${autoTranslationLocal ? '' : 'card__translation-button-disable'}`}
+          onMouseUpCapture={() => setAutoTranslationLocal(!autoTranslationLocal)}
+        />
+        )}
+        {hasAutoSpeech && (
+        <div
+          className={`card__audio-button ${autoSpeechLocal ? '' : 'card__audio-button-disable'}`}
+          onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
+        />
+        )}
         {hasDelete && <button type="button" className="card__button">Удалить</button>}
         {hasDifficult && <button type="button" className="card__button">Сложное</button>}
         <button
           type="button"
           className="card__button card__button-show"
           onClick={() => {
-            setDoneCards(swiper.activeIndex + 1);
             checkWord();
-            swiper.slideNext();
-            if (swiper.activeIndex % 18 === 0 && swiper.activeIndex < 36) {
-              setAddSlide(true);
+            if ((!hasAutoSpeech || !autoSpeechLocal) && completed) {
+              changeSlide(setDoneCards, swiper, setAddSlide);
             }
           }}
         >
@@ -131,6 +163,9 @@ Card.propTypes = {
     textMeaning: PropTypes.string,
     textMeaningTranslate: PropTypes.string,
     transcription: PropTypes.string,
+    audio: PropTypes.string,
+    audioMeaning: PropTypes.string,
+    audioExample: PropTypes.string,
   }),
   settings: PropTypes.shape({
     hasTranslation: PropTypes.bool.isRequired,
@@ -143,11 +178,12 @@ Card.propTypes = {
     hasAutoSpeech: PropTypes.bool.isRequired,
     hasAutoTranslation: PropTypes.bool.isRequired,
     hasShowingAnswer: PropTypes.bool.isRequired,
-    hasIntervalAgain: PropTypes.bool.isRequired,
-    hasIntervalHard: PropTypes.bool.isRequired,
-    hasIntervalGood: PropTypes.bool.isRequired,
-    hasIntervalEasy: PropTypes.bool.isRequired,
+    // hasIntervalButtons: PropTypes.bool.isRequired,
   }).isRequired,
+  autoTranslationLocal: PropTypes.bool.isRequired,
+  setAutoTranslationLocal: PropTypes.func.isRequired,
+  autoSpeechLocal: PropTypes.bool.isRequired,
+  setAutoSpeechLocal: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -160,6 +196,9 @@ Card.defaultProps = {
     textMeaning: '<i>Run</i> - moving fast.',
     textMeaningTranslate: 'Бежать - двигаться быстро',
     transcription: '[RAN]',
+    audio: 'files/01_0002.mp3',
+    audioMeaning: 'files/01_0002_meaning.mp3',
+    audioExample: 'files/01_0002_example.mp3',
   },
   swiper: {},
 };

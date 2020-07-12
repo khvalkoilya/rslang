@@ -14,6 +14,8 @@ const RenderBlockWithCards = ({ words }) => {
   const [addSlide, setAddSlide] = useState(false);
   const [arrData, setArrData] = useState(words);
   const [doneCards, setDoneCards] = useState(0);
+  const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
+  const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
   useEffect(() => {
     const fn = async () => {
       const WORDS = await getWordsData(arrData[0].group, arrData[0].page + 1);
@@ -40,6 +42,7 @@ const RenderBlockWithCards = ({ words }) => {
       onSlidePrevTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
         document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
+        document.querySelector('.swiper-button-prev').blur();
       }}
       onSlideNextTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
@@ -55,6 +58,10 @@ const RenderBlockWithCards = ({ words }) => {
             settings={DEFAULT_SETTINGS.optional}
             setAddSlide={setAddSlide}
             setDoneCards={setDoneCards}
+            autoTranslationLocal={autoTranslationLocal}
+            setAutoTranslationLocal={setAutoTranslationLocal}
+            autoSpeechLocal={autoSpeechLocal}
+            setAutoSpeechLocal={setAutoSpeechLocal}
           />
         </SwiperSlide>
       ))}
