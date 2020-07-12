@@ -1,5 +1,8 @@
 import React from 'react';
 
+import SavanGame from '../components/savanGame/SavanGame';
+import AudioCallGame from '../components/audioCall/AudioCall';
+
 const GAMES_VARIABLES = [
   {
     id: 0,
@@ -17,13 +20,13 @@ const GAMES_VARIABLES = [
     id: 2,
     icon: '../../assets/images/games-page-icons/savannah.svg',
     title: 'savannah',
-    render: (id, title) => <div key={`${id}-${title}`}>Savannah</div>,
+    render: (id, title, setPage) => <SavanGame key={`${id}-${title}`} setPage={setPage} />,
   },
   {
     id: 3,
     icon: '../../assets/images/games-page-icons/phone.svg',
     title: 'audioCall',
-    render: (id, title) => <div key={`${id}-${title}`}>Audio Call</div>,
+    render: (id, title) => <AudioCallGame key={`${id}-${title}`} />,
   },
   {
     id: 4,

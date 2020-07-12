@@ -25,7 +25,7 @@
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 15px 32px;
   border: none;
   background-color: $whitesmoke-color;
   @include media-medium {
@@ -38,6 +38,7 @@
 }
 
 .btnExit {
+
   border: none;
   background-color: inherit;
 }
@@ -45,11 +46,12 @@
 .btnExitImg {
   height: 25px;
   width: 25px;
-  opacity: 0.5;
+  position: fixed;
 }
 
 .btnExitImg:hover {
-  opacity: 1;
+  height: 30px;
+  width: 30px;
   transition: 0.2s;
 }
 

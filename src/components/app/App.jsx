@@ -25,7 +25,7 @@ const App = () => {
       const deleteWords = await getWordsDelete(userId, group);
       setWordsComplicated(сomplicated[0].paginatedResults);
       setWordsDelete(deleteWords[0].paginatedResults);
-      console.log(wordsDelete, wordsComplicated);
+      // console.log(wordsDelete, wordsComplicated);
     }
   };
 
@@ -54,13 +54,13 @@ const App = () => {
         setWordsAgain,
       }}
       >
-        {console.log(
+        {/* {console.log(
           'word', words,
           'user', userId,
           'set', settings,
           'newWords', wordsNew,
           'again', wordsAgain,
-        )}
+        )} */}
         <Header isAuth={isAuth} />
         <Main />
         <Footer />

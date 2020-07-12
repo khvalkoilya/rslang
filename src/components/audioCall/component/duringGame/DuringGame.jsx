@@ -1,22 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ApplicationData from '../../../context/Context';
 import FallingWord from '../../../fallingWord/FallingWord';
 
-import { outputArr, currentWordInButtons } from '../../../shuffleArray/shuffle';
+import outputArr from '../../../shuffleArray/shuffle';
+import arrWords from '../../wordInf';
 
 const NewGame = ({
   setCorrect, correct, setIncorrect, incorrect,
   setNumberAttempts, numberAttempts, setIsPlaying,
 }) => {
-  const { setPage, words } = useContext(ApplicationData);
-  const [currentWord, setcurrentWord] = useState(
-    outputArr(words)[Math.floor(Math.random() * (Math.floor(outputArr(words).length)))],
+  const [numberCurrentWord, setNumberCurrentWord] = useState(
+    outputArr(arrWords)[Math.floor(Math.random() * (Math.floor(outputArr(arrWords).length)))],
   );
 
   const restart = () => {
-    setcurrentWord(outputArr(words)[Math
-      .floor(Math.random() * (Math.floor(outputArr(words).length)))]);
     setNumberAttempts(numberAttempts + 1);
     if (numberAttempts === 9) {
       setIsPlaying('afterGame');
@@ -26,11 +23,11 @@ const NewGame = ({
 
   const compareWords = (buttonId) => {
     setNumberAttempts(numberAttempts + 1);
-    setcurrentWord(outputArr(words)[Math
-      .floor(Math.random() * (Math.floor(outputArr(words).length)))]);
+    setNumberCurrentWord(outputArr(arrWords)[Math
+      .floor(Math.random() * (Math.floor(outputArr(arrWords).length)))]);
     restart();
 
-    if (currentWord.id === buttonId && numberAttempts !== 10) {
+    if (numberCurrentWord.id === buttonId && numberAttempts !== 10) {
       setCorrect(correct + 1);
     } else {
       setIncorrect(incorrect + 1);
@@ -40,7 +37,7 @@ const NewGame = ({
     }
   };
 
-  const arrButtons = currentWordInButtons(words, currentWord).map((e) => (
+  const arrButtons = outputArr(arrWords).map((e) => (
     <button
       className="btn btnDuringGame"
       type="button"
@@ -59,7 +56,7 @@ const NewGame = ({
           /
           {numberAttempts}
         </div>
-        <button type="button" className="btnExit" onClick={() => setPage('train')}>
+        <button type="button" className="btnExit" onClick={() => {}}>
           <img src="./assets/images/exit.svg" alt="exitButton" className="btnExitImg" />
         </button>
       </div>
@@ -68,7 +65,7 @@ const NewGame = ({
         <FallingWord
           key={numberAttempts}
           animate={restart}
-          word={currentWord.wordTranslate}
+          word={numberCurrentWord.wordTranslate}
         />
         <div className="blockWithButtons">
           {arrButtons}

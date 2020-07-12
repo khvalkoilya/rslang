@@ -1,12 +1,9 @@
-@import "~normalize.css";
-@import "../../base/constants";
-
 .game-content {
   display: flex;
   justify-content: center;
   width: 640px;
   height: 480px;
-  // background: url('./assets/images/wallSavan.jpg');
-  background-color: $brown-color;
+  background: url('./assets/images/wallSavan.jpg');
   box-shadow: 0px 0px 5px 0px #00202e;
+  margin: 50px;
 }

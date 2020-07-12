@@ -13,7 +13,7 @@ const RenderBlockWithCards = ({ words }) => {
   const [arrData, setArrData] = useState(words);
   const [doneCards, setDoneCards] = useState(0);
   const { settings } = useContext(ApplicationData);
-  const { wordsPerDay } = settings;
+
   useEffect(() => {
     setArrData(words);
   }, [words]);
@@ -47,7 +47,7 @@ const RenderBlockWithCards = ({ words }) => {
           />
         </SwiperSlide>
       ))}
-      <UserProgressBar doneCards={doneCards} maxCards={wordsPerDay} />
+      <UserProgressBar doneCards={doneCards} maxCards={words.length} />
     </Swiper>
   );
 };

@@ -1,47 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import InitPage from './component/initGame/InitGame';
+import React, { useState } from 'react';
+import InitPage from '../initPageGame/InitGame';
 import NewGame from './component/duringGame/DuringGame';
-
-import './_savanGame.scss';
+import PageAfterGame from '../pageAfterGame/PageAfterGame';
 
 const SavanGame = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [timer, setTimer] = useState(3);
-  const [renderGame, setRenderGame] = useState(false);
+  const [isPlaying, setIsPlaying] = useState('initGame');
+  const [timer] = useState(5);
 
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
   const [numberAttempts, setNumberAttempts] = useState(0);
 
-  useEffect(() => {
-    let interval = null;
-    if (isPlaying) {
-      if (timer > 0) {
-        interval = setInterval(() => {
-          setTimer(timer - 1);
-        }, 1000);
-      } else {
-        clearInterval(interval);
-        setRenderGame(true);
-      }
-    }
-    return () => clearInterval(interval);
-  });
-
-  return (
-    <div className="game-content">
-      {renderGame ? (
+  const pageAfterGame = () => {
+    if (isPlaying === 'newGame') {
+      return (
         <NewGame
           setCorrect={setCorrect}
           correct={correct}
           setIncorrect={setIncorrect}
           incorrect={incorrect}
-          numberAttemptsPlusOne={setNumberAttempts}
+          setNumberAttempts={setNumberAttempts}
           numberAttempts={numberAttempts}
-          setRenderGame={setRenderGame}
-          renderGame={renderGame}
+          setIsPlaying={setIsPlaying}
         />
-      ) : <InitPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} timer={timer} />}
+      );
+    }
+
+    if (isPlaying === 'initGame') {
+      return (
+        <InitPage
+          title="Саванна"
+          briefInfo="Эта игра поможет улучшить Ваш словарный запас"
+          timer={timer}
+          toggle={() => setIsPlaying('newGame')}
+        />
+      );
+    }
+
+    if (isPlaying === 'afterGame') {
+      return (
+        <PageAfterGame
+          title="Саванна"
+          score={correct}
+          timer={timer}
+          toggle={() => setIsPlaying('newGame')}
+          setCorrect={setCorrect}
+        />
+      );
+    }
+
+    return (
+      <>
+      </>
+    );
+  };
+
+  return (
+    <div className="game-content">
+      {pageAfterGame()}
     </div>
   );
 };

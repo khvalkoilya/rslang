@@ -10,7 +10,17 @@
 @import "./components/progressBar/progressBar";
 @import "./components/card/card";
 
+@import "./components/initPageGame/InitGame";
 @import "./components/savanGame/savanGame";
+@import "./components/savanGame/component/duringGame/duringGame";
+@import "./components/pageAfterGame/pageAfterGame";
+@import "./components/pageAfterGame/pageAfterGame";
+
+@import "./components/dictionary/dictionary";
+@import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
+@import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+
+@import "./components/pagination/pagination";
 
 @import './components/blockWithCards/swiper';
 @import './components/burgerButton/burgerButton';
