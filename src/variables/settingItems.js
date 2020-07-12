@@ -8,7 +8,7 @@ const COMMON_SETTING_ITEMS = [
     maxLeng: 2,
   },
   {
-    name: 'hasHard',
+    name: 'group',
     text: 'Уровень сложности(0-5)',
     type: 'text',
     id: 1,

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import GAMES_VARIABLES from '../../variables/GamesVariables';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 
 const GamesPage = () => {
-  const { setPage } = useContext(ChangePage);
+  const { setPage } = useContext(ApplicationData);
   return (
     <div className="games-page">
       {GAMES_VARIABLES.map((element) => (

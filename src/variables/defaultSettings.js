@@ -1,6 +1,7 @@
 const DEFAULT_SETTINGS = {
   wordsPerDay: 20,
   optional: {
+    group: 0,
     hasTranslation: true,
     hasMeaning: true,
     hasExample: true,
@@ -12,7 +13,6 @@ const DEFAULT_SETTINGS = {
     hasAutoTranslation: true,
     hasShowingAnswer: true,
     hasIntervalButtons: true,
-    hasHard: 0,
   },
 };
 

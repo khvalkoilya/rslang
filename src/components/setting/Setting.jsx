@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import SettingItem from '../settingItem/SettingItem';
+import ApplicationData from '../context/Context';
+import {
+  getWordsAgainAndNew, createWord, putSettingUser,
+} from '../../utilsApi/utilsApi';
 import {
   CLASSIFICATION_SETTING_ITEMS,
   HELP_SETTING_ITEMS,
   COMMON_SETTING_ITEMS,
 } from '../../variables/settingItems';
+import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
 
 const Setting = ({ settings }) => {
   const [newSetting, setNewSetting] = useState({ ...settings });
+  const {
+    setSettings, setPage, userId, setWords, setWordsNew, setWordsAgain, setDoneCards,
+  } = useContext(ApplicationData);
   const changeOptionalSetting = (el) => {
     const initialValue = newSetting.optional[el];
     setNewSetting({
@@ -18,6 +26,33 @@ const Setting = ({ settings }) => {
         [el]: !initialValue,
       },
     });
+  };
+  const updateSettings = async () => {
+    const wordsAgainAndNew = await getWordsAgainAndNew(
+      userId,
+      newSetting.optional.group,
+      newSetting.wordsPerDay,
+    );
+    const words = wordsAgainAndNew[0].paginatedResults;
+    words.forEach((e) => {
+      const { _id } = e;
+      e.id = _id;
+    });
+    const newWords = words.filter((e) => (e.userWord === undefined));
+    const againWords = words.filter((e) => (e.userWord !== undefined));
+    const arrCreateWords = [];
+    newWords.forEach((e) => {
+      e.userWord = WORD_OPTIONAL_DEFAULT;
+      arrCreateWords.push(createWord(userId, e.id));
+    });
+    setSettings(newSetting);
+    setWordsNew(newWords);
+    setWordsAgain(againWords);
+    setWords(againWords.concat(newWords));
+    setDoneCards(0);
+    setPage('train');
+    await putSettingUser(userId, newSetting);
+    await Promise.all[arrCreateWords];
   };
   const changeNumericalValue = (el) => {
     if (el === 'wordsPerDay') {
@@ -39,9 +74,7 @@ const Setting = ({ settings }) => {
     <div className="card">
       <div className="card-wrapper">
         <h3 className="setting__header">Настройки</h3>
-        <form>
-          {console.log(settings)}
-          {console.log(newSetting)}
+        <form onSubmit={(event) => event.preventDefault()}>
           <div className="common_settings">
             {
               <SettingItem
@@ -64,7 +97,7 @@ const Setting = ({ settings }) => {
                 name={COMMON_SETTING_ITEMS[1].name}
                 text={COMMON_SETTING_ITEMS[1].text}
                 type={COMMON_SETTING_ITEMS[1].type}
-                value={settings.optional.hasHard}
+                value={settings.optional.group}
                 pattern={COMMON_SETTING_ITEMS[1].regExp}
                 maxLeng={COMMON_SETTING_ITEMS[1].maxLeng}
               />
@@ -105,7 +138,21 @@ const Setting = ({ settings }) => {
           }
           </div>
           <div className="setting_button">
-            <button className="submit_settings" type="submit" onClick={() => {}}>Сохранить</button>
+            <button
+              className="submit_settings"
+              type="submit"
+              onClick={() => {
+                if (newSetting.optional.hasMeaning === false
+                  && newSetting.optional.hasTranslation === false
+                  && newSetting.optional.hasExample === false) {
+                  alert('Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.');
+                } else {
+                  updateSettings();
+                }
+              }}
+            >
+              Сохранить
+            </button>
           </div>
         </form>
       </div>
@@ -128,7 +175,7 @@ Setting.propTypes = {
       hasAutoTranslation: PropTypes.bool,
       hasShowingAnswer: PropTypes.bool,
       hasInterval: PropTypes.bool,
-      hasHard: PropTypes.number,
+      group: PropTypes.number,
     }),
   }).isRequired,
 };
