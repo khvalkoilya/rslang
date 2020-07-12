@@ -11,9 +11,7 @@ SwiperCore.use([Navigation, A11y]);
 const RenderBlockWithCards = ({ words }) => {
   const [swiper, setSwiper] = useState();
   const [arrData, setArrData] = useState(words);
-  const [doneCards, setDoneCards] = useState(0);
-  const { settings } = useContext(ApplicationData);
-  const { wordsPerDay } = settings;
+  const { settings, doneCards, setDoneCards } = useContext(ApplicationData);
   useEffect(() => {
     setArrData(words);
   }, [words]);
@@ -24,8 +22,11 @@ const RenderBlockWithCards = ({ words }) => {
       navigation
       onSwiper={(obj) => {
         setSwiper(obj);
+        obj.slideTo(doneCards);
         document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
-        document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+        if (doneCards === 0) {
+          document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+        }
       }}
       onSlidePrevTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
@@ -47,7 +48,7 @@ const RenderBlockWithCards = ({ words }) => {
           />
         </SwiperSlide>
       ))}
-      <UserProgressBar doneCards={doneCards} maxCards={wordsPerDay} />
+      <UserProgressBar doneCards={doneCards} maxCards={words.length} />
     </Swiper>
   );
 };

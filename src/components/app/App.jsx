@@ -17,6 +17,7 @@ const App = () => {
   const [wordsNew, setWordsNew] = useState([]);
   const [wordsAgain, setWordsAgain] = useState([]);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  const [doneCards, setDoneCards] = useState(0);
 
   const utilWords = async () => {
     if (userId) {
@@ -25,7 +26,6 @@ const App = () => {
       const deleteWords = await getWordsDelete(userId, group);
       setWordsComplicated(сomplicated[0].paginatedResults);
       setWordsDelete(deleteWords[0].paginatedResults);
-      console.log(wordsDelete, wordsComplicated);
     }
   };
 
@@ -52,15 +52,10 @@ const App = () => {
         setWordsNew,
         wordsAgain,
         setWordsAgain,
+        doneCards,
+        setDoneCards,
       }}
       >
-        {console.log(
-          'word', words,
-          'user', userId,
-          'set', settings,
-          'newWords', wordsNew,
-          'again', wordsAgain,
-        )}
         <Header isAuth={isAuth} />
         <Main />
         <Footer />
