@@ -9,7 +9,7 @@ import cardAutoSpeech from './cardAutoSpeech';
 import changeSlide from './changeSlide';
 
 const Card = ({
-  swiper, setAddSlide, setDoneCards,
+  swiper, setDoneCards,
   word: {
     word,
     image,
@@ -62,7 +62,7 @@ const Card = ({
       input.classList.add('card-none');
       setNextButton(true);
       cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
-        swiper, setAddSlide, hasAutoTranslation, autoSpeechLocal,
+        swiper, hasAutoTranslation, autoSpeechLocal,
         hasTranslation, hasExample, hasMeaning);
     } else {
       setNextButton(false);
@@ -136,7 +136,7 @@ const Card = ({
           onClick={() => {
             checkWord();
             if ((!hasAutoSpeech || !autoSpeechLocal) && completed) {
-              changeSlide(setDoneCards, swiper, setAddSlide);
+              changeSlide(setDoneCards, swiper);
             }
           }}
         >
@@ -149,7 +149,6 @@ const Card = ({
 
 Card.propTypes = {
   setDoneCards: PropTypes.func.isRequired,
-  setAddSlide: PropTypes.func.isRequired,
   swiper: PropTypes.shape({
     slideNext: PropTypes.func,
     activeIndex: PropTypes.number,

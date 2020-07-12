@@ -2,7 +2,7 @@ import { getUrlData } from '../../utilsApi/utilsApi';
 import changeSlide from './changeSlide';
 
 const cardAutoSpeech = (audio, audioExample, audioMeaning, setDoneCards,
-  swiper, setAddSlide, hasAutoSpeech, autoSpeechLocal,
+  swiper, hasAutoSpeech, autoSpeechLocal,
   hasTranslation, hasExample, hasMeaning) => {
   if (hasAutoSpeech && autoSpeechLocal) {
     const active = document.querySelector('.swiper-slide-active');
@@ -16,7 +16,7 @@ const cardAutoSpeech = (audio, audioExample, audioMeaning, setDoneCards,
     player.src = getUrlData(tracks[0]);
     player.onended = () => {
       current += 1;
-      if (current >= tracks.length) changeSlide(setDoneCards, swiper, setAddSlide);
+      if (current >= tracks.length) changeSlide(setDoneCards, swiper);
       player.src = getUrlData(tracks[current]);
       player.play();
     };
