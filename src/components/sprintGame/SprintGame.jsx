@@ -15,9 +15,11 @@ const Sprint = () => {
 
   const [currentWord, setCurrentWord] = useState(0);
 
-  const [isError, setIsError] = useState(0);
-
   const [correctAnswers, setCorrectAnswers] = useState(0);
+
+  const [halfArrayLength, setHalfArrayLength] = useState(0);
+
+  const [timerPlace, setTimerPlace] = useState('59');
 
   // функция для генерации неправильного перевода к английскому слову
   const randomWord = (x) => {
@@ -30,7 +32,7 @@ const Sprint = () => {
   };
 
   // массив со словами
-  const wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
+  let wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
 
   // функция окончания игры
   const endGame = () => {
@@ -39,14 +41,12 @@ const Sprint = () => {
 
   const itsErrorAnswer = () => {
     console.log('не угадали, ошибка');
-    setIsError(1);
     setCorrectAnswers(0);
     setLevel(0);
   };
 
   const itsTrueAnswer = () => {
     console.log('правильный ответ!');
-    setIsError(0);
     setCorrectAnswers(correctAnswers + 1);
     console.log('правильных ответов подряд:', correctAnswers);
 
@@ -78,9 +78,29 @@ const Sprint = () => {
     }
   };
 
+  // добавляем ещё слов в массив
+  const setNewWords = () => {
+    console.log('запускаем функцию по добавлению новых слов');
+
+    const tempArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
+
+    wordsArray = wordsArray.concat(tempArray);
+
+    console.log(wordsArray);
+    console.log(wordsArray.length);
+
+    setHalfArrayLength(wordsArray.length / 2);
+    console.log(`подвезли новых слов, теперь длина массива равна: ${
+      wordsArray.length
+    }, а половина массива равна: ${halfArrayLength}`);
+  };
+
   // нажатие на кнопку
   const gameStep = (e) => {
-    console.log(wordsArray);
+    setTimerPlace(<Timer initTime={3} endTimer={endGame} />);
+    if (halfArrayLength === 0) {
+      setHalfArrayLength(wordsArray.length / 2);
+    }
     if (e.target.attributes.answer.value === 'yes') {
       console.log('нажали на кнопку да');
       if (wordsArray[currentWord][2] === wordsArray[currentWord][1]) {
@@ -97,44 +117,51 @@ const Sprint = () => {
       }
     }
 
+    console.log('теперь половина массива равна:', halfArrayLength);
+
     setCurrentWord(currentWord + 1);
+
+    if (halfArrayLength > currentWord) {
+      console.log('нужно увеличивать массив! его длина равна', wordsArray.length);
+      setNewWords();
+    }
   };
 
   return (
-    <div className="sprint-game">
-      <div className="sprint-game__header">
-        <div className="sprint-game__points">
-          Очки:
-          {' '}
-          {score}
-        </div>
+    <div className="card card--sprint-game-bg">
+      <div className="sprint-game">
+        <div className="sprint-game__header">
+          <div className="sprint-game__points">
+            {score}
+          </div>
 
-        <div className="sprint-game__level">
-          Уровень:
-          {' '}
-          {level}
-        </div>
+          <div className="sprint-game__level">
+            Уровень:
+            {' '}
+            {level}
+          </div>
 
-        <div className="sprint-game__timer">
-          <Timer initTime={60} />
+          <div className="sprint-game__timer">
+            {timerPlace}
+          </div>
+        </div>
+        <div className="sprint-game__words">
+          <p className="sprint-game__english-word">
+            {wordsArray[currentWord][0]}
+          </p>
+          <p className="sprint-game__russian-word">
+            {wordsArray[currentWord][2]}
+          </p>
+        </div>
+        <div className="sprint-game__control">
+          <button onClick={gameStep} className="sprint-game__button sprint-game__button--no" type="button" answer="no">Не верно</button>
+
+          <button onClick={gameStep} className="sprint-game__button sprint-game__button--yes" type="button" answer="yes">Верно</button>
+
         </div>
       </div>
-      <div className="sprint-game__words">
-        <p className="sprint-game__english-word">
-          {wordsArray[currentWord][0]}
-          {console.log(wordsArray[currentWord][2])}
-        </p>
-        <p className="sprint-game__russian-word">
-          {wordsArray[currentWord][2]}
-        </p>
-      </div>
-      <div className="sprint-game__control">
-        <button onClick={gameStep} className="sprint-game__button sprint-game__button--no" type="button" answer="no">Нет</button>
-
-        <button onClick={gameStep} className="sprint-game__button sprint-game__button--yes" type="button" answer="yes">Да</button>
-      </div>
-
     </div>
+
   );
 };
 

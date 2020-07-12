@@ -1,42 +1,105 @@
+.card--sprint-game-bg {
+    background: url('./assets/images/spirit-bg.jpg') no-repeat;
+    background-size: cover;
+}
+
 .sprint-game {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
-    background-color: grey;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
 }
 
 .sprint-game__header {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
-.sprint-game__words {
+.sprint-game__points {
     font-size: 2rem;
-    text-align: center;
 }
+
+@media (min-width: $m-screen) {
+    .sprint-game__points {
+        font-size: 3rem;
+    }
+
+    .sprint-game__timer {
+        font-size: 3rem;
+    }
+}
+
+
+.sprint-game__words {
+    font-size: 3rem;
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.sprint-game__english-word {
+    margin: 1rem auto;
+}
+
+.sprint-game__russian-word {
+    color: $denim-color;
+    font-weight: bold;
+    margin: 1rem auto;
+}
+
+
+
+
+
 
 .sprint-game__control {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 300px;
+    flex-direction: column;
+    
     margin: 0 auto;
 }
 
-.sprint-game__button {
-    padding: 1rem 2rem;
-    min-width: 100px;
-    cursor: pointer;
+@media (min-width: $m-screen) {
+    .sprint-game__control {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
 }
 
+.sprint-game__button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: .5rem;
+    min-width: 100px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 0px #000000;
+    outline: none;
+    border: none;
+}
+
+@media (min-width: $m-screen) {
+    .sprint-game__button {
+        min-width: 200px;
+    }
+}
+
+.sprint-game__button:hover {
+    box-shadow: 0px 0px 8px 0px #000000;
+}
+
+
+
 .sprint-game__button--no {
-    background-color: red;
+    background-color: $light-rose-color;
     color: black;
 }
 
 .sprint-game__button--yes {
-    background-color: green;
+    background-color: $yellowish-brown-color;
     color: black;
 }
+
