@@ -40,18 +40,23 @@ const SpeakIt = ({
       <div className="level-wrapper">
         {btnsLevel()}
       </div>
-      <div>{spokenWord}</div>
-      <div className="img">
-        {
-          actualWord
-          && (
-          <img
-            src={`https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${actualWord.image}`}
-            alt={actualWord.image}
-          />
-          )
-        }
-        <div>{actualWord ? actualWord.wordTranslate : ''}</div>
+      <div className="image-spokenWord">
+        <div className="img">
+          {
+            actualWord
+            && (
+            <img
+              src={`https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${actualWord.image}`}
+              alt={actualWord.image}
+            />
+            )
+          }
+          <div className="actualWord">{actualWord ? actualWord.wordTranslate : ''}</div>
+        </div>
+        <div className="spokenWord-wrapper">
+          <img className="mic" src="./assets/images/mic.svg" alt="mic" />
+          <div className="spokenWord">{spokenWord}</div>
+        </div>
       </div>
       <div className="words-wrapper">
         {btn}

@@ -42,7 +42,7 @@ const SpeakItContainer = ({ words }) => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="main-wrapper">
       <SpeakIt
         words={updatedArr}
         showAdditionalInfo={showAdditionalInfo}

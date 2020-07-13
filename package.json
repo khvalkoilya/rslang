@@ -59,7 +59,9 @@
     "react-dom": "^16.13.1",
     "react-id-swiper": "^3.0.0",
     "react-sizeme": "^2.6.12",
-    "swiper": "^6.0.1"
+    "swiper": "^6.0.1",
+    "prop-types": "^15.7.2",
+    "@ramonak/react-progress-bar": "^1.0.3"
   },
   "main": ".eslintrc.js"
 }
