@@ -56,6 +56,13 @@ const App = () => {
         setDoneCards,
       }}
       >
+        {/* {console.log(
+          'word', words,
+          'user', userId,
+          'set', settings,
+          'newWords', wordsNew,
+          'again', wordsAgain,
+        )} */}
         <Header isAuth={isAuth} />
         <Main />
         <Footer />

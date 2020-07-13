@@ -69,7 +69,7 @@ export const getWordsDelete = (
 export const createWord = (
   { userId, token },
   id,
-  option = WORD_OPTIONAL_DEFAULT,
+option = WORD_OPTIONAL_DEFAULT,
 ) => fetchData(
   [
     URL.word.words(userId, id),

@@ -1,0 +1,26 @@
+h3 {
+  font-size: 3rem;
+  font-family: "BalsamiqSans Bold";
+}
+
+.score, 
+.timer, 
+.btn {
+  font-size: 1.4rem;
+  margin: 1vh;
+  font-family: "BalsamiqSans regular";
+}
+
+.scoreInfoField {
+  margin: 0 0 2.2rem 0;
+  font-size: 1.2rem;
+  display: flex
+}
+
+.score {
+  margin: 0 5px 0 5px;
+}
+
+.timer {
+  color: $light-brown-color;
+}
