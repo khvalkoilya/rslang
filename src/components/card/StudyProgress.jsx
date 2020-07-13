@@ -15,15 +15,9 @@ const StudyProgress = ({ current, level }) => {
       break;
     default: max = 0;
   }
-  console.log(current);
-  console.log(level);
   const array = [];
   for (let i = 1; i <= max; i += 1) {
-    if (i <= current) {
-      array.push(<span className="card__progress__full-dot" />);
-    } else {
-      array.push(<span className="card__progress__empty-dot" />);
-    }
+    array.push(<span key={i} className={`${i <= current ? 'card__progress__full-dot' : 'card__progress__empty-dot'}`} />);
   }
   return (
     <>

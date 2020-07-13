@@ -63,23 +63,42 @@ const Card = ({
     }
   };
 
-  // const IntervalButtons = (type, name) => (
-  //   <>
-  //     {hasIntervalButtons && !skip && completed && (
-  //     <button
-  //       type="button"
-  //       onClick={() => {
-  //         updateBackEnd(type);
-  //         changeSlide(setDoneCards, swiper);
-  //       }}
-  //       className={`card__button card__button-interval
-  //         ${isPlaying ? 'card__button-disable' : ''}`}
-  //     >
-  //       {name}
-  //     </button>
-  //     )}
-  //   </>
-  // );
+  const IntervalButtons = () => {
+    const data = [
+      {
+        type: 'easy',
+        name: 'Легко',
+      },
+      {
+        type: 'good',
+        name: 'Хорошо',
+      },
+      {
+        type: 'hard',
+        name: 'Трудно',
+      },
+      {
+        type: 'again',
+        name: 'Снова',
+      },
+    ];
+
+    const array = data.map((item) => (
+      <button
+        key={item.type}
+        type="button"
+        onClick={() => {
+          updateBackEnd(item.type);
+          changeSlide(setDoneCards, swiper);
+        }}
+        className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}
+      >
+        {item.name}
+      </button>
+    ));
+
+    return array;
+  };
 
   const checkWord = (enter = false) => {
     setDefaultVal(getLetterArr(word, innerWord.toLowerCase()));
@@ -119,7 +138,12 @@ const Card = ({
       onKeyPressCapture={pressEnter}
     >
       <div className="card-wrapper">
-        {isAuth && <StudyProgress current={userWord.optional.levelRepeat} level={userWord.optional.level} />}
+        {isAuth && (
+        <StudyProgress
+          current={userWord.optional.levelRepeat}
+          level={userWord.optional.level}
+        />
+        )}
         <span className="card__input__container">
           <GetPlaceholder
             key={word}
@@ -171,11 +195,7 @@ const Card = ({
           <div>
             {hasDelete && !completed && <button type="button" onClick={() => updateBackEnd('delete')} className="card__button">Удалить</button>}
             {hasDifficult && !completed && <button type="button" onClick={() => updateBackEnd('complicated')} className="card__button">Сложное</button>}
-            {/* <IntervalButtons type="again" name="Снова" key={4} /> */}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('easy'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Легко</button>}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('good'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Средне</button>}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('hard'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Сложно</button>}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('again'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Снова</button>}
+            {hasIntervalButtons && !skip && completed && <IntervalButtons />}
           </div>
           <div>
             {completed && (
@@ -231,7 +251,7 @@ Card.propTypes = {
         repeat: PropTypes.number,
         level: PropTypes.string,
         levelRepeat: PropTypes.number,
-        error: PropTypes.string,
+        error: PropTypes.number,
       }),
     }),
   }),
