@@ -77,8 +77,7 @@ const Card = ({
       if (!localSkip) {
         updateBackEnd('levelRepeat');
       }
-      cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
-        swiper, hasAutoSpeech, autoSpeechLocal,
+      cardAutoSpeech(audio, audioExample, audioMeaning, hasAutoSpeech, autoSpeechLocal,
         hasTranslation, hasExample, hasMeaning, setIsPlaying);
     } else {
       updateBackEnd('error');
@@ -149,12 +148,10 @@ const Card = ({
           <div>
             {hasDelete && !completed && <button type="button" onClick={() => updateBackEnd('delete')} className="card__button">Удалить</button>}
             {hasDifficult && !completed && <button type="button" onClick={() => updateBackEnd('complicated')} className="card__button">Сложное</button>}
-            {hasIntervalButtons && !skip && completed && (
-            <button type="button" onClick={() => updateBackEnd('easy')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Легко</button>
-            )}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('good')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Средне</button>}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('hard')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Сложно</button>}
-            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('again')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Заново</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('easy'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Легко</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('good'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Средне</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('hard'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Сложно</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => { updateBackEnd('again'); changeSlide(setDoneCards, swiper); }} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Заново</button>}
           </div>
           <div>
             {completed && (
