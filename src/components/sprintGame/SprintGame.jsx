@@ -90,12 +90,12 @@ const Sprint = () => {
     }, а половина массива равна: ${halfArrayLength}`);
   };
 
+  const endGame = () => setGameStatus('game-end');
+
   // нажатие на кнопку
   const gameStep = (e) => {
-    setTimerPlace(<Timer initTime={60} />);
-    if (halfArrayLength === 0) {
-      setHalfArrayLength(wordsArray.length / 2);
-    }
+    setTimerPlace(<Timer initTime={60} handler={endGame} />);
+
     if (e.target.attributes.answer.value === 'yes') {
       console.log('нажали на кнопку да');
       if (wordsArray[currentWord][2] === wordsArray[currentWord][1]) {
@@ -126,6 +126,12 @@ const Sprint = () => {
     wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
 
     setGameStatus('game-start');
+
+    setTimerPlace('60');
+    setCurrentWord(0);
+    setCorrectAnswers(0);
+    setLevel(0);
+    setScore(0);
 
     console.log(wordsArray);
   };
@@ -183,7 +189,15 @@ const Sprint = () => {
         </div>
 
         <div className="sprint-end">
-          конец
+          <p>Время закончилось!</p>
+          <p>
+            Вы набрали
+            {' '}
+            {score}
+            {' '}
+            очков
+          </p>
+          <button type="button" className="sprint-game__button" onClick={sprintGameStart}>Начать новую игру</button>
         </div>
 
       </div>
