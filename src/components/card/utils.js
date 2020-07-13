@@ -97,7 +97,6 @@ const updateOptionWord = (words, id, param, setDoneCards, setWords, userId) => {
     default:
       break;
   }
-
   putWord(userId, id, word.userWord);
 };
 

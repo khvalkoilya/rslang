@@ -155,6 +155,7 @@
 
       @include media-small {
         margin-left: 32px;
+        margin-bottom: 40px;
       }
     }
 
@@ -290,6 +291,51 @@
       font-style: italic;
       font-size: 30px;
       text-decoration: underline;
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    top: 13px;
+    left: 103px;
+
+    @include media-medium {
+      top: 18px;
+      left: 41px;
+    }
+
+    @include media-small {
+      left: 33px;
+    }
+
+    &__full-dot, &__empty-dot {
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      margin-right: 3px;
+      cursor: pointer;
+
+      @include media-medium {
+        height: 19px;
+      }
+    }
+
+    &__full-dot {
+      background-image: url('./assets/images/dots/full.svg');
+    }
+
+    &__empty-dot {
+      background-image: url('./assets/images/dots/empty.svg');
+    }
+
+    &__study-word {
+      font-weight: 400;
+      font-size: 14px;
+      color: $brown-color;
+      position: absolute;
+      bottom: 3px;
     }
   }
 }
