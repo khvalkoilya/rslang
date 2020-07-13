@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../input/Input';
 import getLetterArr from './getLetterArr';
@@ -7,10 +7,13 @@ import ReplaceBrackets from './ReplaceBrackets';
 import { getUrlData } from '../../utilsApi/utilsApi';
 import cardAutoSpeech from './cardAutoSpeech';
 import changeSlide from './changeSlide';
+import updateOptionWord from './utils';
+import ApplicationData from '../context/Context';
 
 const Card = ({
   swiper, setDoneCards,
   word: {
+    id,
     word,
     image,
     wordTranslate,
@@ -46,6 +49,10 @@ const Card = ({
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
   const [skip, setSkip] = useState(false);
+
+  const {
+    words, setWords, userId,
+  } = useContext(ApplicationData);
 
   const checkWord = async (enter = false) => {
     setDefaultVal(getLetterArr(word, innerWord.toLowerCase()));
@@ -128,7 +135,7 @@ const Card = ({
           onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
         />
         )}
-        {hasDelete && <button type="button" className="card__button">Удалить</button>}
+        {hasDelete && <button type="button" onClick={() => updateOptionWord(words, id, 'delete', setDoneCards, setWords, userId)} className="card__button">Удалить</button>}
         {hasDifficult && <button type="button" className="card__button">Сложное</button>}
         <button
           type="button"
@@ -154,6 +161,7 @@ Card.propTypes = {
     activeIndex: PropTypes.number,
   }),
   word: PropTypes.shape({
+    id: PropTypes.string,
     word: PropTypes.string,
     image: PropTypes.string,
     wordTranslate: PropTypes.string,
