@@ -94,9 +94,23 @@ const Sprint = () => {
 
   // нажатие на кнопку
   const gameStep = (e) => {
-    setTimerPlace(<Timer initTime={60} handler={endGame} />);
+    console.log('шаг!');
+    if (timerPlace === '60') {
+      setTimerPlace(<Timer initTime={60} handler={endGame} />);
+    }
 
-    if (e.target.attributes.answer.value === 'yes') {
+    let myAnswer;
+
+    if (e.target.attributes.answer.value === 'yes' || e.target.attributes.answer.value === 'no') {
+      myAnswer = e.target.attributes.answer.value;
+    } else {
+      myAnswer = e;
+    }
+
+    console.log('________');
+    console.log('мой ответ:', myAnswer);
+
+    if (myAnswer === 'yes') {
       console.log('нажали на кнопку да');
       if (wordsArray[currentWord][2] === wordsArray[currentWord][1]) {
         itsTrueAnswer();
@@ -112,8 +126,6 @@ const Sprint = () => {
       }
     }
 
-    console.log('теперь половина массива равна:', halfArrayLength);
-
     setCurrentWord(currentWord + 1);
 
     if (halfArrayLength > currentWord) {
@@ -121,6 +133,16 @@ const Sprint = () => {
       setNewWords();
     }
   };
+
+  document.addEventListener('keyup', (e) => {
+    e.preventDefault();
+    if (e.code === 'ArrowLeft') {
+      gameStep('no');
+    }
+    if (e.code === 'ArrowRight') {
+      gameStep('yes');
+    }
+  });
 
   const sprintGameStart = () => {
     wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
