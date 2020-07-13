@@ -1,12 +1,9 @@
 import { getUrlData } from '../../utilsApi/utilsApi';
-import changeSlide from './changeSlide';
 
-const cardAutoSpeech = (audio, audioExample, audioMeaning, setDoneCards,
-  swiper, hasAutoSpeech, autoSpeechLocal,
-  hasTranslation, hasExample, hasMeaning) => {
+const cardAutoSpeech = (audio, audioExample, audioMeaning, hasAutoSpeech, autoSpeechLocal,
+  hasTranslation, hasExample, hasMeaning, setIsPlaying) => {
   if (hasAutoSpeech && autoSpeechLocal) {
-    const active = document.querySelector('.swiper-slide-active');
-    active.querySelector('.card__button-show').classList.add('card-none');
+    setIsPlaying(true);
     const tracks = [];
     if (hasTranslation) tracks.push(audio);
     if (hasExample) tracks.push(audioExample);
@@ -16,7 +13,10 @@ const cardAutoSpeech = (audio, audioExample, audioMeaning, setDoneCards,
     player.src = getUrlData(tracks[0]);
     player.onended = () => {
       current += 1;
-      if (current >= tracks.length) changeSlide(setDoneCards, swiper);
+      if (current >= tracks.length) {
+        setIsPlaying(false);
+        return;
+      }
       player.src = getUrlData(tracks[current]);
       player.play();
     };

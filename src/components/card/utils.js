@@ -16,6 +16,7 @@ const updateOptionWord = (words, id, param, setDoneCards, setWords, userId) => {
       indexWord = index;
     }
   });
+  console.log(word.userWord);
   word.userWord.optional.data = time.toLocaleString('ru-Ru', optionsTime);
   switch (param) {
     case 'levelRepeat':
@@ -97,6 +98,7 @@ const updateOptionWord = (words, id, param, setDoneCards, setWords, userId) => {
     default:
       break;
   }
+
   putWord(userId, id, word.userWord);
 };
 

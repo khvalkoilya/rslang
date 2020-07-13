@@ -37,7 +37,7 @@ const Card = ({
     hasAutoSpeech,
     hasAutoTranslation,
     hasShowingAnswer,
-    // hasIntervalButtons,
+    hasIntervalButtons,
   },
   autoTranslationLocal,
   setAutoTranslationLocal,
@@ -49,10 +49,15 @@ const Card = ({
   const [completed, setCompleted] = useState(false);
   const [nextButton, setNextButton] = useState(false);
   const [skip, setSkip] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const {
     words, setWords, userId,
   } = useContext(ApplicationData);
+
+  const updateBackEnd = (type) => {
+    updateOptionWord(words, id, type, setDoneCards, setWords, userId);
+  };
 
   const checkWord = async (enter = false) => {
     setDefaultVal(getLetterArr(word, innerWord.toLowerCase()));
@@ -63,15 +68,20 @@ const Card = ({
     if (hasShowingAnswer && !nextButton && !enter) {
       localSkip = true;
       setSkip(localSkip);
+      updateBackEnd('showAnswer');
     }
     if (word.toLowerCase() === innerWord.toLowerCase() || localSkip) {
       setCompleted(true);
       input.classList.add('card-none');
       setNextButton(true);
+      if (!localSkip) {
+        updateBackEnd('levelRepeat');
+      }
       cardAutoSpeech(audio, audioExample, audioMeaning, setDoneCards,
-        swiper, hasAutoTranslation, autoSpeechLocal,
-        hasTranslation, hasExample, hasMeaning);
+        swiper, hasAutoSpeech, autoSpeechLocal,
+        hasTranslation, hasExample, hasMeaning, setIsPlaying);
     } else {
+      updateBackEnd('error');
       setNextButton(false);
     }
   };
@@ -111,9 +121,9 @@ const Card = ({
           <div className="card__grid__text">
             {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
             {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
-            {hasExample && completed && autoTranslationLocal && <div className="card__ruSentence">{textExampleTranslate}</div>}
+            {hasExample && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textExampleTranslate}</div>}
             {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
-            {hasMeaning && completed && autoTranslationLocal && <div className="card__ruSentence">{textMeaningTranslate}</div>}
+            {hasMeaning && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textMeaningTranslate}</div>}
           </div>
           <div className="card__grid__beauty">
             {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
@@ -135,20 +145,40 @@ const Card = ({
           onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
         />
         )}
-        {hasDelete && <button type="button" onClick={() => updateOptionWord(words, id, 'delete', setDoneCards, setWords, userId)} className="card__button">Удалить</button>}
-        {hasDifficult && <button type="button" className="card__button">Сложное</button>}
-        <button
-          type="button"
-          className="card__button card__button-show"
-          onClick={() => {
-            checkWord();
-            if ((!hasAutoSpeech || !autoSpeechLocal) && completed) {
-              changeSlide(setDoneCards, swiper);
-            }
-          }}
-        >
-          {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
-        </button>
+        <div className={`card__button__grid ${completed && hasIntervalButtons ? 'card__button__grid-interval' : ''}`}>
+          <div>
+            {hasDelete && !completed && <button type="button" onClick={() => updateBackEnd('delete')} className="card__button">Удалить</button>}
+            {hasDifficult && !completed && <button type="button" onClick={() => updateBackEnd('complicated')} className="card__button">Сложное</button>}
+            {hasIntervalButtons && !skip && completed && (
+            <button type="button" onClick={() => updateBackEnd('easy')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Легко</button>
+            )}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('good')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Средне</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('hard')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Сложно</button>}
+            {hasIntervalButtons && !skip && completed && <button type="button" onClick={() => updateBackEnd('again')} className={`card__button card__button-interval ${isPlaying ? 'card__button-disable' : ''}`}>Заново</button>}
+          </div>
+          <div>
+            {completed && (
+            <button
+              type="button"
+              onClick={() => changeSlide(setDoneCards, swiper)}
+              className={`card__button card__button-next ${isPlaying ? 'card__button-disable' : ''}`}
+            >
+              Продолжить
+            </button>
+            )}
+            {!completed && (
+            <button
+              type="button"
+              className="card__button card__button-show"
+              onClick={() => {
+                checkWord();
+              }}
+            >
+              {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
+            </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -185,7 +215,7 @@ Card.propTypes = {
     hasAutoSpeech: PropTypes.bool.isRequired,
     hasAutoTranslation: PropTypes.bool.isRequired,
     hasShowingAnswer: PropTypes.bool.isRequired,
-    // hasIntervalButtons: PropTypes.bool.isRequired,
+    hasIntervalButtons: PropTypes.bool.isRequired,
   }).isRequired,
   autoTranslationLocal: PropTypes.bool.isRequired,
   setAutoTranslationLocal: PropTypes.func.isRequired,
