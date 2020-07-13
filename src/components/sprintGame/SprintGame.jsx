@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Timer from '../timer/Timer';
 
@@ -7,8 +7,6 @@ import words from '../../variables/defaultWords';
 // https://youtu.be/ynmb9pb2mUs
 
 const Sprint = () => {
-  // const [seconds, setSeconds] = useState(10);
-
   const [level, setLevel] = useState(0);
 
   const [score, setScore] = useState(0);
@@ -19,7 +17,9 @@ const Sprint = () => {
 
   const [halfArrayLength, setHalfArrayLength] = useState(0);
 
-  const [timerPlace, setTimerPlace] = useState('59');
+  const [timerPlace, setTimerPlace] = useState('60');
+
+  const [gameStatus, setGameStatus] = useState('game-hello');
 
   // функция для генерации неправильного перевода к английскому слову
   const randomWord = (x) => {
@@ -33,11 +33,6 @@ const Sprint = () => {
 
   // массив со словами
   let wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
-
-  // функция окончания игры
-  const endGame = () => {
-    console.log('заканчиваем игру');
-  };
 
   const itsErrorAnswer = () => {
     console.log('не угадали, ошибка');
@@ -97,7 +92,7 @@ const Sprint = () => {
 
   // нажатие на кнопку
   const gameStep = (e) => {
-    setTimerPlace(<Timer initTime={3} endTimer={endGame} />);
+    setTimerPlace(<Timer initTime={60} />);
     if (halfArrayLength === 0) {
       setHalfArrayLength(wordsArray.length / 2);
     }
@@ -127,38 +122,70 @@ const Sprint = () => {
     }
   };
 
+  const sprintGameStart = () => {
+    wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
+
+    setGameStatus('game-start');
+
+    console.log(wordsArray);
+  };
+
   return (
     <div className="card card--sprint-game-bg">
-      <div className="sprint-game">
-        <div className="sprint-game__header">
-          <div className="sprint-game__points">
-            {score}
+      <div className={gameStatus}>
+        <div className="sprint-game">
+
+          <div className="sprint-game__header">
+            <div className="sprint-game__points">
+              {score}
+            </div>
+
+            <div className="sprint-game__level">
+              Уровень:
+              {' '}
+              {level}
+            </div>
+
+            <div className="sprint-game__timer">
+              {timerPlace}
+            </div>
+          </div>
+          <div className="sprint-game__words">
+            <p className="sprint-game__english-word">
+              {wordsArray[currentWord][0]}
+            </p>
+            <p className="sprint-game__russian-word">
+              {wordsArray[currentWord][2]}
+            </p>
+          </div>
+          <div className="sprint-game__control">
+            <button onClick={gameStep} className="sprint-game__button sprint-game__button--no" type="button" answer="no">Не верно</button>
+
+            <button onClick={gameStep} className="sprint-game__button sprint-game__button--yes" type="button" answer="yes">Верно</button>
+
           </div>
 
-          <div className="sprint-game__level">
-            Уровень:
-            {' '}
-            {level}
+          {/* экран приветствия */}
+
+        </div>
+
+        <div className="sprint-hello">
+          <div>
+            Привет! поиграем?
+            <button
+              type="button"
+              className="sprint-game__button"
+              onClick={sprintGameStart}
+            >
+              Начать игру
+            </button>
           </div>
-
-          <div className="sprint-game__timer">
-            {timerPlace}
-          </div>
         </div>
-        <div className="sprint-game__words">
-          <p className="sprint-game__english-word">
-            {wordsArray[currentWord][0]}
-          </p>
-          <p className="sprint-game__russian-word">
-            {wordsArray[currentWord][2]}
-          </p>
-        </div>
-        <div className="sprint-game__control">
-          <button onClick={gameStep} className="sprint-game__button sprint-game__button--no" type="button" answer="no">Не верно</button>
 
-          <button onClick={gameStep} className="sprint-game__button sprint-game__button--yes" type="button" answer="yes">Верно</button>
-
+        <div className="sprint-end">
+          конец
         </div>
+
       </div>
     </div>
 

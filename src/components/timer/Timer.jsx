@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ initTime, endTimer }) => {
+const Timer = ({ initTime }) => {
   const [timer, setTimer] = useState(initTime);
-  // const [gameOver] = useState(endTimer);
 
   useEffect(() => {
     let interval = null;
@@ -13,7 +12,7 @@ const Timer = ({ initTime, endTimer }) => {
       }, 1000);
     } else {
       console.log('таймер на нуле, нужно останавливать игру');
-      endTimer;
+
       clearInterval(interval);
     }
 

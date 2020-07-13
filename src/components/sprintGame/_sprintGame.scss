@@ -3,7 +3,7 @@
     background-size: cover;
 }
 
-.sprint-game {
+.sprint-game, .sprint-hello, .sprint-end {
     margin: 2rem auto;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.8);
@@ -103,3 +103,28 @@
     color: black;
 }
 
+
+
+.game-hello > .sprint-game, .sprint-end {
+    display: none;
+}
+.game-hello > .sprint-hello {
+    display: flex;
+}
+
+
+.game-start > .sprint-end, .sprint-hello {
+    display: none;
+}
+.game-start > .sprint-game {
+    display: block;
+}
+
+
+
+.game-end > .sprint-hello, .sprint-game {
+    display: none;
+}
+.game-end > .sprint-end {
+    display: block;
+}
