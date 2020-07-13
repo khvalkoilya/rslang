@@ -31,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     utilWords();
-  }, [words]);
+  }, [userId]);
   return (
     <>
       <ApplicationData.Provider value={{
@@ -41,6 +41,7 @@ const App = () => {
         setWords,
         userId,
         setUser,
+        isAuth,
         setIsAuth,
         settings,
         setSettings,

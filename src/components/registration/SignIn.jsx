@@ -30,11 +30,9 @@ const SignIn = () => {
         const newWords = words.filter((e) => (e.userWord === undefined));
         const againWords = words.filter((e) => (e.userWord !== undefined));
         const arrCreateWords = [];
-        newWords.forEach((e, index) => {
-          if ((index + 1) % 7 === 0) {
-            e.userWord = WORD_OPTIONAL_DEFAULT;
-            arrCreateWords.push(createWord(user, e.id));
-          }
+        newWords.forEach((e) => {
+          e.userWord = WORD_OPTIONAL_DEFAULT;
+          arrCreateWords.push(createWord(user, e.id));
         });
         setSettings(settings);
         setWordsNew(newWords);
