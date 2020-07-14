@@ -6,6 +6,7 @@ import ApplicationData from '../context/Context';
 import DEFAULT_WORDS from '../../variables/defaultWords';
 import DEFAULT_SETTINGS from '../../variables/defaultSettings';
 import { getWordsComplicated, getWordsDelete } from '../../utilsApi/utilsApi';
+import { DEFAULT_STATISTIC } from '../../variables/defaultStatistic';
 
 const App = () => {
   const [page, setPage] = useState('train');
@@ -18,6 +19,7 @@ const App = () => {
   const [wordsAgain, setWordsAgain] = useState([]);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [doneCards, setDoneCards] = useState(0);
+  const [statistic, setStatistic] = useState(DEFAULT_STATISTIC);
 
   const utilWords = async () => {
     if (userId) {
@@ -45,6 +47,8 @@ const App = () => {
         setIsAuth,
         settings,
         setSettings,
+        statistic,
+        setStatistic,
         wordsComplicated,
         setWordsComplicated,
         wordsDelete,

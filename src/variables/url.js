@@ -38,7 +38,7 @@ const URL = {
   },
   userStatistic: {
     statistics: (userId) => `${BASE_PATH}/users/${userId}/statistics`,
-    putStatistics: (option, token) => ({
+    putStatistics: (token, option) => ({
       method: 'PUT',
       withCredentials: true,
       headers: {

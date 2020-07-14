@@ -6,10 +6,11 @@ import {
   createUser, putSettingUser, getWordsAgainAndNew, createWord,
 } from '../../utilsApi/utilsApi';
 import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
+import { stringifyStatistic } from '../../variables/defaultStatistic';
 
 const Registration = () => {
   const {
-    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew,
+    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew, statistic,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -28,17 +29,16 @@ const Registration = () => {
           e.id = _id;
         });
         const arrCreateWords = [];
-        words.forEach((e, index) => {
-          if ((index + 1) % 7 === 0) {
-            e.userWord = WORD_OPTIONAL_DEFAULT;
-            arrCreateWords.push(createWord(user, e.id));
-          }
+        words.forEach((e) => {
+          e.userWord = WORD_OPTIONAL_DEFAULT;
+          arrCreateWords.push(createWord(user, e.id));
         });
         setWordsNew(words);
         setWords(words);
         setUser(user);
         setIsAuth(true);
         setDoneCards(0);
+        stringifyStatistic(statistic, user);
         setPage('train');
         await Promise.all[arrCreateWords];
       } catch (e) {
