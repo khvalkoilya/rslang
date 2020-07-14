@@ -5,16 +5,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
 import UserProgressBar from '../progressBar/ProgressBar';
 import ApplicationData from '../context/Context';
-import Loader from '../loader/Loader';
 
 SwiperCore.use([Navigation, A11y]);
 
 const RenderBlockWithCards = ({ words }) => {
   const [swiper, setSwiper] = useState();
   const [arrData, setArrData] = useState(words);
-  const { settings, doneCards, setDoneCards } = useContext(ApplicationData);
+  const {
+    settings, doneCards, setDoneCards, setPage,
+  } = useContext(ApplicationData);
   const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
   const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
+
+  if (doneCards === words.length) {
+    setPage('shortStatistics');
+  }
 
   useEffect(() => {
     setArrData(words);
@@ -54,7 +59,6 @@ const RenderBlockWithCards = ({ words }) => {
             setAutoTranslationLocal={setAutoTranslationLocal}
             autoSpeechLocal={autoSpeechLocal}
             setAutoSpeechLocal={setAutoSpeechLocal}
-            isFinished={doneCards === words.length}
           />
         </SwiperSlide>
       ))}

@@ -10,7 +10,6 @@ import changeSlide from './changeSlide';
 import updateOptionWord from './utils';
 import ApplicationData from '../context/Context';
 import StudyProgress from './StudyProgress';
-import FinalPage from './FinalPage';
 
 const Card = ({
   swiper, setDoneCards,
@@ -46,7 +45,6 @@ const Card = ({
   setAutoTranslationLocal,
   autoSpeechLocal,
   setAutoSpeechLocal,
-  isFinished,
 }) => {
   const [innerWord, setInnerWord] = useState('');
   const [defaultVal, setDefaultVal] = useState([]);
@@ -139,93 +137,90 @@ const Card = ({
       className="card"
       onKeyPressCapture={pressEnter}
     >
-      {!isFinished ? (
-        <div className="card-wrapper">
-          {isAuth && (
-          <StudyProgress
-            current={userWord.optional.levelRepeat}
-            level={userWord.optional.level}
+      <div className="card-wrapper">
+        {isAuth && (
+        <StudyProgress
+          current={userWord.optional.levelRepeat}
+          level={userWord.optional.level}
+        />
+        )}
+        <span className="card__input__container">
+          <GetPlaceholder
+            key={word}
+            defaultVal={defaultVal}
+            completed={completed}
+            skip={skip}
           />
-          )}
-          <span className="card__input__container">
-            <GetPlaceholder
-              key={word}
-              defaultVal={defaultVal}
-              completed={completed}
-              skip={skip}
-            />
-            <span className="card__input__background">
-              <span className="card__input__background__text">{word}</span>
-            </span>
-            <Input
-              wordLen={word.length}
-              setWord={setInnerWord}
-              setNextButton={setNextButton}
-              completed={completed}
-              defaultVal={defaultVal}
-              setDefaultVal={setDefaultVal}
-            />
+          <span className="card__input__background">
+            <span className="card__input__background__text">{word}</span>
           </span>
-          <div key={word} className="card__grid">
-            <div className="card__grid__text">
-              {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
-              {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
-              {hasExample && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textExampleTranslate}</div>}
-              {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
-              {hasMeaning && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textMeaningTranslate}</div>}
-            </div>
-            <div className="card__grid__beauty">
-              {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
-              {hasTranscription && <div className="card__transcription">{transcription}</div>}
-            </div>
+          <Input
+            wordLen={word.length}
+            setWord={setInnerWord}
+            setNextButton={setNextButton}
+            completed={completed}
+            defaultVal={defaultVal}
+            setDefaultVal={setDefaultVal}
+          />
+        </span>
+        <div key={word} className="card__grid">
+          <div className="card__grid__text">
+            {hasTranslation && <div className="card__translate">{wordTranslate}</div>}
+            {hasExample && <div className="card__sentence"><ReplaceBrackets text={textExample} completed={completed} word={word} /></div>}
+            {hasExample && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textExampleTranslate}</div>}
+            {hasMeaning && <div className="card__sentence"><ReplaceBrackets text={textMeaning} completed={completed} word={word} /></div>}
+            {hasMeaning && completed && autoTranslationLocal && hasAutoTranslation && <div className="card__ruSentence">{textMeaningTranslate}</div>}
           </div>
-          <audio id="card-audio" autoPlay>
-            <track kind="captions" />
-          </audio>
-          {hasAutoTranslation && (
-          <div
-            className={`card__translation-button ${autoTranslationLocal ? '' : 'card__translation-button-disable'}`}
-            onMouseUpCapture={() => setAutoTranslationLocal(!autoTranslationLocal)}
-          />
-          )}
-          {hasAutoSpeech && (
-          <div
-            className={`card__audio-button ${autoSpeechLocal ? '' : 'card__audio-button-disable'}`}
-            onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
-          />
-          )}
-          <div className={`card__button__grid ${completed && hasIntervalButtons ? 'card__button__grid-interval' : ''}`}>
-            <div>
-              {hasDelete && !completed && <button type="button" onClick={() => updateBackEnd('delete')} className="card__button">Удалить</button>}
-              {hasDifficult && !completed && <button type="button" onClick={() => updateBackEnd('complicated')} className="card__button">Сложное</button>}
-              {hasIntervalButtons && !skip && completed && <IntervalButtons />}
-            </div>
-            <div>
-              {completed && (
-              <button
-                type="button"
-                onClick={() => changeSlide(setDoneCards, swiper)}
-                className={`card__button card__button-next ${isPlaying ? 'card__button-disable' : ''}`}
-              >
-                Продолжить
-              </button>
-              )}
-              {!completed && (
-              <button
-                type="button"
-                className="card__button card__button-show"
-                onClick={() => {
-                  checkWord();
-                }}
-              >
-                {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
-              </button>
-              )}
-            </div>
+          <div className="card__grid__beauty">
+            {hasImage && <img src={getUrlData(image)} alt={word} className="card__image" />}
+            {hasTranscription && <div className="card__transcription">{transcription}</div>}
           </div>
         </div>
-      )
-        : <FinalPage />}
+        <audio id="card-audio" autoPlay>
+          <track kind="captions" />
+        </audio>
+        {hasAutoTranslation && (
+        <div
+          className={`card__translation-button ${autoTranslationLocal ? '' : 'card__translation-button-disable'}`}
+          onMouseUpCapture={() => setAutoTranslationLocal(!autoTranslationLocal)}
+        />
+        )}
+        {hasAutoSpeech && (
+        <div
+          className={`card__audio-button ${autoSpeechLocal ? '' : 'card__audio-button-disable'}`}
+          onMouseUpCapture={() => setAutoSpeechLocal(!autoSpeechLocal)}
+        />
+        )}
+        <div className={`card__button__grid ${completed && hasIntervalButtons ? 'card__button__grid-interval' : ''}`}>
+          <div>
+            {hasDelete && !completed && <button type="button" onClick={() => updateBackEnd('delete')} className="card__button">Удалить</button>}
+            {hasDifficult && !completed && <button type="button" onClick={() => updateBackEnd('complicated')} className="card__button">Сложное</button>}
+            {hasIntervalButtons && !skip && completed && <IntervalButtons />}
+          </div>
+          <div>
+            {completed && (
+            <button
+              type="button"
+              onClick={() => changeSlide(setDoneCards, swiper)}
+              className={`card__button card__button-next ${isPlaying ? 'card__button-disable' : ''}`}
+            >
+              Продолжить
+            </button>
+            )}
+            {!completed && (
+            <button
+              type="button"
+              className="card__button card__button-show"
+              onClick={() => {
+                checkWord();
+              }}
+            >
+              {hasShowingAnswer && !nextButton ? 'Показать ответ' : 'Далее'}
+            </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -277,7 +272,6 @@ Card.propTypes = {
   setAutoTranslationLocal: PropTypes.func.isRequired,
   autoSpeechLocal: PropTypes.bool.isRequired,
   setAutoSpeechLocal: PropTypes.func.isRequired,
-  isFinished: PropTypes.bool.isRequired,
 };
 
 Card.defaultProps = {
