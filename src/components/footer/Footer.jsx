@@ -13,6 +13,12 @@ const Footer = () => {
       >
         About us
       </button>
+      <a
+        href="https://github.com/khvalkoilya/rslang"
+        className="footer-github"
+      >
+        <div className="footer-github__icon" />
+      </a>
     </div>
 
   );

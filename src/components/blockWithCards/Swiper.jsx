@@ -54,6 +54,7 @@ const RenderBlockWithCards = ({ words }) => {
             setAutoTranslationLocal={setAutoTranslationLocal}
             autoSpeechLocal={autoSpeechLocal}
             setAutoSpeechLocal={setAutoSpeechLocal}
+            isFinished={doneCards === words.length}
           />
         </SwiperSlide>
       ))}
