@@ -49,7 +49,7 @@ const Setting = ({ settings }) => {
     setWordsNew(newWords);
     setWordsAgain(againWords);
     setWords(againWords.concat(newWords));
-    setDoneCards(0);
+    // setDoneCards(0);
     setPage('train');
     await putSettingUser(userId, newSetting);
     await Promise.all[arrCreateWords];

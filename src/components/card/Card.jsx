@@ -139,7 +139,6 @@ const Card = ({
       className="card"
       onKeyPressCapture={pressEnter}
     >
-      {/* {console.log(isFinished)} */}
       {!isFinished ? (
         <div className="card-wrapper">
           {isAuth && (
