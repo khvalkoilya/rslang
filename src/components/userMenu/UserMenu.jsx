@@ -30,4 +30,3 @@ UserMenu.propTypes = {
 };
 
 export default UserMenu;
-//

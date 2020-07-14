@@ -19,6 +19,7 @@ const SignIn = () => {
       try {
         const user = await loginUser(userData);
         const settings = await getSettingUser(user);
+        delete settings.id;
         const { wordsPerDay } = settings;
         const { group } = settings.optional;
         const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
