@@ -14,6 +14,7 @@ const RenderBlockWithCards = ({ words }) => {
   const { settings, doneCards, setDoneCards } = useContext(ApplicationData);
   const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
   const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
+
   useEffect(() => {
     setArrData(words);
   }, [words]);

@@ -24,6 +24,7 @@ const SignIn = () => {
         const settings = await getSettingUser(user);
         const stat = await getStatisticUser(user);
         const statistic = parseStatistic(stat, setStatistic);
+        delete settings.id;
         const { wordsPerDay } = settings;
         const { group } = settings.optional;
         const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
