@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import SwiperCore, { Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
 import UserProgressBar from '../progressBar/ProgressBar';
-import DEFAULT_SETTINGS from '../../variables/defaultSettings';
-import { getWordsData } from '../../utilsApi/utilsApi';
+import ApplicationData from '../context/Context';
 
 SwiperCore.use([Navigation, A11y]);
 
 const RenderBlockWithCards = ({ words }) => {
   const [swiper, setSwiper] = useState();
-  const [addSlide, setAddSlide] = useState(false);
   const [arrData, setArrData] = useState(words);
-  const [doneCards, setDoneCards] = useState(0);
-  useEffect(() => {
-    const fn = async () => {
-      const WORDS = await getWordsData(arrData[0].group, arrData[0].page + 1);
-      setArrData(arrData.concat(WORDS));
-      setAddSlide(false);
-    };
-    if (addSlide) {
-      fn();
-    }
-  }, [addSlide]);
+  const { settings, doneCards, setDoneCards } = useContext(ApplicationData);
+  const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
+  const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
+
   useEffect(() => {
     setArrData(words);
   }, [words]);
@@ -34,12 +25,16 @@ const RenderBlockWithCards = ({ words }) => {
       navigation
       onSwiper={(obj) => {
         setSwiper(obj);
+        obj.slideTo(doneCards);
         document.querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
-        document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+        if (doneCards === 0) {
+          document.querySelector('.swiper-slide-active > div > div > span  > input').focus();
+        }
       }}
       onSlidePrevTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.add('swiper-button-disabled');
         document.querySelector('.swiper-button-next').classList.remove('swiper-button-disabled');
+        document.querySelector('.swiper-button-prev').blur();
       }}
       onSlideNextTransitionEnd={() => {
         document.querySelector('.swiper-button-prev').classList.remove('swiper-button-disabled');
@@ -48,17 +43,20 @@ const RenderBlockWithCards = ({ words }) => {
       }}
     >
       {arrData.map((e) => (
-        <SwiperSlide key={e.id}>
+        <SwiperSlide key={`${e.id}`}>
           <Card
             word={e}
             swiper={swiper}
-            settings={DEFAULT_SETTINGS.optional}
-            setAddSlide={setAddSlide}
+            settings={settings.optional}
             setDoneCards={setDoneCards}
+            autoTranslationLocal={autoTranslationLocal}
+            setAutoTranslationLocal={setAutoTranslationLocal}
+            autoSpeechLocal={autoSpeechLocal}
+            setAutoSpeechLocal={setAutoSpeechLocal}
           />
         </SwiperSlide>
       ))}
-      <UserProgressBar doneCards={doneCards} maxCards={40} />
+      <UserProgressBar doneCards={doneCards} maxCards={words.length} />
     </Swiper>
   );
 };

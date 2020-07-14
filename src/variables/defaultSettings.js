@@ -1,6 +1,7 @@
 const DEFAULT_SETTINGS = {
-  wordsPedDay: 20,
+  wordsPerDay: 20,
   optional: {
+    group: 0,
     hasTranslation: true,
     hasMeaning: true,
     hasExample: true,
