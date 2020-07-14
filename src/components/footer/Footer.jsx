@@ -8,10 +8,10 @@ const Footer = () => {
     <div className="footerWrapper">
       <button
         type="button"
-        onClick={() => setPage('aboutAs')}
-        className={`menu-item ${page === 'aboutAs' ? 'menu-item-active' : ''}`}
+        onClick={() => setPage('aboutUs')}
+        className={`menu-item ${page === 'aboutUs' ? 'menu-item-active' : ''}`}
       >
-        About us
+        О нас
       </button>
     </div>
 

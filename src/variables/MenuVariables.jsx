@@ -101,10 +101,10 @@ export const USER_MENU_ITEMS = [
   },
 ];
 
-export const ABOUT_AS = [
+export const ABOUT_US = [
   {
     id: 0,
-    title: 'aboutAs',
-    render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+    title: 'aboutUs',
+    render: (id, title) => <div key={`${id}-${title}`}>About Us</div>,
   },
 ];
