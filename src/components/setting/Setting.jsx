@@ -146,6 +146,8 @@ const Setting = ({ settings }) => {
                   && newSetting.optional.hasTranslation === false
                   && newSetting.optional.hasExample === false) {
                   alert('Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.');
+                } else if (newSetting.optional.group > 5) {
+                  alert('Введите корректное значение: Уровень сложности');
                 } else {
                   updateSettings();
                 }
