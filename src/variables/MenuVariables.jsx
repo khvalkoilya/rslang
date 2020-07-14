@@ -18,8 +18,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
         words,
       } = useContext(ApplicationData);
       return (
-        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
-
+        words && <RenderBlockWithCards key={`${id}-${title}`} />
       );
     },
   },

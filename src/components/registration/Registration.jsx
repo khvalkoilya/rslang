@@ -19,6 +19,7 @@ const Registration = () => {
     if (userData) {
       try {
         const user = await createUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
         await putSettingUser(user, settings);
         const { wordsPerDay } = settings;
         const { group } = settings.optional;

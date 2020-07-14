@@ -12,7 +12,7 @@ const SignIn = () => {
   const {
     setSettings, setPage, setUser, setIsAuth,
     setWords, setWordsNew, setWordsAgain,
-    setDoneCards, setStatistic,
+    setStatistic, setDoneCards,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -21,6 +21,7 @@ const SignIn = () => {
     if (userData) {
       try {
         const user = await loginUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
         const settings = await getSettingUser(user);
         const stat = await getStatisticUser(user);
         const statistic = parseStatistic(stat, setStatistic);
@@ -46,7 +47,7 @@ const SignIn = () => {
         setWords(againWords.concat(newWords));
         setUser(user);
         setIsAuth(true);
-        setDoneCards(0);
+        setDoneCards(JSON.parse(localStorage.getItem('doneCards')));
         stringifyStatistic(statistic, user);
         setPage('train');
         await Promise.all[arrCreateWords];
