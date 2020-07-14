@@ -28,11 +28,9 @@ const Registration = () => {
           e.id = _id;
         });
         const arrCreateWords = [];
-        words.forEach((e, index) => {
-          if ((index + 1) % 7 === 0) {
-            e.userWord = WORD_OPTIONAL_DEFAULT;
-            arrCreateWords.push(createWord(user, e.id));
-          }
+        words.forEach((e) => {
+          e.userWord = WORD_OPTIONAL_DEFAULT;
+          arrCreateWords.push(createWord(user, e.id));
         });
         setWordsNew(words);
         setWords(words);

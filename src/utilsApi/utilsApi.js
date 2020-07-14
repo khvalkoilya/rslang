@@ -69,7 +69,7 @@ export const getWordsDelete = (
 export const createWord = (
   { userId, token },
   id,
-option = WORD_OPTIONAL_DEFAULT,
+  option = WORD_OPTIONAL_DEFAULT,
 ) => fetchData(
   [
     URL.word.words(userId, id),
@@ -87,3 +87,4 @@ export const putWord = (
   ],
 );
 export const getUrlData = (name) => `https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${name}`;
+// export const getUrlData = (name) => `https://raw.githubusercontent.com/irinainina/rslang-data/master/${name}`;
