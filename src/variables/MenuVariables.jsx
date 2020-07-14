@@ -9,6 +9,7 @@ import Setting from '../components/setting/Setting';
 // import DEFAULT_WORDS from './defaultWords';
 // import DEFAULT_SETTINGS from './defaultSettings';
 import DemoPage from '../components/demoPage/DemoPage';
+import Dictionary from '../components/dictionary/Dictionary';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -34,7 +35,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/dictionary.svg',
     title: 'vocabulary',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Dictionary key={`${id}-${title}`} />,
   },
   {
     id: 2,
