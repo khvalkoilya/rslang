@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Props = React.createContext();
+const ApplicationData = React.createContext();
 
-export default Props;
+export default ApplicationData;

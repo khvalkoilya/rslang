@@ -4,10 +4,6 @@ import Timer from '../timer/Timer';
 
 import ApplicationData from '../context/Context';
 
-// import words from '../../variables/defaultWords';
-
-// https://youtu.be/ynmb9pb2mUs
-
 const Sprint = () => {
   const { words } = useContext(ApplicationData);
 
@@ -23,7 +19,6 @@ const Sprint = () => {
 
   const [gameStatus, setGameStatus] = useState('game-hello');
 
-  // функция для генерации неправильного перевода к английскому слову
   const randomWord = (x) => {
     const rand = Math.floor(Math.random() * (2));
     if (rand === 0) {
@@ -33,19 +28,15 @@ const Sprint = () => {
     return words[secondWord].wordTranslate;
   };
 
-  // массив со словами
   let wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
 
   const itsErrorAnswer = () => {
-    console.log('не угадали, ошибка');
     setCorrectAnswers(0);
     setLevel(0);
   };
 
   const itsTrueAnswer = () => {
-    console.log('правильный ответ!');
     setCorrectAnswers(correctAnswers + 1);
-    console.log('правильных ответов подряд:', correctAnswers);
 
     if (level === 0) {
       setScore(score + 10);
@@ -77,40 +68,28 @@ const Sprint = () => {
 
   const endGame = () => setGameStatus('game-end');
 
-  // нажатие на кнопку
   const gameStep = (e) => {
     if (timerPlace === '60') {
-      setTimerPlace(<Timer initTime={60} handler={endGame} />);
+      setTimerPlace(<Timer initTime={60} toggle={endGame} />);
     }
 
-    let myAnswer;
-
-    if (e.target.attributes.answer.value === 'yes' || e.target.attributes.answer.value === 'no') {
-      myAnswer = e.target.attributes.answer.value;
-    } else {
-      myAnswer = e;
-    }
+    const myAnswer = e.target.attributes.answer.value;
 
     if (myAnswer === 'yes') {
-      console.log('нажали на кнопку да');
       if (wordsArray[currentWord][2] === wordsArray[currentWord][1]) {
         itsTrueAnswer();
       } else {
         itsErrorAnswer();
       }
+    } else if (wordsArray[currentWord][2] !== wordsArray[currentWord][1]) {
+      itsTrueAnswer();
     } else {
-      console.log('нажали на кнопку нет');
-      if (wordsArray[currentWord][2] !== wordsArray[currentWord][1]) {
-        itsTrueAnswer();
-      } else {
-        itsErrorAnswer();
-      }
+      itsErrorAnswer();
     }
 
     setCurrentWord(currentWord + 1);
 
     if (wordsArray.length - 1 === currentWord) {
-      console.log('мы в конце массива');
       setCurrentWord(1);
     }
   };
@@ -135,8 +114,6 @@ const Sprint = () => {
     setCorrectAnswers(0);
     setLevel(0);
     setScore(0);
-
-    console.log(wordsArray);
   };
 
   return (
@@ -174,8 +151,6 @@ const Sprint = () => {
 
           </div>
 
-          {/* экран приветствия */}
-
         </div>
 
         <div className="sprint-hello">
@@ -183,8 +158,23 @@ const Sprint = () => {
             <p>
               Спринт
             </p>
-            <p>
-              В игре есть несколько уровней.
+            <p className="sprint-hello__description">
+              На нулевом уровне за правильный ответ Вы получаете 10 очков
+              и сразу переходите на первый уровень.
+            </p>
+            <p className="sprint-hello__description">
+              На первом уровне за правильный ответ Вы получаете 20 очков.
+              Для перехода на следующий уровень нужно дать три правильных ответа.
+            </p>
+            <p className="sprint-hello__description">
+              На втором уровне за правильный ответ Вы получаете 40 очков.
+              Для перехода на следующий уровень нужно дать три правильных ответа.
+            </p>
+            <p className="sprint-hello__description">
+              На третьем уровне за правильный ответ Вы получаете 80 очков.
+            </p>
+            <p className="sprint-hello__description">
+              Неправильный ответ сбросит Вас на нулевой уровень.
             </p>
 
             <button

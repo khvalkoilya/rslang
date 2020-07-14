@@ -4,7 +4,7 @@
 }
 
 .sprint-game, .sprint-hello, .sprint-end {
-    margin: 2rem auto;
+    
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.8);
     font-size: 2rem;
@@ -128,4 +128,8 @@
 }
 .game-end > .sprint-end {
     display: block;
+}
+
+.sprint-hello__description {
+    font-size: 1.3rem;
 }

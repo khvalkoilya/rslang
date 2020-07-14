@@ -23,10 +23,9 @@ const Input = ({
       id={name}
       placeholder={placeholder}
       pattern={name === 'password_first' ? '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[+-_@$!%*?&#.,;:[{}])[0-9a-zA-Z+-_@$!%*?&#.,;:[{}]{8,}' : undefined}
-      title={name === 'password_first' ? 'Enter min 8 characters, [0-9], [a-z], [A-Z], [+-_@$!%*?&#.,;:[]{}]' : undefined}
+      title={name === 'password_first' ? 'Введи минимум 8 символов, [0-9], [a-z], [A-Z], [+-_@$!%*?&#.,;:[]{}]' : undefined}
       onInput={name === 'password_second' ? () => checkPassword() : undefined}
       required
-
     />
   </div>
 );

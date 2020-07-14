@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
-const Timer = ({ initTime, handler }) => {
+const Timer = ({ initTime, toggle }) => {
   const [timer, setTimer] = useState(initTime);
 
   useEffect(() => {
@@ -12,10 +12,9 @@ const Timer = ({ initTime, handler }) => {
         setTimer(timer - 1);
       }, 1000);
     } else {
-      handler();
+      toggle();
       clearInterval(interval);
     }
-
     return () => clearInterval(interval);
   });
 
@@ -24,7 +23,7 @@ const Timer = ({ initTime, handler }) => {
 
 Timer.propTypes = {
   initTime: PropTypes.number.isRequired,
-  handler: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
 export default Timer;

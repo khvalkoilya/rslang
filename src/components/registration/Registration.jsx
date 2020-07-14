@@ -1,96 +1,98 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
-import Props from '../context/Context';
+import ApplicationData from '../context/Context';
+import REGISTRATION from '../../variables/inputRegistrationVariables';
+import {
+  createUser, putSettingUser, getWordsAgainAndNew, createWord,
+} from '../../utilsApi/utilsApi';
+import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
 
-const REGISTRATION = [
-  {
-    id: 0,
-    name: 'name',
-    type: 'text',
-    placeholder: 'Имя',
-    icon: '../../assets/images/user.svg',
-    state: false,
-  },
-  {
-    id: 1,
-    name: 'email',
-    type: 'email',
-    placeholder: 'email',
-    icon: '../../assets/images/email.png',
-    state: true,
-  },
-  {
-    id: 2,
-    name: 'password_first',
-    type: 'password',
-    placeholder: 'Пароль',
-    icon: '../../assets/images/locked-padlock.svg',
-    state: true,
-  },
-  {
-    id: 3,
-    name: 'password_second',
-    type: 'password',
-    placeholder: 'Повторить пароль',
-    icon: '../../assets/images/locked-padlock.svg',
-    state: false,
-  },
-];
+const Registration = () => {
+  const {
+    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew,
+  } = useContext(ApplicationData);
+  const [userData, setUserData] = useState();
 
-const Registration = ({ state }) => {
-  let input;
-  const setPage = useContext(Props);
-  if (state === 'signIn') {
-    input = REGISTRATION.map((element) => element.state && (
-    <Input
-      key={`${element.name}-${element.id}`}
-      name={element.name}
-      type={element.type}
-      placeholder={element.placeholder}
-      icon={element.icon}
-    />
-    ));
-  } else {
-    input = REGISTRATION.map((element) => (
-      <Input
-        key={`${element.name}-${element.id}`}
-        name={element.name}
-        type={element.type}
-        placeholder={element.placeholder}
-        icon={element.icon}
-      />
-    ));
-  }
-
+  const utilRegistration = async () => {
+    const error = document.querySelector('.reg__error');
+    if (userData) {
+      try {
+        const user = await createUser(userData);
+        await putSettingUser(user, settings);
+        const { wordsPerDay } = settings;
+        const { group } = settings.optional;
+        const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
+        const words = wordsAgainAndNew[0].paginatedResults;
+        words.forEach((e) => {
+          const { _id } = e;
+          e.id = _id;
+        });
+        const arrCreateWords = [];
+        words.forEach((e) => {
+          e.userWord = WORD_OPTIONAL_DEFAULT;
+          arrCreateWords.push(createWord(user, e.id));
+        });
+        setWordsNew(words);
+        setWords(words);
+        setUser(user);
+        setIsAuth(true);
+        setDoneCards(0);
+        setPage('train');
+        await Promise.all[arrCreateWords];
+      } catch (e) {
+        error.innerHTML = 'Неверный e-mail или пароль';
+        setIsAuth(false);
+      }
+    }
+  };
+  useEffect(() => {
+    utilRegistration();
+  }, [userData]);
   return (
     <form
       className="reg__form"
-      onSubmit={(e) => {
-        e.preventDefault();
+      onSubmit={(event) => {
+        const email = document.querySelector('.reg__input_email');
+        const name = document.querySelector('.reg__input_name');
+        const firstPassword = document.querySelector('.reg__input_password_first');
+        const secondPassword = document.querySelector('.reg__input_password_second');
+        if (firstPassword.value === secondPassword.value) {
+          event.preventDefault();
+          setUserData({ name: name.value, email: email.value, password: firstPassword.value });
+        } else {
+          const error = document.querySelector('.reg__error');
+          error.innerHTML = 'Неверный повторный пароль';
+          event.preventDefault();
+        }
       }}
     >
-      {state === 'registration' ? <h1 className="reg__h1">Создать аккаунт</h1> : <h1 className="reg__h1">Вход</h1>}
-      {input}
-      <div className={state === 'signIn' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
-        {state === 'signIn' && <p>Ещё не с нами?</p>}
+      <h1 className="reg__h1">Создать аккаунт</h1>
+      <div className="reg__error" />
+      {REGISTRATION.map((element) => (
+        <Input
+          key={`${element.name}-${element.id}`}
+          name={element.name}
+          type={element.type}
+          placeholder={element.placeholder}
+          icon={element.icon}
+        />
+      ))}
+      <div className="reg__wrapper_first">
         <button
           type="submit"
-          className={state === 'signIn' ? 'reg__button_second' : 'reg__button_first'}
-          onClick={() => {
-            if (state === 'signIn') setPage('registration');
-          }}
+          className="reg__button_first"
         >
           Присоединиться
         </button>
       </div>
-      <div className={state === 'registration' ? 'reg__wrapper_second' : 'reg__wrapper_first'}>
-        {state === 'registration' && <p>Уже с нами?</p>}
+      <div className="reg__wrapper_second">
+        <p>Уже с нами?</p>
         <button
           type="submit"
-          className={state === 'registration' ? 'reg__button_second' : 'reg__button_first'}
-          onClick={() => {
-            if (state === 'registration') setPage('signIn');
+          className="reg__button_second"
+          onClick={(e) => {
+            e.preventDefault();
+            setPage('signIn');
           }}
         >
           Войти
@@ -100,7 +102,4 @@ const Registration = ({ state }) => {
   );
 };
 
-Registration.propTypes = {
-  state: PropTypes.string.isRequired,
-};
 export default Registration;

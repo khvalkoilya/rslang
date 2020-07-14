@@ -7,6 +7,7 @@
   -moz-box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 24px -2px rgba(0,0,0,0.75);
   background-color: $white-color;
+  font-weight: 700;
 
   @include media-medium {
     width: 560px;
@@ -14,6 +15,20 @@
 
   @include media-small {
     width: 300px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 480px 300px;
+    gap: 20px;
+
+    @include media-medium {
+      display: block;
+    }
+  }
+  
+  &-none {
+    display: none;
   }
 
   &-wrapper {
@@ -30,40 +45,56 @@
   }
 
   &__input {
-    background-color: $light-blue-color;
-    border: none;
-    height: 46px;
-    margin-top: 47px;
-    margin-left: 40px;
+    background: transparent;
     padding: 0 10px;
     outline: none;
-    font-size: 30px;
-    font-family: "BalsamiqSans Bold";
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     letter-spacing: 3px;
-    display: inline-block;
 
-    @include media-medium {
-      margin: 0 auto;
-      margin-top: 60px;
-      display: block;
+    &__container {
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      margin-top: 47px;
+      margin-left: 40px;
+      font-size: 30px;
+      font-family: "BalsamiqSans Bold";
+      letter-spacing: 3px;
+
+      @include media-medium {
+        margin-top: 60px;
+        margin-left: 0;   
+      }
+    }
+
+    &__background {
+      padding: 4px 10px;
+      background-color: $light-blue-color;
+
+      &__text {
+        visibility: hidden;
+      }
     }
   }
 
   &__translate {
     overflow: hidden;
-    font-family: "BalsamiqSans Bold";
     font-size: 30px;
-    padding-top: 35px;
     padding-bottom: 20px;
   }
 
   &__sentence {
     overflow: hidden;
     border-top: 2px solid $whitesmoke-card-border;
-    font-family: "BalsamiqSans Bold Italic";
+    font-style: italic;
     font-size: 30px;
     width: 480px;
-    padding-top: 20px;
+    padding: 20px 0;
 
     @include media-small {
       width: 100%;
@@ -72,10 +103,10 @@
 
   &__ruSentence {
     overflow: hidden;
-    font-family: "BalsamiqSans Italic";
+    font-weight: 400;
+    font-style: italic;
     font-size: 25px;
     color: $denim-color;
-    padding-top: 7px;
     padding-bottom: 26px;
     width: 480px;
 
@@ -91,7 +122,7 @@
     height: 36px;
     border: none;
     outline: none;
-    font-family: "BalsamiqSans Regular";
+    font-weight: 400;
     font-size: 20px;
     margin-right: 25px;
     margin-bottom: 26px;
@@ -119,13 +150,55 @@
       transition: all 0.2s ease-in-out;
     }
 
-    &-show {
-      float: right;
+    &-show, &-next {
       margin-right: 0;
 
       @include media-small {
         margin-left: 32px;
-        float: none;
+        margin-bottom: 40px;
+      }
+    }
+
+    &-disable {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &__grid {
+      display: flex;
+      justify-content: space-between;
+
+      @include media-small {
+        flex-direction: column;
+      }
+
+      &-interval {
+        @include media-medium {
+          flex-direction: column;
+        }
+      }
+    }
+
+    &-interval {
+      @include media-medium {
+        padding: 0 15px;
+        margin-bottom: 0;
+      }
+
+      @include media-small {
+        margin-bottom: 20px;
+      }
+
+      &:first-child {
+        @include media-small {
+          margin-right: 56px;
+        }
+      }
+
+      &:nth-child(3) {
+        @include media-small {
+          margin-right: 43px;
+        }
       }
     }
   }
@@ -142,11 +215,11 @@
     @include media-medium {
       width: 28px;
       height: 28px;
-      top: -40px;
+      top: 25px;
     }
 
     @include media-small {
-      top: -48px;
+      top: 9px;
       width: 24px;
       height: 24px;
     }
@@ -155,6 +228,10 @@
       cursor: pointer;
       transform: scale(1.05);
       transition: all 0.2s ease-in-out;
+    }
+
+    &-disable {
+      opacity: 0.3;
     }
   }
 
@@ -185,42 +262,123 @@
   }
 
   &__image {
-    position: absolute;
-    right: 62px;
-    top: 100px;
     width: 280px;
-
-    @include media-medium {
-      display: block;
-      position: static;
-    }
 
     @include media-small {
       width: 240px;
-      margin-bottom: 100px;
     }
   }
 
   &__transcription {
-    float: right;
     width: 280px;
+    padding: 20px 0;
     text-align: center;
-    font-family: "BalsamiqSans Regular";
+    font-weight: 400;
     font-size: 30px;
-    margin-top: -25px;
-
-    @include media-medium {
-      text-align: right;
-      position: absolute;
-      right: 88px;
-      bottom: 170px;
-    }
 
     @include media-small {
       width: 240px;
       text-align: center;
-      bottom: 157px;
-      right: auto;
     }
   }
+
+  &__brackets {
+    font-style: italic;
+    font-size: 25px;
+    color: $denim-color;
+
+    &-guessed {
+      font-style: italic;
+      font-size: 30px;
+      text-decoration: underline;
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    top: 13px;
+    left: 103px;
+
+    @include media-medium {
+      top: 18px;
+      left: 41px;
+    }
+
+    @include media-small {
+      left: 33px;
+    }
+
+    &__full-dot, &__empty-dot {
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      margin-right: 3px;
+      cursor: pointer;
+
+      @include media-medium {
+        height: 19px;
+      }
+    }
+
+    &__full-dot {
+      background-image: url('./assets/images/dots/full.svg');
+    }
+
+    &__empty-dot {
+      background-image: url('./assets/images/dots/empty.svg');
+    }
+
+    &__study-word {
+      font-weight: 400;
+      font-size: 14px;
+      color: $brown-color;
+      position: absolute;
+      bottom: 3px;
+    }
+  }
+}
+
+//styles for input word after typing
+
+.checked-word {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 3px;
+  position: absolute;
+  left: 10px;
+}
+
+.word-fade {
+  transition: all 1s ease-in-out;
+  opacity: 0.3;
+}
+
+.completed-word {
+  border-bottom: 2px dashed $true-letter-color;
+
+  &-false {
+    border-bottom: 2px dashed $dangerous-mistake-color;
+  }
+
+  &-false span {
+    color: $dangerous-mistake-color;
+  }
+}
+
+.completed-word-letter {
+  color: $true-letter-color;
+}
+
+.true-letter {
+  color: $true-letter-color;
+}
+
+.calm-mistake {
+  color: $calm-mistake-color;
+}
+
+.dangerous-mistake {
+  color: $dangerous-mistake-color;
 }
