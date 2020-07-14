@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
 import UserProgressBar from '../progressBar/ProgressBar';
 import ApplicationData from '../context/Context';
+import Loader from '../loader/Loader';
 
 SwiperCore.use([Navigation, A11y]);
 
