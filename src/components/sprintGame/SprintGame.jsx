@@ -15,8 +15,6 @@ const Sprint = () => {
 
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
-  const [halfArrayLength, setHalfArrayLength] = useState(0);
-
   const [timerPlace, setTimerPlace] = useState('60');
 
   const [gameStatus, setGameStatus] = useState('game-hello');
@@ -73,28 +71,10 @@ const Sprint = () => {
     }
   };
 
-  // добавляем ещё слов в массив
-  const setNewWords = () => {
-    console.log('запускаем функцию по добавлению новых слов');
-
-    const tempArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
-
-    wordsArray = wordsArray.concat(tempArray);
-
-    console.log(wordsArray);
-    console.log(wordsArray.length);
-
-    setHalfArrayLength(wordsArray.length / 2);
-    console.log(`подвезли новых слов, теперь длина массива равна: ${
-      wordsArray.length
-    }, а половина массива равна: ${halfArrayLength}`);
-  };
-
   const endGame = () => setGameStatus('game-end');
 
   // нажатие на кнопку
   const gameStep = (e) => {
-    console.log('шаг!');
     if (timerPlace === '60') {
       setTimerPlace(<Timer initTime={60} handler={endGame} />);
     }
@@ -106,9 +86,6 @@ const Sprint = () => {
     } else {
       myAnswer = e;
     }
-
-    console.log('________');
-    console.log('мой ответ:', myAnswer);
 
     if (myAnswer === 'yes') {
       console.log('нажали на кнопку да');
@@ -128,9 +105,9 @@ const Sprint = () => {
 
     setCurrentWord(currentWord + 1);
 
-    if (halfArrayLength > currentWord) {
-      console.log('нужно увеличивать массив! его длина равна', wordsArray.length);
-      setNewWords();
+    if (wordsArray.length - 1 === currentWord) {
+      console.log('мы в конце массива');
+      setCurrentWord(1);
     }
   };
 
@@ -199,7 +176,13 @@ const Sprint = () => {
 
         <div className="sprint-hello">
           <div>
-            Привет! поиграем?
+            <p>
+              Спринт
+            </p>
+            <p>
+              В игре есть несколько уровней. За первый правильный ответ ты получаешь 10 баллов и переходишь с нулевого на первый уровень. Здесь за каждый
+            </p>
+
             <button
               type="button"
               className="sprint-game__button"
@@ -219,6 +202,7 @@ const Sprint = () => {
             {' '}
             очков
           </p>
+
           <button type="button" className="sprint-game__button" onClick={sprintGameStart}>Начать новую игру</button>
         </div>
 
