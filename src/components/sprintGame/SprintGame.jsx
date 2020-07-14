@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Timer from '../timer/Timer';
 
-import words from '../../variables/defaultWords';
+import ApplicationData from '../context/Context';
+
+// import words from '../../variables/defaultWords';
 
 // https://youtu.be/ynmb9pb2mUs
 
 const Sprint = () => {
+  const { words } = useContext(ApplicationData);
+
   const [level, setLevel] = useState(0);
 
   const [score, setScore] = useState(0);
@@ -180,7 +184,7 @@ const Sprint = () => {
               Спринт
             </p>
             <p>
-              В игре есть несколько уровней. За первый правильный ответ ты получаешь 10 баллов и переходишь с нулевого на первый уровень. Здесь за каждый
+              В игре есть несколько уровней.
             </p>
 
             <button

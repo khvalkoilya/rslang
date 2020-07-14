@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
 const Timer = ({ initTime, handler }) => {
   const [timer, setTimer] = useState(initTime);
 
@@ -18,6 +20,11 @@ const Timer = ({ initTime, handler }) => {
   });
 
   return <div>{timer}</div>;
+};
+
+Timer.propTypes = {
+  initTime: PropTypes.number.isRequired,
+  handler: PropTypes.func.isRequired,
 };
 
 export default Timer;
