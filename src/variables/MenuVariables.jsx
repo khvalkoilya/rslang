@@ -5,8 +5,10 @@ import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
+import AboutUs from '../components/footer/aboutUs/AboutUs';
 import FinalPage from '../components/card/FinalPage';
 import DemoPage from '../components/demoPage/DemoPage';
+import Statistics from '../components/statistic/Statistics';
 import Dictionary from '../components/dictionary/Dictionary';
 
 export const MAIN_MENU_ITEMS_VALUES = [
@@ -60,7 +62,7 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/growth.svg',
     title: 'statistics',
-    render: (id, title) => <div key={`${id}-${title}`}>statistics</div>,
+    render: (id, title) => <Statistics key={`${id}-${title}`} />,
   },
   {
     id: 1,
@@ -103,11 +105,11 @@ export const USER_MENU_ITEMS = [
   },
 ];
 
-export const ABOUT_AS = [
+export const ABOUT_US = [
   {
     id: 0,
-    title: 'aboutAs',
-    render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+    title: 'aboutUs',
+    render: (id, title) => <AboutUs key={`${id}-${title}`} />,
   },
 ];
 

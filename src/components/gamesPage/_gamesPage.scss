@@ -15,14 +15,10 @@
   }
 }
 
-@media (min-width: $m-screen) {
-  .games-page {
-    grid-template: auto / repeat(3, 1fr);
-    column-gap: 4rem;
-  }
-}
+
 
 .games-page__block {
+  max-width: 300px;
   padding: 1rem;
   cursor: pointer;
 }

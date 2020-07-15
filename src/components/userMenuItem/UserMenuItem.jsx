@@ -9,7 +9,7 @@ const UserMenuItem = ({
   isAuth, setVisible, isNavVisible, burgerState,
 }) => {
   const {
-    page, setPage, setIsAuth, setSettings, setWords, setUser,
+    page, setPage, setIsAuth, setSettings, setWords, setUser, doneCards,
   } = useContext(ApplicationData);
   const menuItems = USER_MENU_ITEMS.map((element) => {
     if (element.isAuthorized === isAuth) {
@@ -23,6 +23,7 @@ const UserMenuItem = ({
               setWords(DEFAULT_WORDS);
               setSettings(DEFAULT_SETTINGS);
               localStorage.clear();
+              localStorage.setItem('doneCards', JSON.stringify(doneCards));
               setUser();
               localStorage.setItem('isAuthLocal', JSON.stringify(false));
               setPage('signIn');

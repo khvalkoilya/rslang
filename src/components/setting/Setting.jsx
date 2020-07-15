@@ -15,7 +15,7 @@ import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
 const Setting = ({ settings }) => {
   const [newSetting, setNewSetting] = useState({ ...settings });
   const {
-    setSettings, setPage, userId, setWords, setWordsNew, setWordsAgain, setDoneCards,
+    setSettings, setPage, userId, setWords, setWordsNew, setWordsAgain, setDoneCards, words,
   } = useContext(ApplicationData);
   const changeOptionalSetting = (el) => {
     const initialValue = newSetting.optional[el];
@@ -27,19 +27,26 @@ const Setting = ({ settings }) => {
       },
     });
   };
+  const spliceArray = () => {
+    setWords(words.splice(0, newSetting.wordsPerDay));
+    setSettings(newSetting);
+    putSettingUser(userId, newSetting);
+    setPage('train');
+  };
+
   const updateSettings = async () => {
     const wordsAgainAndNew = await getWordsAgainAndNew(
       userId,
       newSetting.optional.group,
       newSetting.wordsPerDay,
     );
-    const words = wordsAgainAndNew[0].paginatedResults;
-    words.forEach((e) => {
+    const wordsNew = wordsAgainAndNew[0].paginatedResults;
+    wordsNew.forEach((e) => {
       const { _id } = e;
       e.id = _id;
     });
-    const newWords = words.filter((e) => (e.userWord === undefined));
-    const againWords = words.filter((e) => (e.userWord !== undefined));
+    const newWords = wordsNew.filter((e) => (e.userWord === undefined));
+    const againWords = wordsNew.filter((e) => (e.userWord !== undefined));
     const arrCreateWords = [];
     newWords.forEach((e) => {
       e.userWord = WORD_OPTIONAL_DEFAULT;
@@ -49,7 +56,6 @@ const Setting = ({ settings }) => {
     setWordsNew(newWords);
     setWordsAgain(againWords);
     setWords(againWords.concat(newWords));
-    setDoneCards(0);
     setPage('train');
     await putSettingUser(userId, newSetting);
     await Promise.all[arrCreateWords];
@@ -70,10 +76,12 @@ const Setting = ({ settings }) => {
       });
     }
   };
+  const settingError = document.getElementById('setting_error');
   return (
     <div className="card">
       <div className="card-wrapper">
         <h3 className="setting__header">Настройки</h3>
+        <div className="setting_error" id="setting_error" />
         <form onSubmit={(event) => event.preventDefault()}>
           <div className="common_settings">
             {
@@ -145,11 +153,20 @@ const Setting = ({ settings }) => {
                 if (newSetting.optional.hasMeaning === false
                   && newSetting.optional.hasTranslation === false
                   && newSetting.optional.hasExample === false) {
-                  alert('Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.');
+                  settingError.innerText = 'Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.';
                 } else if (newSetting.optional.group > 5) {
-                  alert('Введите корректное значение: Уровень сложности');
-                } else {
+                  settingError.innerText = 'Введите корректное значение: Уровень сложности';
+                } else if (settings.wordsPerDay < newSetting.wordsPerDay) {
                   updateSettings();
+                } else if (settings.optional.group !== newSetting.optional.group) {
+                  updateSettings();
+                  setDoneCards(0);
+                } else if (settings.wordsPerDay > newSetting.wordsPerDay) {
+                  spliceArray();
+                } else {
+                  setSettings(newSetting);
+                  putSettingUser(userId, newSetting);
+                  setPage('train');
                 }
               }}
             >
