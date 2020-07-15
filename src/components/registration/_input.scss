@@ -55,6 +55,12 @@
     color: $white-color;
     cursor: pointer;
     outline: none;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f5ae7c;
+      transition: all 0.2s ease-in-out;
+    }
   }
   &_second{
     border: none;
