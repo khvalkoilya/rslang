@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SavanGame from '../components/savanGame/SavanGame';
+import SprintGame from '../components/sprintGame/SprintGame';
 import AudioCallGame from '../components/audioCall/AudioCall';
 
 const GAMES_VARIABLES = [
@@ -32,7 +33,7 @@ const GAMES_VARIABLES = [
     id: 4,
     icon: '../../assets/images/games-page-icons/sprint.svg',
     title: 'sprint',
-    render: (id, title) => <div key={`${id}-${title}`}>Sprint</div>,
+    render: (id, title) => <SprintGame key={`${id}-${title}`} />,
   },
   {
     id: 5,
