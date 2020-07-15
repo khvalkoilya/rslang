@@ -20,9 +20,11 @@ const UserMenuItem = ({
             if (element.title === 'logOut') {
               setIsAuth(false);
               setVisible(false);
-              setSettings(DEFAULT_WORDS);
-              setWords(DEFAULT_SETTINGS);
+              setWords(DEFAULT_WORDS);
+              setSettings(DEFAULT_SETTINGS);
+              localStorage.clear();
               setUser();
+              localStorage.setItem('isAuthLocal', JSON.stringify(false));
               setPage('signIn');
             } else {
               setPage(element.title);

@@ -6,10 +6,11 @@ import {
   createUser, putSettingUser, getWordsAgainAndNew, createWord,
 } from '../../utilsApi/utilsApi';
 import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
+import { stringifyStatistic } from '../../variables/defaultStatistic';
 
 const Registration = () => {
   const {
-    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew,
+    settings, setPage, setWords, setUser, setIsAuth, setDoneCards, setWordsNew, statistic,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -18,6 +19,7 @@ const Registration = () => {
     if (userData) {
       try {
         const user = await createUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
         await putSettingUser(user, settings);
         const { wordsPerDay } = settings;
         const { group } = settings.optional;
@@ -37,6 +39,7 @@ const Registration = () => {
         setUser(user);
         setIsAuth(true);
         setDoneCards(0);
+        stringifyStatistic(statistic, user);
         setPage('train');
         await Promise.all[arrCreateWords];
       } catch (e) {
