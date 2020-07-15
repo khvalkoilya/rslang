@@ -1,4 +1,6 @@
 import React from 'react';
+import SpeakItContainer from '../components/speakIt/SpeakItContainer';
+import DEFAULT_WORDS from './defaultWords';
 
 import SavanGame from '../components/savanGame/SavanGame';
 import SprintGame from '../components/sprintGame/SprintGame';
@@ -9,7 +11,7 @@ const GAMES_VARIABLES = [
     id: 0,
     icon: '../../assets/images/games-page-icons/interaction.svg',
     title: 'speackIt',
-    render: (id, title) => <div key={`${id}-${title}`}>SpeackIt</div>,
+    render: () => <SpeakItContainer words={DEFAULT_WORDS.slice(0, 10)} />,
   },
   {
     id: 1,

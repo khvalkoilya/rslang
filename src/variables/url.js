@@ -1,10 +1,13 @@
 const BASE_PATH = 'https://afternoon-falls-25894.herokuapp.com';
+const WORDS = 'words';
+const USERS = 'users';
+const SIGNIN = 'signin';
 
 const URL = {
-  getWords: (page, group) => `${BASE_PATH}/words?page=${page}&group=${group}`,
+  getWords: (page, group) => `${BASE_PATH}/${WORDS}?page=${page}&group=${group}`,
   userApi: {
-    createUser: `${BASE_PATH}/users`,
-    loginUser: `${BASE_PATH}/signin`,
+    createUser: `${BASE_PATH}/${USERS}`,
+    loginUser: `${BASE_PATH}/${SIGNIN}`,
     headerUser: (user) => ({
       method: 'POST',
       headers: {
