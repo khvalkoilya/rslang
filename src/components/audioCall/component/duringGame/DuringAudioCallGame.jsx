@@ -11,13 +11,13 @@ const NewGame = ({
   setCorrect, correct, setIncorrect, incorrect,
   setNumberAttempts, numberAttempts, setIsPlaying, randomWord, setRandomWord,
 }) => {
-  const { setPage, words } = useContext(ApplicationData);
+  const { setPage, wordsNew, wordsAgain } = useContext(ApplicationData);
   const [currentWord, setcurrentWord] = useState(randomWord);
 
   const compareWords = (buttonId) => {
     setNumberAttempts(numberAttempts + 1);
 
-    setRandomWord(getRandomWord(words));
+    setRandomWord(getRandomWord(wordsNew.concat(wordsAgain)));
 
     setcurrentWord(randomWord);
 
@@ -37,7 +37,7 @@ const NewGame = ({
     }
   };
 
-  const arrButtons = currentWordInButtons(words, currentWord).map((e) => (
+  const arrButtons = currentWordInButtons(wordsNew.concat(wordsAgain), currentWord).map((e) => (
     <button
       className="btn btnDuringGame"
       type="button"

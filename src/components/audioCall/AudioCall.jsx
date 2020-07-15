@@ -10,14 +10,14 @@ import { getRandomWord } from '../shuffleArray/shuffle';
 import playAudio from '../speakerWord/playAudio';
 
 const AudioCallGame = () => {
-  const { words } = useContext(ApplicationData);
+  const { wordsNew, wordsAgain } = useContext(ApplicationData);
   const [isPlaying, setIsPlaying] = useState('initGame');
 
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
   const [numberAttempts, setNumberAttempts] = useState(0);
 
-  const [randomWord, setRandomWord] = useState(getRandomWord(words));
+  const [randomWord, setRandomWord] = useState(getRandomWord(wordsNew.concat(wordsAgain)));
 
   const pageAfterGame = () => {
     if (isPlaying === 'newGame') {
