@@ -54,12 +54,25 @@ const Card = ({
   const [isPlaying, setIsPlaying] = useState(false);
 
   const {
-    words, setWords, userId, isAuth,
+    words, setWords, userId,
+    isAuth, statistic,
+    wordsComplicated, setWordsComplicated,
+    wordsDelete, setWordsDelete, learnNew,
+    wordsNew, setWordsNew,
+    wordsAgain, setWordsAgain, setStatistic,
+
   } = useContext(ApplicationData);
 
   const updateBackEnd = (type) => {
     if (isAuth) {
-      updateOptionWord(words, id, type, setDoneCards, setWords, userId);
+      updateOptionWord(
+        words, id, type, setDoneCards,
+        setWords, userId, statistic,
+        wordsComplicated, setWordsComplicated,
+        wordsDelete, setWordsDelete, learnNew,
+        wordsNew, setWordsNew,
+        wordsAgain, setWordsAgain, setStatistic,
+      );
     }
   };
 

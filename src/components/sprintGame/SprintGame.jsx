@@ -46,7 +46,7 @@ const Sprint = () => {
     }
 
     if (level === 1) {
-      setScore(score + 20);
+      setScore(score + 10);
       if (correctAnswers === 2) {
         setLevel(2);
         setCorrectAnswers(0);
@@ -153,7 +153,7 @@ const Sprint = () => {
               и сразу переходите на первый уровень.
             </p>
             <p className="sprint-hello__description">
-              На первом уровне за правильный ответ Вы получаете 20 очков.
+              На первом уровне за правильный ответ Вы получаете 10 очков.
               Для перехода на следующий уровень нужно дать три правильных ответа.
             </p>
             <p className="sprint-hello__description">
