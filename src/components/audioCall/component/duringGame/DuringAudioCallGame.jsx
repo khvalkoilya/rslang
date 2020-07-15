@@ -1,43 +1,39 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ApplicationData from '../../../context/Context';
-import FallingWord from '../../../fallingWord/FallingWord';
 
-import { outputArr, currentWordInButtons } from '../../../shuffleArray/shuffle';
+import Speaker from '../../../speakerWord/Speaker';
+import { getRandomWord, currentWordInButtons } from '../../../shuffleArray/shuffle';
+
+import playAudio from '../../../speakerWord/playAudio';
 
 const NewGame = ({
   setCorrect, correct, setIncorrect, incorrect,
-  setNumberAttempts, numberAttempts, setIsPlaying,
+  setNumberAttempts, numberAttempts, setIsPlaying, randomWord, setRandomWord,
 }) => {
   const { setPage, wordsNew, wordsAgain } = useContext(ApplicationData);
-  const [currentWord, setcurrentWord] = useState(
-    outputArr(wordsNew.concat(wordsAgain))[Math.floor(Math.random() * (Math
-      .floor(outputArr(wordsNew.concat(wordsAgain)).length)))],
-  );
-
-  const restart = () => {
-    setcurrentWord(outputArr(wordsNew.concat(wordsAgain))[Math
-      .floor(Math.random() * (Math.floor(outputArr(wordsNew.concat(wordsAgain)).length)))]);
-    setNumberAttempts(numberAttempts + 1);
-    if (numberAttempts === 9) {
-      setIsPlaying('afterGame');
-      setNumberAttempts(0);
-    }
-  };
+  const [currentWord, setcurrentWord] = useState(randomWord);
 
   const compareWords = (buttonId) => {
     setNumberAttempts(numberAttempts + 1);
-    setcurrentWord(outputArr(wordsNew.concat(wordsAgain))[Math
-      .floor(Math.random() * (Math.floor(outputArr(wordsNew.concat(wordsAgain)).length)))]);
-    restart();
+
+    setRandomWord(getRandomWord(wordsNew.concat(wordsAgain)));
+
+    setcurrentWord(randomWord);
 
     if (currentWord.id === buttonId && numberAttempts !== 10) {
       setCorrect(correct + 1);
     } else {
       setIncorrect(incorrect + 1);
     }
+
+    if (numberAttempts !== 9) {
+      playAudio(randomWord.audio);
+    }
+
     if (numberAttempts === 9) {
       setNumberAttempts(0);
+      setIsPlaying('afterGame');
     }
   };
 
@@ -48,7 +44,7 @@ const NewGame = ({
       key={e.id}
       onClick={() => compareWords(e.id)}
     >
-      <div>{e.word}</div>
+      <div>{e.wordTranslate}</div>
     </button>
   ));
 
@@ -66,10 +62,9 @@ const NewGame = ({
       </div>
 
       <div>
-        <FallingWord
+        <Speaker
           key={numberAttempts}
-          animate={restart}
-          word={currentWord.wordTranslate}
+          word={currentWord.audio}
         />
         <div className="blockWithButtons">
           {arrButtons}
@@ -87,6 +82,8 @@ NewGame.propTypes = {
   setNumberAttempts: PropTypes.func.isRequired,
   numberAttempts: PropTypes.number.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
+  randomWord: PropTypes.objectOf(PropTypes.any).isRequired,
+  setRandomWord: PropTypes.func.isRequired,
 };
 
 export default NewGame;
