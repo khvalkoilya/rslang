@@ -3,13 +3,16 @@ import Input from './Input';
 import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
 import {
-  loginUser, getWordsAgainAndNew, getSettingUser, createWord,
+  loginUser, getWordsAgainAndNew, getSettingUser, createWord, getStatisticUser,
 } from '../../utilsApi/utilsApi';
 import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
+import { parseStatistic, stringifyStatistic } from '../../variables/defaultStatistic';
 
 const SignIn = () => {
   const {
-    setSettings, setPage, setUser, setIsAuth, setWords, setWordsNew, setWordsAgain, setDoneCards,
+    setSettings, setPage, setUser, setIsAuth,
+    setWords, setWordsNew, setWordsAgain,
+    setStatistic, setDoneCards,
   } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
 
@@ -18,7 +21,10 @@ const SignIn = () => {
     if (userData) {
       try {
         const user = await loginUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
         const settings = await getSettingUser(user);
+        const statistic = await getStatisticUser(user);
+        const stat = parseStatistic(statistic, setStatistic);
         delete settings.id;
         const { wordsPerDay } = settings;
         const { group } = settings.optional;
@@ -36,12 +42,13 @@ const SignIn = () => {
           arrCreateWords.push(createWord(user, e.id));
         });
         setSettings(settings);
-        setWordsNew(newWords);
-        setWordsAgain(againWords);
+        setWordsNew(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat === 0));
+        setWordsAgain(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat !== 0));
         setWords(againWords.concat(newWords));
         setUser(user);
         setIsAuth(true);
-        setDoneCards(0);
+        setDoneCards(JSON.parse(localStorage.getItem('doneCards')));
+        stringifyStatistic(stat, user);
         setPage('train');
         await Promise.all[arrCreateWords];
       } catch (e) {
