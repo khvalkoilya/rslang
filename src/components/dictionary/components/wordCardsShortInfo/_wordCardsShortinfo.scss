@@ -1,0 +1,25 @@
+.dificltWords{
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  @include media-medium {
+    width: 350px;
+  }
+  @include media-small {
+    width: 250px;
+  } 
+}
+
+.buttonInDifWords{
+  border-radius: 5px;;
+  height: 35px;
+  display: inline-block;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+
+  color: $white-color;
+  font-family: "BalsamiqSans Regular";
+  background-color: $brown-color;
+}
+

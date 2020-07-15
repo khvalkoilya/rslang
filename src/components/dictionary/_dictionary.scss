@@ -1,0 +1,69 @@
+.dictionary {
+  width: 640px;
+  box-shadow: 0px 0px 5px 0px #00202e;
+  margin: 20px;
+  background-color: $whitesmoke-color;
+  @include media-medium {
+    width: 500px;
+  }
+  @include media-small {
+    width: 300px;
+  }
+}
+
+.tabsDictionary {
+  display: flex;
+  justify-content: center;
+}
+
+.btnDictionary{
+  margin: 2vh;
+  font-size: 1.6rem;
+  padding: 15px 32px;
+  border: none;
+  background-color: inherit;
+  font-family: "BalsamiqSans Regular";
+  @include media-medium {
+    width: 450px;
+    margin: 1px;
+    font-size: 1rem;
+  }
+  @include media-small {
+    width: 350px;
+    padding: 10px 10px;
+  }
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.btnDictionary:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.cardsBlock {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonsInLearnedWords {
+  display: flex;
+  justify-content: center;
+}
+
+.btnInLearned {
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  background-color: $brown-color;
+  color: $white-color;
+  @include media-medium {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+  @include media-small {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,35 @@
+.blackWithbtnSpeaker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 75px 0;
+}
+
+.btnSpeaker {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 15px;
+  margin: 2px;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0px -1px 10px 0px $yellowish-brown-color;
+  text-decoration: none;
+}
+
+.btnSpeaker:hover {
+  animation: none;
+  box-shadow: 0px -1px 10px 0px $black-color;
+  transition: 0.5s;
+}
+
+.animate {
+  animation: changSize 3s infinite;
+}
+
+@keyframes changSize {
+  0%   {box-shadow: 0px -1px 10px 0px $yellowish-brown-color;}
+  50%  {box-shadow: 0px -5px 50px 0px $yellowish-brown-color;}
+  100% {box-shadow: 0px -1px 10px 0px $yellowish-brown-color;}
+}

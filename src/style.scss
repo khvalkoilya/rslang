@@ -11,16 +11,20 @@
 @import "./components/card/card";
 
 @import "./components/initPageGame/initGame";
+@import "./components/pageAfterGame/pageAfterGame";
+
 @import "./components/savanGame/savanGame";
 @import "./components/savanGame/component/duringGame/duringGame";
-@import "./components/pageAfterGame/pageAfterGame";
-@import "./components/pageAfterGame/pageAfterGame";
 
-// @import "./components/dictionary/dictionary";
-// @import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
-// @import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+@import "./components/audioCall//audioCall";
+@import "./components/audioCall/component/duringGame/duringAudioCallGame";
 
-// @import "./components/pagination/pagination";
+@import "./components/dictionary/dictionary";
+@import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
+@import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+
+@import "./components/pagination/pagination";
+@import "./components/speakerWord/speaker";
 
 @import './components/blockWithCards/swiper';
 @import './components/burgerButton/burgerButton';
@@ -33,4 +37,6 @@
 @import 'swiper/components/navigation/navigation.scss';
 @import 'swiper/components/pagination/pagination.scss';
 @import 'swiper/components/scrollbar/scrollbar.scss';
+
+@import './components/loader/loader';
 @import './components/demoPage/demoPage';

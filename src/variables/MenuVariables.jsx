@@ -5,11 +5,10 @@ import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
-// import Card from '../components/card/Card';
-// import DEFAULT_WORDS from './defaultWords';
-// import DEFAULT_SETTINGS from './defaultSettings';
+import FinalPage from '../components/card/FinalPage';
 import DemoPage from '../components/demoPage/DemoPage';
 import Statistics from '../components/statistic/Statistics';
+import Dictionary from '../components/dictionary/Dictionary';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -34,7 +33,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/dictionary.svg',
     title: 'vocabulary',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Dictionary key={`${id}-${title}`} />,
   },
   {
     id: 2,
@@ -110,5 +109,13 @@ export const ABOUT_AS = [
     id: 0,
     title: 'aboutAs',
     render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+  },
+];
+
+export const SHORT_STATISTICS = [
+  {
+    id: 0,
+    title: 'shortStatistics',
+    render: (id, title) => <FinalPage key={`${id}-${title}`} />,
   },
 ];

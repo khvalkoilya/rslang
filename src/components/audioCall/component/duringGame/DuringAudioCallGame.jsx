@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import FallingWord from '../../../fallingWord/FallingWord';
+import ApplicationData from '../../../context/Context';
 
-import outputArr from '../../../shuffleArray/shuffle';
-import arrWords from '../../wordInf';
+import Speaker from '../../../speakerWord/Speaker';
+import { getRandomWord, currentWordInButtons } from '../../../shuffleArray/shuffle';
+
+import playAudio from '../../../speakerWord/playAudio';
 
 const NewGame = ({
   setCorrect, correct, setIncorrect, incorrect,
-  setNumberAttempts, numberAttempts, setIsPlaying,
+  setNumberAttempts, numberAttempts, setIsPlaying, randomWord, setRandomWord,
 }) => {
-  const [numberCurrentWord, setNumberCurrentWord] = useState(
-    outputArr(arrWords)[Math.floor(Math.random() * (Math.floor(outputArr(arrWords).length)))],
-  );
-
-  const restart = () => {
-    setNumberAttempts(numberAttempts + 1);
-    if (numberAttempts === 9) {
-      setIsPlaying('afterGame');
-      setNumberAttempts(0);
-    }
-  };
+  const { setPage, wordsNew, wordsAgain } = useContext(ApplicationData);
+  const [currentWord, setcurrentWord] = useState(randomWord);
 
   const compareWords = (buttonId) => {
     setNumberAttempts(numberAttempts + 1);
-    setNumberCurrentWord(outputArr(arrWords)[Math
-      .floor(Math.random() * (Math.floor(outputArr(arrWords).length)))]);
-    restart();
 
-    if (numberCurrentWord.id === buttonId && numberAttempts !== 10) {
+    setRandomWord(getRandomWord(wordsNew.concat(wordsAgain)));
+
+    setcurrentWord(randomWord);
+
+    if (currentWord.id === buttonId && numberAttempts !== 10) {
       setCorrect(correct + 1);
     } else {
       setIncorrect(incorrect + 1);
     }
+
+    if (numberAttempts !== 9) {
+      playAudio(randomWord.audio);
+    }
+
     if (numberAttempts === 9) {
       setNumberAttempts(0);
+      setIsPlaying('afterGame');
     }
   };
 
-  const arrButtons = outputArr(arrWords).map((e) => (
+  const arrButtons = currentWordInButtons(wordsNew.concat(wordsAgain), currentWord).map((e) => (
     <button
       className="btn btnDuringGame"
       type="button"
       key={e.id}
       onClick={() => compareWords(e.id)}
     >
-      <div>{e.word}</div>
+      <div>{e.wordTranslate}</div>
     </button>
   ));
 
@@ -56,16 +56,15 @@ const NewGame = ({
           /
           {numberAttempts}
         </div>
-        <button type="button" className="btnExit" onClick={() => {}}>
+        <button type="button" className="btnExit" onClick={() => setPage('train')}>
           <img src="./assets/images/exit.svg" alt="exitButton" className="btnExitImg" />
         </button>
       </div>
 
       <div>
-        <FallingWord
+        <Speaker
           key={numberAttempts}
-          animate={restart}
-          word={numberCurrentWord.wordTranslate}
+          word={currentWord.audio}
         />
         <div className="blockWithButtons">
           {arrButtons}
@@ -83,6 +82,8 @@ NewGame.propTypes = {
   setNumberAttempts: PropTypes.func.isRequired,
   numberAttempts: PropTypes.number.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
+  randomWord: PropTypes.objectOf(PropTypes.any).isRequired,
+  setRandomWord: PropTypes.func.isRequired,
 };
 
 export default NewGame;
