@@ -17,7 +17,13 @@ const AboutUs = () => {
         </div>
         <div className="team">
           {
-           sortedArr.map((el) => <AboutUsItem key={el.id} data={el} handler={setCurrentTeammate} />)
+           sortedArr.map((el) => (
+             <AboutUsItem
+               key={el.id}
+               data={el}
+               handler={setCurrentTeammate}
+             />
+           ))
           }
         </div>
       </div>

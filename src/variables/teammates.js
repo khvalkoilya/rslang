@@ -17,7 +17,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(asfa)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
   {
@@ -28,7 +28,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(../assets/images/ilya.jpg)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
   {
@@ -38,8 +38,8 @@ const TEAMMATES_DATA = [
     style: {
       height: '204px',
       width: '204px',
-      backgroundImage: 'url(asfa)',
-      borderRadius: "50%",
+      backgroundImage: 'url(../assets/images/andrey.jpg)',
+      borderRadius: '50%',
     },
   },
   {
@@ -50,7 +50,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(../assets/images/ivan.png)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
   {
@@ -61,7 +61,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(../assets/images/dima.png)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
   {
@@ -72,7 +72,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(../assets/images/sasha.jpg)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
   {
@@ -83,7 +83,7 @@ const TEAMMATES_DATA = [
       height: '204px',
       width: '204px',
       backgroundImage: 'url(../assets/images/artem.jpg)',
-      borderRadius: "50%",
+      borderRadius: '50%',
     },
   },
 ];
