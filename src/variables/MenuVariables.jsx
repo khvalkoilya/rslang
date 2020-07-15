@@ -5,6 +5,7 @@ import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
+import AboutUs from '../components/footer/aboutUs/AboutUs';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -105,6 +106,6 @@ export const ABOUT_US = [
   {
     id: 0,
     title: 'aboutUs',
-    render: (id, title) => <div key={`${id}-${title}`}>About Us</div>,
+    render: (id, title) => <AboutUs key={`${id}-${title}`} />,
   },
 ];

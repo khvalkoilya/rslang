@@ -76,10 +76,12 @@ const Setting = ({ settings }) => {
       });
     }
   };
+  const settingError = document.getElementById('setting_error');
   return (
     <div className="card">
       <div className="card-wrapper">
         <h3 className="setting__header">Настройки</h3>
+        <div className="setting_error" id="setting_error" />
         <form onSubmit={(event) => event.preventDefault()}>
           <div className="common_settings">
             {
@@ -151,9 +153,9 @@ const Setting = ({ settings }) => {
                 if (newSetting.optional.hasMeaning === false
                   && newSetting.optional.hasTranslation === false
                   && newSetting.optional.hasExample === false) {
-                  alert('Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.');
+                  settingError.innerText = 'Одно из перечисленных значений должно быть активно: Значение, Перевод, Использование.';
                 } else if (newSetting.optional.group > 5) {
-                  alert('Введите корректное значение: Уровень сложности');
+                  settingError.innerText = 'Введите корректное значение: Уровень сложности';
                 } else if (settings.wordsPerDay < newSetting.wordsPerDay) {
                   updateSettings();
                 } else if (settings.optional.group !== newSetting.optional.group) {
