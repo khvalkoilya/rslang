@@ -1,28 +1,65 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Input from './Input';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import REGISTRATION from '../../variables/inputRegistrationVariables';
-import { loginUser, getWordsData } from '../../utilsApi/utilsApi';
+import {
+  loginUser, getWordsAgainAndNew, getSettingUser, createWord, getStatisticUser,
+} from '../../utilsApi/utilsApi';
+import WORD_OPTIONAL_DEFAULT from '../../variables/defaultOptionalWord';
+import { parseStatistic, stringifyStatistic } from '../../variables/defaultStatistic';
 
 const SignIn = () => {
   const {
-    setPage, setWords, setUser, setIsAuth,
-  } = useContext(ChangePage);
+    setSettings, setPage, setUser, setIsAuth,
+    setWords, setWordsNew, setWordsAgain,
+    setStatistic, setDoneCards,
+  } = useContext(ApplicationData);
   const [userData, setUserData] = useState();
-  useEffect(() => {
+
+  const utilSignIn = async () => {
     const error = document.querySelector('.reg__error');
     if (userData) {
-      loginUser(userData).then((res) => {
-        setUser(res);
-        setPage('train');
+      try {
+        const user = await loginUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+        const settings = await getSettingUser(user);
+        const statistic = await getStatisticUser(user);
+        const stat = parseStatistic(statistic, setStatistic);
+        delete settings.id;
+        const { wordsPerDay } = settings;
+        const { group } = settings.optional;
+        const wordsAgainAndNew = await getWordsAgainAndNew(user, group, wordsPerDay);
+        const words = wordsAgainAndNew[0].paginatedResults;
+        words.forEach((e) => {
+          const { _id } = e;
+          e.id = _id;
+        });
+        const newWords = words.filter((e) => (e.userWord === undefined));
+        const againWords = words.filter((e) => (e.userWord !== undefined));
+        const arrCreateWords = [];
+        newWords.forEach((e) => {
+          e.userWord = WORD_OPTIONAL_DEFAULT;
+          arrCreateWords.push(createWord(user, e.id));
+        });
+        setSettings(settings);
+        setWordsNew(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat === 0));
+        setWordsAgain(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat !== 0));
+        setWords(againWords.concat(newWords));
+        setUser(user);
         setIsAuth(true);
-        setTimeout(() => { getWordsData(3, 1).then((result) => setWords(result)); }, 3000);
-      }).catch(() => {
+        setDoneCards(JSON.parse(localStorage.getItem('doneCards')));
+        stringifyStatistic(stat, user);
+        setPage('train');
+        await Promise.all[arrCreateWords];
+      } catch (e) {
         error.innerHTML = 'Неверный e-mail или пароль';
-        setPage('signIn');
         setIsAuth(false);
-      });
+      }
     }
+  };
+
+  useEffect(() => {
+    utilSignIn();
   }, [userData]);
 
   return (

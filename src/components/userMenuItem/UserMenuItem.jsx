@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 import { USER_MENU_ITEMS } from '../../variables/MenuVariables';
+import DEFAULT_WORDS from '../../variables/defaultWords';
+import DEFAULT_SETTINGS from '../../variables/defaultSettings';
 
 const UserMenuItem = ({
   isAuth, setVisible, isNavVisible, burgerState,
 }) => {
-  const { page, setPage, setIsAuth } = useContext(ChangePage);
+  const {
+    page, setPage, setIsAuth, setSettings, setWords, setUser,
+  } = useContext(ApplicationData);
   const menuItems = USER_MENU_ITEMS.map((element) => {
     if (element.isAuthorized === isAuth) {
       return (
@@ -16,7 +20,12 @@ const UserMenuItem = ({
             if (element.title === 'logOut') {
               setIsAuth(false);
               setVisible(false);
-              setPage('train');
+              setWords(DEFAULT_WORDS);
+              setSettings(DEFAULT_SETTINGS);
+              localStorage.clear();
+              setUser();
+              localStorage.setItem('isAuthLocal', JSON.stringify(false));
+              setPage('signIn');
             } else {
               setPage(element.title);
               if (document.body.offsetWidth <= 600) {

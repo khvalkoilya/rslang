@@ -3,11 +3,11 @@ import RenderBlockWithCards from '../components/blockWithCards/Swiper';
 import Registration from '../components/registration/Registration';
 import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
-import ChangePage from '../components/context/Context';
+import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
-// import Card from '../components/card/Card';
-// import DEFAULT_WORDS from './defaultWords';
-// import DEFAULT_SETTINGS from './defaultSettings';
+import FinalPage from '../components/card/FinalPage';
+import DemoPage from '../components/demoPage/DemoPage';
+import Dictionary from '../components/dictionary/Dictionary';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -19,10 +19,9 @@ export const MAIN_MENU_ITEMS_VALUES = [
     render: (id, title) => {
       const {
         words,
-      } = useContext(ChangePage);
+      } = useContext(ApplicationData);
       return (
-        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
-
+        words && <RenderBlockWithCards key={`${id}-${title}`} />
       );
     },
   },
@@ -33,7 +32,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/dictionary.svg',
     title: 'vocabulary',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Dictionary key={`${id}-${title}`} />,
   },
   {
     id: 2,
@@ -50,7 +49,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
     icon: '../../assets/images/flask.svg',
     title: 'demo',
-    render: (id, title) => <div key={`${id}-${title}`}>DEMO</div>,
+    render: (id, title) => <DemoPage key={`${id}-${title}`} />,
   },
 ];
 
@@ -69,7 +68,14 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/settings.svg',
     title: 'settings',
-    render: (id, title) => <Setting key={`${id}-${title}`} />,
+    render: (id, title) => {
+      const {
+        settings,
+      } = useContext(ApplicationData);
+      return (
+        <Setting key={`${id}-${title}`} settings={settings} />
+      );
+    },
   },
   {
     id: 2,
@@ -102,5 +108,13 @@ export const ABOUT_AS = [
     id: 0,
     title: 'aboutAs',
     render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+  },
+];
+
+export const SHORT_STATISTICS = [
+  {
+    id: 0,
+    title: 'shortStatistics',
+    render: (id, title) => <FinalPage key={`${id}-${title}`} />,
   },
 ];

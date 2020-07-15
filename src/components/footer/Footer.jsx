@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import ChangePage from '../context/Context';
+import ApplicationData from '../context/Context';
 
 const Footer = () => {
-  const { page, setPage } = useContext(ChangePage);
+  const { page, setPage } = useContext(ApplicationData);
 
   return (
     <div className="footerWrapper">
@@ -13,6 +13,12 @@ const Footer = () => {
       >
         About us
       </button>
+      <a
+        href="https://github.com/khvalkoilya/rslang"
+        className="footer-github"
+      >
+        <div className="footer-github__icon" />
+      </a>
     </div>
 
   );

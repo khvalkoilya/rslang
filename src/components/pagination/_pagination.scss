@@ -1,0 +1,20 @@
+.pagination {
+  display: flex;
+  padding-inline-start: 0px;
+  justify-content: center;
+}
+
+.pageItem {
+  list-style-type: none;
+  margin: 0 3px;
+}
+
+.pageLink {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.pageLink:hover {
+  text-decoration: underline;
+}
