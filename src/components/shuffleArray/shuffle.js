@@ -15,3 +15,9 @@ export const currentWordInButtons = (array, word) => {
     .concat([word]));
   return arr;
 };
+
+export const getRandomWord = (words) => {
+  const wordsA = outputArr(words)[Math
+    .floor(Math.random() * (Math.floor(outputArr(words).length)))];
+  return wordsA;
+};

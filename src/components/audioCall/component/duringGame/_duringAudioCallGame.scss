@@ -16,29 +16,33 @@
   width: 60vh;
   font-size: 2.6vh;
   @include media-medium {
-    width: 55vh;
+    width: 30vh;
   }
   @include media-extra-small {
-    width: 50vh;
+    width: 30vh;
     margin: 0 10px;
   }
 }
 
 .btn {
-  padding: 15px 32px;
+  padding: 5px 10px;
   border: none;
   background-color: $whitesmoke-color;
   @include media-medium {
-    padding: 10px 21px;
+    padding: 5px 8px;
   }
 }
 
 .btnDuringGame {
-  margin: 10px;
+  margin: 5px;
+}
+
+.btnSpeakerImg {
+  height: 45px;
+  width: 45px;
 }
 
 .btnExit {
-
   border: none;
   background-color: inherit;
 }
@@ -68,14 +72,18 @@
 
 .blockWithButtons {
   display: grid;
+  width: 640px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   @include media-small {
-    width: 350px;
+    font-size: 2.6rem;
+    width: 340px;
     padding: 10px 10px;
     flex-wrap: wrap;
     grid-template-columns: 1fr 1fr;
   }
   @include media-extra-small {
     width: 300px;
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 }
