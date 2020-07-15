@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import AboutUsItem from '../aboutUsItem/AboutUsItem';
+import TEAMMATES_DATA from '../../../variables/teammates';
 
-const AboutUs = ({ data }) => {
-  const [currentTeammate, setCurrentTeammate] = useState(data[0]);
-  console.log(data);
-  const sortedArr = data.filter((obj, ind) => ind > 0);
+const AboutUs = () => {
+  const [currentTeammate, setCurrentTeammate] = useState(TEAMMATES_DATA[0]);
+  const sortedArr = TEAMMATES_DATA.filter((obj, ind) => ind > 0);
   return (
     <div className="card">
       <div className="card-wrapper">
         <div className="member">
-          <div className="member_icon">
-            <img src={currentTeammate.icon} alt="icon" />
-          </div>
+          <div className="member_icon" style={(currentTeammate.style)} />
           <div className="member_description">
-            <h3>{currentTeammate.name}</h3>
+            <h4>{currentTeammate.name}</h4>
             <p>{currentTeammate.text}</p>
           </div>
         </div>
@@ -26,10 +23,6 @@ const AboutUs = ({ data }) => {
       </div>
     </div>
   );
-};
-
-AboutUs.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.obj).isRequired,
 };
 
 export default AboutUs;

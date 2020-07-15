@@ -1,0 +1,47 @@
+.team {
+  display: flex;
+  padding-bottom: 7%;
+
+  @include media-medium {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 270px;
+  }
+  @include media-small {
+    height: 490px;
+  }
+}
+
+.member {
+  display: flex;
+  padding: 7% 0;
+  @include media-medium {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.member_icon {
+  flex-shrink: 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 7%;
+  @include media-medium {
+    margin: 0;
+  }
+}
+
+.member_description {
+  h4 {
+    margin: 0;
+    font-size: 35px;
+    @include media-medium {
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+  p {
+     overflow-wrap: anywhere;
+  }
+}
