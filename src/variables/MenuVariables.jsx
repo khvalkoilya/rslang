@@ -5,6 +5,7 @@ import SignIn from '../components/registration/SignIn';
 import GamesPage from '../components/gamesPage/GamesPage';
 import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
+import AboutUs from '../components/footer/aboutUs/AboutUs';
 import FinalPage from '../components/card/FinalPage';
 import DemoPage from '../components/demoPage/DemoPage';
 import Statistics from '../components/statistic/Statistics';
@@ -104,11 +105,11 @@ export const USER_MENU_ITEMS = [
   },
 ];
 
-export const ABOUT_AS = [
+export const ABOUT_US = [
   {
     id: 0,
-    title: 'aboutAs',
-    render: (id, title) => <div key={`${id}-${title}`}>About As</div>,
+    title: 'aboutUs',
+    render: (id, title) => <AboutUs key={`${id}-${title}`} />,
   },
 ];
 
