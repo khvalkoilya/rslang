@@ -9,14 +9,15 @@ const NewGame = ({
   setCorrect, correct, setIncorrect, incorrect,
   setNumberAttempts, numberAttempts, setIsPlaying,
 }) => {
-  const { setPage, words } = useContext(ApplicationData);
+  const { setPage, wordsNew, wordsAgain } = useContext(ApplicationData);
   const [currentWord, setcurrentWord] = useState(
-    outputArr(words)[Math.floor(Math.random() * (Math.floor(outputArr(words).length)))],
+    outputArr(wordsNew.concat(wordsAgain))[Math.floor(Math.random() * (Math
+      .floor(outputArr(wordsNew.concat(wordsAgain)).length)))],
   );
 
   const restart = () => {
-    setcurrentWord(outputArr(words)[Math
-      .floor(Math.random() * (Math.floor(outputArr(words).length)))]);
+    setcurrentWord(outputArr(wordsNew.concat(wordsAgain))[Math
+      .floor(Math.random() * (Math.floor(outputArr(wordsNew.concat(wordsAgain)).length)))]);
     setNumberAttempts(numberAttempts + 1);
     if (numberAttempts === 9) {
       setIsPlaying('afterGame');
@@ -26,8 +27,8 @@ const NewGame = ({
 
   const compareWords = (buttonId) => {
     setNumberAttempts(numberAttempts + 1);
-    setcurrentWord(outputArr(words)[Math
-      .floor(Math.random() * (Math.floor(outputArr(words).length)))]);
+    setcurrentWord(outputArr(wordsNew.concat(wordsAgain))[Math
+      .floor(Math.random() * (Math.floor(outputArr(wordsNew.concat(wordsAgain)).length)))]);
     restart();
 
     if (currentWord.id === buttonId && numberAttempts !== 10) {
@@ -40,7 +41,7 @@ const NewGame = ({
     }
   };
 
-  const arrButtons = currentWordInButtons(words, currentWord).map((e) => (
+  const arrButtons = currentWordInButtons(wordsNew.concat(wordsAgain), currentWord).map((e) => (
     <button
       className="btn btnDuringGame"
       type="button"
