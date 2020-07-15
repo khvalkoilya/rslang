@@ -320,6 +320,10 @@
       @include media-medium {
         height: 19px;
       }
+
+      @include media-small {
+        height: 18px;
+      }
     }
 
     &__full-dot {

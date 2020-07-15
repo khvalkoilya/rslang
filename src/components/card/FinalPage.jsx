@@ -47,10 +47,6 @@ const FinalPage = () => {
         </button>
       </div>
     </div>
-    // onclick
-    // setWords(wordsAgain)
-    // setDoneCards(0)
-    // setPage('train')
   );
 };
 
