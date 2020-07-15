@@ -14,13 +14,15 @@
 @import "./components/savanGame/savanGame";
 @import "./components/savanGame/component/duringGame/duringGame";
 @import "./components/pageAfterGame/pageAfterGame";
-@import "./components/pageAfterGame/pageAfterGame";
 
-// @import "./components/dictionary/dictionary";
-// @import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
-// @import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+// @import "./components/audioCall//audioCall";
+// @import "./components/audioCall/component/duringGame/duringAudioCallGame";
 
-// @import "./components/pagination/pagination";
+@import "./components/dictionary/dictionary";
+@import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
+@import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+
+@import "./components/pagination/pagination";
 
 @import './components/blockWithCards/swiper';
 @import './components/burgerButton/burgerButton';

@@ -43,10 +43,22 @@ const App = () => {
   const utilWords = async () => {
     if (userId) {
       const { group } = settings.optional;
-      const сomplicated = await getWordsComplicated(userId, group);
-      const deleteWords = await getWordsDelete(userId, group);
-      setWordsComplicated(сomplicated[0].paginatedResults);
-      setWordsDelete(deleteWords[0].paginatedResults);
+      const сomplicatedNew = await getWordsComplicated(userId, group);
+      const deleteWordsNew = await getWordsDelete(userId, group);
+      const сomplicated = сomplicatedNew[0].paginatedResults;
+      const deleteWords = deleteWordsNew[0].paginatedResults;
+      сomplicated.forEach((e) => {
+        const { _id } = e;
+        e.id = _id;
+      });
+
+      deleteWords.forEach((e) => {
+        const { _id } = e;
+        e.id = _id;
+      });
+
+      setWordsComplicated(сomplicated);
+      setWordsDelete(deleteWords);
     }
   };
   const updateLocal = () => {
