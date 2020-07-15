@@ -3,14 +3,38 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ApplicationData from '../../../context/Context';
 
-const WordCardsShortInfo = ({ element, currentArr, currentWords }) => {
-  const { words, setWords } = useContext(ApplicationData);
+import { putWord } from '../../../../utilsApi/utilsApi';
+
+const WordCardsShortInfo = ({
+  element, currentArr, currentWords, setWordsDeleteAndComplicated,
+}) => {
+  const {
+    userId,
+    words,
+    setWords,
+    wordsNew,
+    setWordsNew,
+    wordsAgain,
+    setWordsAgain,
+  } = useContext(ApplicationData);
 
   const returnWord = (elem) => {
-    currentWords(currentArr.filter((e) => e.id !== element.id && e));
+    setWordsDeleteAndComplicated(currentArr.filter((e) => e.id !== element.id));
+    currentWords(currentArr.filter((e) => e.id !== element.id));
     elem.userWord.difficulty = 'again';
-    words.push(words);
+
+    putWord(userId, elem.id, elem.userWord);
+
+    words.push(elem);
     setWords(words);
+
+    if (elem.userWord.repeat === 0) {
+      wordsNew.push(elem);
+      setWordsNew(wordsNew);
+    } else {
+      wordsAgain.push(elem);
+      setWordsAgain(wordsAgain);
+    }
   };
 
   return (
@@ -32,6 +56,7 @@ WordCardsShortInfo.propTypes = {
   element: PropTypes.objectOf(PropTypes.any).isRequired,
   currentArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   currentWords: PropTypes.func.isRequired,
+  setWordsDeleteAndComplicated: PropTypes.func.isRequired,
 };
 
 export default WordCardsShortInfo;

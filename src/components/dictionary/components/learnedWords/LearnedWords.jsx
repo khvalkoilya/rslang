@@ -8,7 +8,7 @@ import Pagination from '../../../pagination/Pagination';
 
 const LearnedWords = () => {
   const {
-    setWords, setPage, wordsNew, wordsAgain,
+    setWords, setPage, wordsNew, wordsAgain, setDoneCards,
   } = useContext(ApplicationData);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,11 +20,11 @@ const LearnedWords = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const filterAgainWords = () => wordsAgain.concat(wordsNew).filter((element) => (
-    element.userWord.optional.repeat !== 0));
+  // const filterAgainWords = () => wordsAgain.concat(wordsNew).filter((element) => (
+  //   element.userWord.optional.repeat !== 0));
 
-  const filterNewWords = () => wordsAgain.concat(wordsNew).filter((element) => (
-    element.userWord.optional.repeat === 0));
+  // const filterNewWords = () => wordsAgain.concat(wordsNew).filter((element) => (
+  //   element.userWord.optional.repeat === 0));
 
   return (
     <div>
@@ -48,7 +48,7 @@ const LearnedWords = () => {
           className="btn btnInLearned"
           onClick={(e) => {
             if (wordsAgain.length !== 0) {
-              setWords(filterAgainWords());
+              setWords(wordsAgain);
               setPage('train');
             } else {
               e.preventDefault();
@@ -62,8 +62,9 @@ const LearnedWords = () => {
           className="btn btnInLearned"
           onClick={(e) => {
             if (wordsNew.length !== 0) {
-              setWords(filterNewWords());
+              setWords(wordsNew);
               setPage('train');
+              setDoneCards(0);
             } else {
               e.preventDefault();
             }
