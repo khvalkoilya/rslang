@@ -22,6 +22,7 @@ const UserMenuItem = ({
               setVisible(false);
               setWords(DEFAULT_WORDS);
               setSettings(DEFAULT_SETTINGS);
+              localStorage.clear();
               setUser();
               localStorage.setItem('isAuthLocal', JSON.stringify(false));
               setPage('signIn');

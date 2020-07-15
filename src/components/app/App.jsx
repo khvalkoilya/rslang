@@ -102,13 +102,6 @@ const App = () => {
         setLearnNew,
       }}
       >
-        {console.log(
-          'page', page,
-          'user', userId,
-          'words', words,
-          // 'newWords', wordsNew,
-          // 'again', wordsAgain,
-        )}
         <Header isAuth={isAuth} />
         <Main />
         <Footer />

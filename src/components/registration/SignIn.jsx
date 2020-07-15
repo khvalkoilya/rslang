@@ -23,8 +23,8 @@ const SignIn = () => {
         const user = await loginUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
         const settings = await getSettingUser(user);
-        const stat = await getStatisticUser(user);
-        const statistic = parseStatistic(stat, setStatistic);
+        const statistic = await getStatisticUser(user);
+        const stat = parseStatistic(statistic, setStatistic);
         delete settings.id;
         const { wordsPerDay } = settings;
         const { group } = settings.optional;
@@ -42,13 +42,13 @@ const SignIn = () => {
           arrCreateWords.push(createWord(user, e.id));
         });
         setSettings(settings);
-        setWordsNew(newWords);
-        setWordsAgain(againWords);
+        setWordsNew(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat === 0));
+        setWordsAgain(againWords.concat(newWords).filter((e) => e.userWord.optional.repeat !== 0));
         setWords(againWords.concat(newWords));
         setUser(user);
         setIsAuth(true);
         setDoneCards(JSON.parse(localStorage.getItem('doneCards')));
-        stringifyStatistic(statistic, user);
+        stringifyStatistic(stat, user);
         setPage('train');
         await Promise.all[arrCreateWords];
       } catch (e) {
