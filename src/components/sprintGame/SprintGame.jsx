@@ -94,16 +94,6 @@ const Sprint = () => {
     }
   };
 
-  document.addEventListener('keyup', (e) => {
-    e.preventDefault();
-    if (e.code === 'ArrowLeft') {
-      gameStep('no');
-    }
-    if (e.code === 'ArrowRight') {
-      gameStep('yes');
-    }
-  });
-
   const sprintGameStart = () => {
     wordsArray = words.map((item, index) => [item.word, item.wordTranslate, randomWord(index)]);
 
