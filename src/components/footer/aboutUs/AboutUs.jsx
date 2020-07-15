@@ -9,7 +9,7 @@ const AboutUs = () => {
     <div className="card">
       <div className="card-wrapper">
         <div className="member">
-          <div className="member_icon" style={(currentTeammate.style)} />
+          <div className="member_icon" style={currentTeammate.style} />
           <div className="member_description">
             <h4>{currentTeammate.name}</h4>
             <p>{currentTeammate.text}</p>
