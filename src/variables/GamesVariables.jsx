@@ -13,12 +13,6 @@ const GAMES_VARIABLES = [
   },
   {
     id: 1,
-    icon: '../../assets/images/games-page-icons/puzzle.svg',
-    title: 'englishPuzzle',
-    render: (id, title) => <div key={`${id}-${title}`}>English puzzle</div>,
-  },
-  {
-    id: 2,
     icon: '../../assets/images/games-page-icons/savannah.svg',
     title: 'savannah',
     render: (id, title, setPage) => <SavanGame key={`${id}-${title}`} setPage={setPage} />,
@@ -34,12 +28,6 @@ const GAMES_VARIABLES = [
     icon: '../../assets/images/games-page-icons/sprint.svg',
     title: 'sprint',
     render: (id, title) => <SprintGame key={`${id}-${title}`} />,
-  },
-  {
-    id: 5,
-    icon: '../../assets/images/games-page-icons/vr-gaming.svg',
-    title: 'vrGaming',
-    render: (id, title) => <div key={`${id}-${title}`}>VR Gaming</div>,
   },
 ];
 
