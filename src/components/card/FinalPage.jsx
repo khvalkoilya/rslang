@@ -34,14 +34,16 @@ const FinalPage = () => {
         </div>
         <button
           type="button"
-          className="card__button card__final-page__button"
+          className={`card__button card__final-page__button ${wordsAgain.length ? '' : 'card__button-disable'}`}
           onClick={() => {
-            setWords(wordsAgain);
-            setDoneCards(0);
-            setPage('train');
+            if (wordsAgain.length) {
+              setWords(wordsAgain);
+              setDoneCards(0);
+              setPage('train');
+            }
           }}
         >
-          Ещё раз
+          {wordsAgain.length ? 'Ещё раз' : 'На сегодня хватит!'}
         </button>
       </div>
     </div>

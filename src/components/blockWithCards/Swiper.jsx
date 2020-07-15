@@ -16,9 +16,11 @@ const RenderBlockWithCards = () => {
   const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
   const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
 
-  if (doneCards === words.length) {
-    setPage('shortStatistics');
-  }
+  useEffect(() => {
+    if (doneCards === words.length) {
+      setPage('shortStatistics');
+    }
+  }, [doneCards]);
 
   useEffect(() => {
     setArrData(words);
