@@ -9,6 +9,7 @@ import Setting from '../components/setting/Setting';
 // import DEFAULT_WORDS from './defaultWords';
 // import DEFAULT_SETTINGS from './defaultSettings';
 import DemoPage from '../components/demoPage/DemoPage';
+import Statistics from '../components/statistic/Statistics';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -61,7 +62,7 @@ export const USER_MENU_ITEMS = [
     isAuthorized: true,
     icon: '../../assets/images/growth.svg',
     title: 'statistics',
-    render: (id, title) => <div key={`${id}-${title}`}>statistics</div>,
+    render: (id, title) => <Statistics key={`${id}-${title}`} />,
   },
   {
     id: 1,
