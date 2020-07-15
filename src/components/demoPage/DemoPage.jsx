@@ -8,38 +8,20 @@ const DemoPage = () => (
     <div className="demo-page__about-app">
       <h1 className="demo-page__heading">RSLang</h1>
       <p>
-        RSLang - онлайн-сервис для изучения и практики английского языка
+        RSLang — онлайн-сервис для изучения и практики английского языка.
       </p>
       <p>
         Все тренировки интерактивны и основаны на проверенных методиках!
       </p>
       <p>
         Вы сможете создать личный словарь, пройти увлекательное обучение.
-        В специальном разделе наглядно виден прогресс обучения
+        В специальном разделе наглядно виден прогресс обучения.
       </p>
       <p>
-        RSLang - это Эффективно и Увлекательно!
+        RSLang — это Эффективно и Увлекательно!
       </p>
       <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur itaque repudiandae,
-        quod soluta dignissimos magnam,
-        nostrum minima earum architecto
-        dolorem ullam molestias vel tempora maiores voluptatem hic neque consequuntur optio?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur itaque repudiandae,
-        quod soluta dignissimos magnam, nostrum minima earum architecto
-        dolorem ullam molestias vel tempora maiores voluptatem hic neque consequuntur optio?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur itaque repudiandae,
-        quod soluta dignissimos magnam, nostrum minima earum architecto
-        dolorem ullam molestias vel tempora maiores voluptatem hic neque consequuntur optio?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur itaque repudiandae,
-        quod soluta dignissimos magnam, nostrum minima earum architecto dolorem ullam molestias
-        vel tempora maiores voluptatem hic neque consequuntur optio?
+        Подробное описание работы приложения смотрите в видео-ролике.
       </p>
     </div>
   </div>
