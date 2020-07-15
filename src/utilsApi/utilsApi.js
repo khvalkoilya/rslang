@@ -87,4 +87,3 @@ export const putWord = (
   ],
 );
 export const getUrlData = (name) => `https://raw.githubusercontent.com/AndreyAmelchenia/rslang-data/master/${name}`;
-// export const getUrlData = (name) => `https://raw.githubusercontent.com/irinainina/rslang-data/master/${name}`;

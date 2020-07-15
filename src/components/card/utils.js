@@ -130,7 +130,7 @@ const updateOptionWord = (
       wordsDelete.push(word);
       setWordsDelete(wordsDelete);
       repeatWords(
-        word, learnNew, words, wordsNew,
+        word, learnNew, words.filter((el) => el.id !== id), wordsNew,
         setWordsNew, wordsAgain, setWordsAgain,
       );
       break;
@@ -141,7 +141,7 @@ const updateOptionWord = (
       wordsComplicated.push(word);
       setWordsComplicated(wordsComplicated);
       repeatWords(
-        word, learnNew, words, wordsNew,
+        word, learnNew, words.filter((el) => el.id !== id), wordsNew,
         setWordsNew, wordsAgain, setWordsAgain,
       );
       break;
@@ -197,6 +197,11 @@ const updateOptionWord = (
     default:
       break;
   }
+
+  if (word.userWord.optional.repeat === 1) {
+    sN.nW += 1;
+  }
+
   putWord(userId, id, word.userWord);
 
   const stat = {

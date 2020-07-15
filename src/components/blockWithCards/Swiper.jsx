@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import PropTypes from 'prop-types';
 import SwiperCore, { Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
@@ -10,13 +9,18 @@ SwiperCore.use([Navigation, A11y]);
 
 const RenderBlockWithCards = () => {
   const {
-    settings, doneCards, setDoneCards, words,
+    settings, doneCards, setDoneCards, words, setPage,
   } = useContext(ApplicationData);
   const [swiper, setSwiper] = useState();
   const [arrData, setArrData] = useState(words);
-
   const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
   const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
+
+  useEffect(() => {
+    if (doneCards === words.length) {
+      setPage('shortStatistics');
+    }
+  }, [doneCards]);
 
   useEffect(() => {
     setArrData(words);
@@ -63,12 +67,5 @@ const RenderBlockWithCards = () => {
     </Swiper>
   );
 };
-// RenderBlockWithCards.propTypes = {
-//   words: PropTypes.arrayOf(PropTypes.object),
-// };
-
-// RenderBlockWithCards.defaultProps = {
-//   words: undefined,
-// };
 
 export default RenderBlockWithCards;

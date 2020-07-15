@@ -22,6 +22,7 @@ const STATISTIC_NOW = {
   sOfcA: 0,
   cA: 0,
   c: false,
+  nW: 0,
   w: [],
 };
 

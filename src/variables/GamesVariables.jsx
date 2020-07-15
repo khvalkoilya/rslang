@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SavanGame from '../components/savanGame/SavanGame';
+import SprintGame from '../components/sprintGame/SprintGame';
 import AudioCallGame from '../components/audioCall/AudioCall';
 
 const GAMES_VARIABLES = [
@@ -12,12 +13,6 @@ const GAMES_VARIABLES = [
   },
   {
     id: 1,
-    icon: '../../assets/images/games-page-icons/puzzle.svg',
-    title: 'englishPuzzle',
-    render: (id, title) => <div key={`${id}-${title}`}>English puzzle</div>,
-  },
-  {
-    id: 2,
     icon: '../../assets/images/games-page-icons/savannah.svg',
     title: 'savannah',
     render: (id, title, setPage) => <SavanGame key={`${id}-${title}`} setPage={setPage} />,
@@ -32,13 +27,7 @@ const GAMES_VARIABLES = [
     id: 4,
     icon: '../../assets/images/games-page-icons/sprint.svg',
     title: 'sprint',
-    render: (id, title) => <div key={`${id}-${title}`}>Sprint</div>,
-  },
-  {
-    id: 5,
-    icon: '../../assets/images/games-page-icons/vr-gaming.svg',
-    title: 'vrGaming',
-    render: (id, title) => <div key={`${id}-${title}`}>VR Gaming</div>,
+    render: (id, title) => <SprintGame key={`${id}-${title}`} />,
   },
 ];
 

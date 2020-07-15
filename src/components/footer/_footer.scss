@@ -4,7 +4,7 @@ a {
 
 .footerWrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 5rem;
   width: 100%;
@@ -36,5 +36,16 @@ a {
   .footerContainer {
     width: 50%;
     justify-content: center;
+  }
+}
+
+.footer-github {
+  &__icon {
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      background-image: url('./assets/images/github.svg');
   }
 }
