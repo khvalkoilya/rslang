@@ -6,6 +6,8 @@ import GamesPage from '../components/gamesPage/GamesPage';
 import ApplicationData from '../components/context/Context';
 import Setting from '../components/setting/Setting';
 import FinalPage from '../components/card/FinalPage';
+import DemoPage from '../components/demoPage/DemoPage';
+import Dictionary from '../components/dictionary/Dictionary';
 
 export const MAIN_MENU_ITEMS_VALUES = [
   {
@@ -19,8 +21,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
         words,
       } = useContext(ApplicationData);
       return (
-        <RenderBlockWithCards words={words} key={`${id}-${title}`} />
-
+        words && <RenderBlockWithCards key={`${id}-${title}`} />
       );
     },
   },
@@ -31,7 +32,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     lock: '../../assets/images/locked-padlock.svg',
     icon: '../../assets/images/dictionary.svg',
     title: 'vocabulary',
-    render: (id, title) => <div key={`${id}-${title}`}>settings</div>,
+    render: (id, title) => <Dictionary key={`${id}-${title}`} />,
   },
   {
     id: 2,
@@ -48,7 +49,7 @@ export const MAIN_MENU_ITEMS_VALUES = [
     isAuthorized: true,
     icon: '../../assets/images/flask.svg',
     title: 'demo',
-    render: (id, title) => <div key={`${id}-${title}`}>DEMO</div>,
+    render: (id, title) => <DemoPage key={`${id}-${title}`} />,
   },
 ];
 

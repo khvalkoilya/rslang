@@ -338,6 +338,41 @@
       bottom: 3px;
     }
   }
+
+  &__final-page {
+    font-weight: 400;
+    background-image: url('./assets/images/rocket.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    text-align: center;
+
+    &__title {
+      font-size: 30px;
+      text-align: center;
+      font-weight: 400;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+
+    &__cards, &__true, &__new, &__length {
+      display: flex;
+      justify-content: space-between;
+      margin: 0px 100px 15px 100px;
+
+      & div:first-child {
+        font-size: 20px;
+      }
+
+      & div:last-child {
+        font-size: 30px;
+      }
+    }
+
+    &__button {
+      margin: 30px 0;
+    }
+  }
 }
 
 //styles for input word after typing

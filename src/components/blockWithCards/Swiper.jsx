@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import SwiperCore, { Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
@@ -8,12 +7,12 @@ import ApplicationData from '../context/Context';
 
 SwiperCore.use([Navigation, A11y]);
 
-const RenderBlockWithCards = ({ words }) => {
+const RenderBlockWithCards = () => {
+  const {
+    settings, doneCards, setDoneCards, words, setPage,
+  } = useContext(ApplicationData);
   const [swiper, setSwiper] = useState();
   const [arrData, setArrData] = useState(words);
-  const {
-    settings, doneCards, setDoneCards, setPage,
-  } = useContext(ApplicationData);
   const [autoTranslationLocal, setAutoTranslationLocal] = useState(true);
   const [autoSpeechLocal, setAutoSpeechLocal] = useState(true);
 
@@ -65,13 +64,6 @@ const RenderBlockWithCards = ({ words }) => {
       <UserProgressBar doneCards={doneCards} maxCards={words.length} />
     </Swiper>
   );
-};
-RenderBlockWithCards.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.object),
-};
-
-RenderBlockWithCards.defaultProps = {
-  words: undefined,
 };
 
 export default RenderBlockWithCards;
