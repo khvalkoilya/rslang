@@ -347,12 +347,20 @@
     background-size: 30%;
     text-align: center;
 
+    @include media-medium {
+      background-size: 60%;
+    }
+
     &__title {
       font-size: 30px;
       text-align: center;
       font-weight: 400;
       margin-top: 60px;
       margin-bottom: 40px;
+
+      @include media-medium {
+        font-size: 27px;
+      }
     }
 
     &__cards, &__true, &__new, &__length {
@@ -360,12 +368,37 @@
       justify-content: space-between;
       margin: 0px 100px 15px 100px;
 
+      @include media-medium {
+        margin: 0 30px 15px 30px;
+      }
+
+      @include media-small {
+        margin: 0 0 15px 0;
+      }
+
       & div:first-child {
         font-size: 20px;
+
+        @include media-medium {
+          font-size: 17px;
+        }
+
+        @include media-small {
+          font-size: 13px;
+          padding-right: 16px;
+        }
       }
 
       & div:last-child {
         font-size: 30px;
+
+        @include media-medium {
+          font-size: 25px;
+        }
+
+        @include media-small {
+          font-size: 20px;
+        }
       }
     }
 
