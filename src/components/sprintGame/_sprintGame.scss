@@ -1,0 +1,135 @@
+.card--sprint-game-bg {
+    background: url('./assets/images/spirit-bg.jpg') no-repeat;
+    background-size: cover;
+}
+
+.sprint-game, .sprint-hello, .sprint-end {
+    
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+}
+
+.sprint-game__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+.sprint-game__points {
+    font-size: 2rem;
+}
+
+@media (min-width: $m-screen) {
+    .sprint-game__points {
+        font-size: 3rem;
+    }
+
+    .sprint-game__timer {
+        font-size: 3rem;
+    }
+}
+
+
+.sprint-game__words {
+    font-size: 3rem;
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.sprint-game__english-word {
+    margin: 1rem auto;
+}
+
+.sprint-game__russian-word {
+    color: $denim-color;
+    font-weight: bold;
+    margin: 1rem auto;
+}
+
+
+
+
+
+
+.sprint-game__control {
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0 auto;
+}
+
+@media (min-width: $m-screen) {
+    .sprint-game__control {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+}
+
+.sprint-game__button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: .5rem;
+    background-color: $yellowish-brown-color;
+    min-width: 100px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 0px #000000;
+    outline: none;
+    border: none;
+}
+
+@media (min-width: $m-screen) {
+    .sprint-game__button {
+        min-width: 200px;
+    }
+}
+
+.sprint-game__button:hover {
+    box-shadow: 0px 0px 8px 0px #000000;
+}
+
+
+
+.sprint-game__button--no {
+    background-color: $light-rose-color;
+    color: black;
+}
+
+.sprint-game__button--yes {
+    background-color: $yellowish-brown-color;
+    color: black;
+}
+
+
+
+.game-hello > .sprint-game, .sprint-end {
+    display: none;
+}
+.game-hello > .sprint-hello {
+    display: flex;
+}
+
+
+.game-start > .sprint-end, .sprint-hello {
+    display: none;
+}
+.game-start > .sprint-game {
+    display: block;
+}
+
+
+
+.game-end > .sprint-hello, .sprint-game {
+    display: none;
+}
+.game-end > .sprint-end {
+    display: block;
+}
+
+.sprint-hello__description {
+    font-size: 1.3rem;
+}

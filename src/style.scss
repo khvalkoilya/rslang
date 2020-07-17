@@ -1,0 +1,44 @@
+@import "~normalize.css";
+@import "./base/fonts";
+@import "./base/constants";
+@import "./base/mixes";
+@import "./components/mainMenuItem/mainMenuItem";
+@import "./components/userMenuItem/userMenuItem";
+@import "./components/userMenu/userMenu";
+@import "./components/header/header";
+@import "./components/footer/footer";
+@import "./components/progressBar/progressBar";
+@import "./components/card/card";
+
+@import "./components/initPageGame/initGame";
+@import "./components/pageAfterGame/pageAfterGame";
+
+@import "./components/savanGame/savanGame";
+@import "./components/savanGame/component/duringGame/duringGame";
+
+@import "./components/audioCall//audioCall";
+@import "./components/audioCall/component/duringGame/duringAudioCallGame";
+
+@import "./components/dictionary/dictionary";
+@import "./components/dictionary/components/wordCardsShortInfo/wordCardsShortinfo";
+@import "./components/dictionary/components/wordCardsFullInfo/wordCards";
+
+@import "./components/pagination/pagination";
+@import "./components/speakerWord/speaker";
+
+@import "./components/blockWithCards/swiper";
+@import "./components/burgerButton/burgerButton";
+@import "./components/registration/input";
+@import "./components/main/main";
+@import "./components/gamesPage/gamesPage";
+@import "./components/sprintGame/sprintGame";
+@import "./components/setting/setting";
+@import "./components/settingItem/settingItem";
+@import "swiper/swiper.scss";
+@import "swiper/components/navigation/navigation.scss";
+@import "swiper/components/pagination/pagination.scss";
+@import "swiper/components/scrollbar/scrollbar.scss";
+@import "./components/footer/aboutUs/aboutUs";
+@import "./components/footer/aboutUsItem/aboutUsItem";
+@import "./components/loader/loader";
+@import "./components/demoPage/demoPage";

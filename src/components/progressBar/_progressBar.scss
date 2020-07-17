@@ -1,0 +1,29 @@
+.userProgress {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include media-medium{ 
+    padding: 30px 30px 0 30px;
+    
+  }
+  &-bar{
+    height: 24px;
+    width: 80%;
+    margin: 0 19px;
+    border: 1px solid $denim-color;
+    @include media-small{
+      margin: 0 10px;
+    }
+  }
+}
+
+span.numberCards {
+  font-size: 50px;
+  font-family: "BalsamiqSans Bold" , serif;
+  color: $denim-color;
+  @include media-small{
+    font-size: 35px;
+  }
+}

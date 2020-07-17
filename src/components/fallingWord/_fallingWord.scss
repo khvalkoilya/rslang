@@ -1,0 +1,17 @@
+.currentWord {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 0 200px 0;
+  font-size: 4.6vh;
+  font-family: "BalsamiqSans Bold";
+}
+
+.animation {
+  animation: move 5s;
+}
+
+@keyframes move {
+  0%   {left:0px; top:0px;}
+  100% {left:0px; top:200px;}
+}

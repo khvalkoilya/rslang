@@ -1,0 +1,72 @@
+.reg__wrapper{
+  margin: 10px;
+  padding: 2px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border: black solid  1px;
+  &_active{
+    border:black solid 2px;
+  }
+  &_first{
+    margin: 10px;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+  }
+  &_second{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    order: 2;
+  }
+}
+.reg__icon{
+  width: 20px;
+  padding: 0px 14px 0px 8px;
+}
+.reg__form{
+  background: $white-color;
+  border: black solid 1px;
+  box-shadow: 0px -3px 11px 0px $dark-blue-color;
+  margin: 10px;  
+  display: flex;
+  flex-direction: column;
+}
+
+.reg__input{
+  border: none;
+  outline: none;
+}
+.reg__error{
+  margin: 0 10px;
+  color: $brown-color;
+
+}
+.reg__h1{
+  margin: 10px; 
+}
+.reg__button{
+  &_first{
+    height: 36px;
+    border: none;
+    order: 1;
+    background-color: $brown-color;
+    color: $white-color;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f5ae7c;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  &_second{
+    border: none;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+    outline: none;
+  }
+}

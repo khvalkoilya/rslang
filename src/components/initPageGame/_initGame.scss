@@ -1,0 +1,33 @@
+h3 {
+  font-size: 3rem;
+  font-family: "BalsamiqSans Bold";
+}
+
+.briefInfo, 
+.timer, 
+.btn {
+  font-size: 1.4rem;
+  margin: 1vh;
+  font-family: "BalsamiqSans regular";
+}
+
+.timer {
+  margin: 1.2vh;
+  color: $light-brown-color;
+}
+
+.briefInfo {
+  width: 355px;
+  display: flex;
+  text-align: center;
+  margin: 0 0 3vh 0;
+  justify-content: center;
+  align-items: center;
+
+  @include media-medium {
+    width: 300px;
+  }
+  @include media-extra-small {
+    width: 150px;
+  }
+}
